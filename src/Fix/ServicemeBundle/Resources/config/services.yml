@@ -1,0 +1,4 @@
+services:
+#    fix_serviceme.example:
+#        class: Fix\ServicemeBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
