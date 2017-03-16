@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+
+    <head>
+    
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="author" content="alejo_fix"/>
+        <meta name="author" content="jorge.montenegro.t@claro.com.co"/>
+            <title>{% block title %}MCR | Formularios {% endblock %}</title>
+    
+        <!-- Bootstrap Core CSS -->
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('public/bootstrap/css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('public/bootstrap/css/scrolling-nav.css') }}" />
+            <link rel="stylesheet" href="{{ asset('public/sweetalert/dist/sweetalert.css') }}" />
+        {% endblock %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('public/images/favicon/favicon4-03-03.png') }}" />
+    
+    </head>
+
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    
+        <!-- Contenido  -->
+        {% block body %}
+    	{% endblock %}
+    
+        {% block javascripts %}
+            <script src="{{ asset('public/bootstrap/') }}"></script>
+            <!-- jQuery -->
+            <script src="{{ asset('public/bootstrap/js/jquery.js') }}"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="{{ asset('public/bootstrap/js/bootstrap.min.js') }}"></script>
+            <!-- Scrolling Nav JavaScript -->
+            <script src="{{ asset('public/bootstrap/js/jquery.easing.min.js') }}"></script>
+            <script src="{{ asset('public/bootstrap/js/scrolling-nav.js') }}"></script>
+        {% endblock %}
+    
+    </body>
+
+</html>

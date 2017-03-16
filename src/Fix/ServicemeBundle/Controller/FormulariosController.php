@@ -20,7 +20,7 @@ class FormulariosController extends Controller
      */
     public function indexAction(){
      
-     return $this->render('FixServicemeBundle:Formularios:index.html.twig');
+        return $this->render('FixServicemeBundle:Formularios:index.html.twig');
  
     }
     
