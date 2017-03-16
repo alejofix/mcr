@@ -1,8 +1,0 @@
-b48e44,::1,GET,http://localhost/_fix/mcr/web/app_dev.php/formularios/index,1489601792,,200
-759be4,::1,GET,http://localhost/_fix/mcr/web/app_dev.php/formularios/index,1489603716,93b1b2,200
-93b1b2,::1,GET,http://localhost/_fix/mcr/web/app_dev.php/formularios/index,1489603716,,500
-1d5504,::1,GET,http://localhost/_fix/mcr/web/app_dev.php/formularios/index,1489603781,,200
-3d16fb,::1,GET,http://localhost/_fix/mcr/web/app_dev.php/serviceme/index,1489603790,1e634e,200
-1e634e,::1,GET,http://localhost/_fix/mcr/web/app_dev.php/serviceme/index,1489603790,,500
-a397b8,::1,GET,http://localhost/_fix/mcr/web/app_dev.php/serviceme/index,1489603836,,200
-d05e10,::1,GET,http://localhost/_fix/mcr/web/app_dev.php/formularios/index,1489603842,,200
