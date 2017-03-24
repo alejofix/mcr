@@ -1,0 +1,83 @@
+<?php
+
+ 
+# 
+</br>
+
+
+# Instalar
+	</br>
+	$ php.exe -r "readfile('https://symfony.com/installer');" > symfony
+	</br>
+
+# creación proyecto nombre igual carpeta
+	</br>
+	$ php.exe symfony new miproyectoy
+	</br>
+
+
+# crear Bundle Bundle name [FixWebBundle]:  [annotation] [src/] 
+	</br>
+	$ php.exe bin/console generate:bundle
+	</br>
+
+
+#Controller  [annotation][twig]
+/**
+ * @Route(path="/blog")
+ */
+	 </br>
+	$ php.exe bin/console generate:controller
+	</br>
+/**
+ * BlogController::indexAction()
+ * 
+ * @Route(path="/index", name="taller")
+ * @return void
+ */
+
+ 
+ #Entity Doctrine 
+	 </br>
+	$ php.exe bin/console doctrine:generate:entity
+	 </br>
+// [annotation]:
+// The Entity shortcut name: FixServicemeBundle:Estados
+// New field name (press <return> to stop adding fields): Nombre 
+	</br>
+// crear tablas en bd
+	 </br>
+	$ php.exe bin/console doctrine:schema:update --force
+	 </br>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <hr/>
+ <br/>
+ <br/><br/><br/><br/><br/><br/>
+ 
+ #ref symnfony ver 2 vs ver 3:
+ 
+ 
+ // $form = $this->createForm(new UserType(), $entity, array(
+ <br/>
+     $form = $this->createForm(UserType::class, $entity, array(﻿
+	 
+	 
+	 
+
+ 
+ 
+ 
+ 
+
+	
+	
+
