@@ -3,13 +3,95 @@
     {% block body %}
     
         <h3>
-            hola index usuarios
+            <span class="label label-warning">Administrador</span> 
+            Lista Usuarios
         </h3>
-        
+		
+		<table class="table table-bordered datatable" id="table-usuarios">
+			
+            <thead>
+				<tr class="replace-inputs">
+					<th>Buscar Usuario</th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+                    <th></th>
+                    <th></th>
+				</tr>
+				<tr>
+					<th>Lista Usuarios</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Correo</th>
+					<th>Fecha Creación</th>
+                    <th>Cargo/Rol</th>
+                    <th>Administración</th>
+				</tr>
+			</thead>
+			
+            <tbody>
+				
+                {% for usuario in usuarios  %}
+                    <tr class="gradeU">
+    					<td>{{ usuario.usuario }}</td>
+    					<td>{{ usuario.nombres }}</td>
+    					<td>{{ usuario.apellidos }}</td>
+    					<td>{{ usuario.correo }}</td>
+    					<td class="center">{{ usuario.fechaCreado|date('d-m-Y H:i') }}</td>
+                        <td class="center">{{ usuario.cargo }}
+                            {% if usuario.role == 'ROOT' %}
+                                /Root
+                            {% elseif usuario.role == 'ROLE_ADMIN' %}
+                                /Administrador
+                            {% elseif usuario.role == 'ROLE_MCR' %}
+                                /MCR
+                            {% elseif usuario.role == 'ROLE_INV' %}
+                                /Invitado    
+                            {% endif  %}       
+                        </td>
+                        <td>    
+                            <a class="btn btn-primary" href="javascript:;">Ver</a>
+                            <a class="btn btn-blue" href="javascript:;">Editar</a>
+                            <a class="btn btn-red" href="javascript:;">Borrar</a>
+                        </td>
+    				</tr>
+                {% endfor %}
+                
+			</tbody>
+            
+		</table>
+
     {% endblock %}
 
 
 {% block javascripts  %}
     {{ parent() }}
+    
+
+		<script type="text/javascript">
+			jQuery(document).ready(function($)
+			{
+				var table = $("#table-usuarios").dataTable({
+					"sPaginationType": "bootstrap",
+					"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+					"bStateSave": true
+				});
+				
+				table.columnFilter({
+					"sPlaceHolder" : "head:after"
+				});
+			});
+		</script>
+
+   	<!-- Bottom scripts (common) -->
+	<script src="{{ asset('public/neon/assets/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('public/neon/assets/js/datatables/TableTools.min.js') }}"></script>
+	<!-- Imported scripts on this page -->
+	<script src="{{ asset('public/neon/assets/js/dataTables.bootstrap.js') }} "></script>
+	<script src="{{ asset('public/neon/assets/js/datatables/jquery.dataTables.columnFilter.js') }} "></script>
+	<script src="{{ asset('public/neon/assets/js/datatables/lodash.min.js') }} "></script>
+	<script src="{{ asset('public/neon/assets/js/datatables/responsive/js/datatables.responsive.js') }} "></script>
+
 
 {% endblock %}

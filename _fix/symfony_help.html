@@ -52,8 +52,10 @@
 
  
  
- 
- 
+  # forms 
+  	 </br>
+  $ php.exe bin/console doctrine:generate:form FixServicemeBundle:Usuarios
+ 	 </br>
  
  
  
@@ -70,7 +72,10 @@
  <br/>
      $form = $this->createForm(UserType::class, $entity, array(﻿
 	 
-	 
+# anottation 
+* @Method({"GET", "POST"})
+'action' => $this->generateUrl('nuevoUsuario'),
+ 
 	 
 
  

@@ -110,7 +110,7 @@ class Usuarios
     /**
      * @var string
      *
-     * @ORM\Column(name="ROLE", type="string", columnDefinition="ENUM('ROLE_ADMIN', 'ROLE_MCR')", length=50)
+     * @ORM\Column(name="ROLE", type="string", columnDefinition="ENUM('ROOT', 'ROLE_ADMIN', 'ROLE_MCR', 'ROLE_INV')", length=50)
      */
     private $role;
 

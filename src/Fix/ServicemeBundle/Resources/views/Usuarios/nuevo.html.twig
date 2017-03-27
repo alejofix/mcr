@@ -1,0 +1,24 @@
+{% extends 'neon/base.html.twig' %}
+
+    {% block body %}
+    
+        <h3>
+            Nuevo Usuario
+        </h3>
+        
+        {{ form_start(form, {'attr' : {'role': 'form'}) }}
+        
+        <div class="form-group" >
+        {{ form_label(form.usuario) }}
+         
+        </div>
+        
+        {{ form_end }}
+     
+    {% endblock %}
+
+
+{% block javascripts  %}
+    {{ parent() }}
+
+{% endblock %}   

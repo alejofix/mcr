@@ -9,20 +9,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * @Route(path="/serviceme")
  */
 
-
 class ServicemeController extends Controller
 {
     
     /**
      * ServicemeController::indexAction()
      * 
-     * @return void
-     * @Route(path="/index", name="serviceme")
+     * @return
+     * @Route(path="/index", name="inicio") 
      */
     public function indexAction(){
         
        return $this->render('FixServicemeBundle:Serviceme:index.html.twig');
    
     }
-    
+    	
 }
