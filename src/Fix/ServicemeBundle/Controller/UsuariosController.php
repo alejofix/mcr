@@ -39,17 +39,17 @@ class UsuariosController extends Controller
     }
     
     /**
-     * UsuariosController::nuevoAction()
+     * UsuariosController::agregarAction()
      * 
-     * @Route(path="/nuevo", name="nuevoUsuario") 
+     * @Route(path="/agregar", name="agregarUsuario") 
      * @return
      */
-    public function nuevoAction()
+    public function agregarAction()
     {
         $usuario = new Usuarios();
         $form = $this->createCreateForm($usuario);
         
-        return $this->render('FixServicemeBundle:Usuarios:nuevo.html.twig',  array('form' => $form->createView()));   
+        return $this->render('FixServicemeBundle:Usuarios:agregar.html.twig',  array('form' => $form->createView()));   
         
     }
     
