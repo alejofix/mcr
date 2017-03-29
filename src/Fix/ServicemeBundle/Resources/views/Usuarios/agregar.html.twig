@@ -3,17 +3,26 @@
     {% block body %}
     
         <h3>
+            <span class="label label-warning">Administrador</span> 
             Nuevo Usuario
         </h3>
         
-        {{ form_start(form, {'attr' : {'role': 'form'}) }}
+        <div class="panel-body">
         
-        <div class="form-group" >
-        {{ form_label(form.usuario) }}
-         
+            {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered' } }) }}
+        
+                <div class="form-group">
+                        <label for="field-1" class="col-sm-3 control-label"><strong>{{ form_label(form.usuario) }} :</strong></label>
+                    <div class="col-sm-5">
+                        {{ form_widget(form.usuario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Usuario', 'autofocus' : 'autofocus' }} ) }}
+                    </div>
+                </div>
+        
+            {{ form_end(form) }}
         </div>
         
-        {{ form_end }}
+        
+
      
     {% endblock %}
 

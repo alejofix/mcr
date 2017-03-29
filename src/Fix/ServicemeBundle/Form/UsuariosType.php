@@ -6,6 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use \Symfony\Component\Form\Extension\Core\Type\EmailType;
+use \Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use \Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use \Symfony\Component\Form\Extension\Core\Type\DateType;
+use \Symfony\Component\Form\Extension\Core\Type\SubmitType; 
+
+
+
 class UsuariosType extends AbstractType
 {
     /**
@@ -17,21 +25,25 @@ class UsuariosType extends AbstractType
             ->add('usuario')
             ->add('nombres')
             ->add('apellidos')
-            ->add('genero')
-            ->add('fechaNacimiento')
-            ->add('correo', 'email')
-            ->add('contrasena', 'password')
+            ->add('genero', ChoiceType::class)
+            ->add('fechaNacimiento', DateType::class)
+            ->add('correo', EmailType::class)
+            ->add('contrasena', PasswordType::class)
             ->add('documentoTipo')
             ->add('documentoNumero')
             ->add('telefonoFijo')
             ->add('telefonoMovil')
             ->add('cargo')
-            ->add('role', 'choice', 
-                    array('choices' => array('ROLE_ADMIN' => 'Administrator', 'ROLE_MCR' => 'Usuario MCR', 'ROLE_INV' => 'Invitado'), 
-                    'placeholder' => 'Seleccione una Opción'))
-            ->add('activo', 'checkbox')
-            ->add('fechaCreado')
-            ->add('Crear', 'sumbit', array('label' => 'Crear Usuario'))
+            ->add('role', ChoiceType::class, 
+                    array('choices' => array(
+                        '' => '',
+                        'ROLE_ADMIN' => 'Administrador',
+                        'ROLE_MCR' => 'MCR',
+                        'ROLE_INV' => 'Invitado'
+                    ), 'placeholder' => 'Seleccione una Opción')
+                 )
+            ->add('activo')
+            ->add('Guardar', SubmitType::class, array('label' => 'Crear Usuario'))
         ;
     }
     

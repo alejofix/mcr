@@ -1,66 +1,67 @@
 {% extends 'neon/base.html.twig' %}
 
     {% block body %}
-    
-        <h3>
-            <span class="label label-warning">Administrador</span> 
-            Lista Usuarios
-        </h3>
-		
-		<table class="table table-bordered datatable" id="table-usuarios">
-			
-            <thead>
-				<tr class="replace-inputs">
-					<th>Buscar Usuario</th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-                    <th></th>
-                    <th></th>
-				</tr>
-				<tr>
-					<th>Lista Usuarios</th>
-					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Correo</th>
-					<th>Fecha Creación</th>
-                    <th>Cargo/Rol</th>
-                    <th>Administración</th>
-				</tr>
-			</thead>
-			
-            <tbody>
-				
-                {% for usuario in usuarios  %}
-                    <tr class="gradeU">
-    					<td>{{ usuario.usuario }}</td>
-    					<td>{{ usuario.nombres }}</td>
-    					<td>{{ usuario.apellidos }}</td>
-    					<td>{{ usuario.correo }}</td>
-    					<td class="center">{{ usuario.fechaCreado|date('d-m-Y H:i') }}</td>
-                        <td class="center">{{ usuario.cargo }}
-                            {% if usuario.role == 'ROOT' %}
-                                /Root
-                            {% elseif usuario.role == 'ROLE_ADMIN' %}
-                                /Administrador
-                            {% elseif usuario.role == 'ROLE_MCR' %}
-                                /MCR
-                            {% elseif usuario.role == 'ROLE_INV' %}
-                                /Invitado    
-                            {% endif  %}       
-                        </td>
-                        <td>    
-                            <a class="btn btn-primary" href="javascript:;">Ver</a>
-                            <a class="btn btn-blue" href="javascript:;">Editar</a>
-                            <a class="btn btn-red" href="javascript:;">Borrar</a>
-                        </td>
-    				</tr>
-                {% endfor %}
+       
+            <h3>
+                <span class="label label-warning">Administrador</span> 
+                Lista Usuarios
+            </h3>
                 
-			</tbody>
-            
-		</table>
+    		<table class="table table-bordered datatable" id="table-usuarios">
+                                                
+                <thead>
+    				<tr class="replace-inputs">
+    					<th>Usuarios</th>
+    					<th>Nombre</th>
+    					<th>Apellido</th>
+    					<th>Correo</th>
+    					<th>Filtrar Fecha</th>
+                        <th>Cargo/Rol</th>
+                        <th></th>                        
+                  	</tr>
+    				<tr>
+    					<th>Lista Usuarios</th>
+    					<th>Nombre</th>
+    					<th>Apellido</th>
+    					<th>Correo</th>
+    					<th>Fecha Creación</th>
+                        <th>Permisos</th>
+                        <th>Acción</th>
+    				</tr>
+    			</thead>
+    			
+                <tbody>
+    				
+                    {% for usuario in usuarios  %}
+                        <tr class="gradeU">
+        					<td>{{ usuario.usuario }}</td>
+        					<td>{{ usuario.nombres }}</td>
+        					<td>{{ usuario.apellidos }}</td>
+        					<td>{{ usuario.correo }}</td>
+        					<td class="center">{{ usuario.fechaCreado|date('d-m-Y H:i') }}</td>
+                            <td class="center">{{ usuario.cargo }}
+                                {% if usuario.role == 'ROOT' %}
+                                    /Root
+                                {% elseif usuario.role == 'ROLE_ADMIN' %}
+                                    /Administrador
+                                {% elseif usuario.role == 'ROLE_MCR' %}
+                                    /MCR
+                                {% elseif usuario.role == 'ROLE_INV' %}
+                                    /Invitado    
+                                {% endif  %}       
+                            </td>
+                            <td>    
+                                <a class="btn btn-primary" href="javascript:;"><i class="entypo-info"></i></a>
+                                <a class="btn btn-blue" href="javascript:;"><i class="entypo-pencil"></i></a>
+                                <a class="btn btn-red" href="javascript:;"><i class="entypo-cancel"></i></a>
+                            </td>
+        				</tr>
+                    {% endfor %}
+                    
+    			</tbody>
+                
+    		</table>
+                
 
     {% endblock %}
 
