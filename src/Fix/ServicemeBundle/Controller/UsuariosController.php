@@ -4,6 +4,7 @@ namespace Fix\ServicemeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -58,11 +59,12 @@ class UsuariosController extends Controller
      * 
      * @param mixed $entity
      * @return void
-     * @Route(path="/crear", name="crearUsuario")
+     * @Method({"GET", "POST"})  
      */
     private function createCreateForm(Usuarios $entity)
     {
         $form = $this->createForm(UsuariosType::class, $entity, array(
+        
             'action' => $this->generateUrl('crearUsuario'),
             'method' => 'POST'
         ));
@@ -70,6 +72,32 @@ class UsuariosController extends Controller
         return $form;       
     }
     
+    /**
+     * UsuariosController::crearAction()
+     * 
+     * @param mixed $request
+     * @return
+     * @Route(path="/crear", name="crearUsuario")
+
+     */
+    public function crearAction(Request $request)
+    {
+        $usuario = new Usuarios();
+        $form = $this->createCreateForm($usuario);
+        $form->handleRequest($request);
+        
+        if($form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush();
+            
+            return $this->redirectToRoute('indexUsuarios');
+        }
+        
+        return $this->render('FixServicemeBundle:Usuarios:agregar.html.twig',  array('form' => $form->createView()));
+        
+    }
     
     /**
      * UsuariosController::verAction()

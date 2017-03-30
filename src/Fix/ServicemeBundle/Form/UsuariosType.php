@@ -11,7 +11,7 @@ use \Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use \Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use \Symfony\Component\Form\Extension\Core\Type\DateType;
 use \Symfony\Component\Form\Extension\Core\Type\SubmitType; 
-
+use \Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 class UsuariosType extends AbstractType
@@ -26,9 +26,9 @@ class UsuariosType extends AbstractType
             ->add('nombres')
             ->add('apellidos')
             ->add('genero', ChoiceType::class)
-            ->add('fechaNacimiento', DateType::class)
+            ->add('fechaNacimiento', DateType::class, array('label' => 'Fecha Nacimiento'))
             ->add('correo', EmailType::class)
-            ->add('contrasena', PasswordType::class)
+            ->add('contrasena', PasswordType::class, array('label' => 'Contraseña'))
             ->add('documentoTipo')
             ->add('documentoNumero')
             ->add('telefonoFijo')
@@ -43,7 +43,7 @@ class UsuariosType extends AbstractType
                     ), 'placeholder' => 'Seleccione una Opción')
                  )
             ->add('activo')
-            ->add('Guardar', SubmitType::class, array('label' => 'Crear Usuario'))
+            ->add('guardar', SubmitType::class, array('label' => 'Crear Usuario'))
         ;
     }
     

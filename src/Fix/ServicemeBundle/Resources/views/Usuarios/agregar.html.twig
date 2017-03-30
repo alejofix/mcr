@@ -1,29 +1,123 @@
 {% extends 'neon/base.html.twig' %}
 
     {% block body %}
+    <div class="panel panel-primary" data-collapsed="0">
     
-        <h3>
-            <span class="label label-warning">Administrador</span> 
-            Nuevo Usuario
-        </h3>
+        <div class="panel-heading">
+			<div class="panel-title">
+            	   <h3>
+                        <span class="label label-warning">Administrador</span> 
+                        Nuevo Usuario
+                    </h3>
+			</div>
+			<div class="panel-options">
+				<a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+				<a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>
+				<a href="#" data-rel="close"><i class="entypo-cancel"></i></a>
+			</div>
+		</div>
         
         <div class="panel-body">
-        
             {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered' } }) }}
         
                 <div class="form-group">
-                        <label for="field-1" class="col-sm-3 control-label"><strong>{{ form_label(form.usuario) }} :</strong></label>
+                    <label for="field-1" class="col-sm-3 control-label"><strong>{{ form_label(form.usuario) }} :</strong></label>
                     <div class="col-sm-5">
                         {{ form_widget(form.usuario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Usuario', 'autofocus' : 'autofocus' }} ) }}
                     </div>
                 </div>
-        
+                <div class="form-group">
+                    <label for="field-2" class="col-sm-3 control-label"><strong>{{ form_label(form.nombres) }} :</strong></label>
+                    <div class="col-sm-5">
+                        {{ form_widget(form.nombres, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Nombres Usuario' }} ) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="field-3" class="col-sm-3 control-label"><strong>{{ form_label(form.apellidos) }} :</strong></label>
+                    <div class="col-sm-5">
+                        {{ form_widget(form.apellidos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Apellidos Usuario' }} ) }}
+                    </div>
+                </div>
+                <div class="form-group">
+					<label for="field-4" class="col-sm-3 control-label"><strong>{{ form_label(form.genero) }} :</strong></label>
+					<div class="col-sm-5">
+						{{ form_widget(form.genero, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+				</div>
+                <div class="form-group">
+                    <label for="field-5" class="col-sm-3 control-label"><strong>{{ form_label(form.fechaNacimiento) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.fechaNacimiento, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-6" class="col-sm-3 control-label"><strong>{{ form_label(form.correo) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.correo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese correo Corporativo' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-7" class="col-sm-3 control-label"><strong>{{ form_label(form.contrasena) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.contrasena, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Contraseña de fácil Recordación' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-8" class="col-sm-3 control-label"><strong>{{ form_label(form.documentoTipo) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.documentoTipo, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-9" class="col-sm-3 control-label"><strong>{{ form_label(form.documentoNumero) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.documentoNumero, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-10" class="col-sm-3 control-label"><strong>{{ form_label(form.telefonoFijo) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.telefonoFijo, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-11" class="col-sm-3 control-label"><strong>{{ form_label(form.telefonoMovil) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.telefonoMovil, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-12" class="col-sm-3 control-label"><strong>{{ form_label(form.cargo) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.cargo, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-13" class="col-sm-3 control-label"><strong>{{ form_label(form.role) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.role, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+                </div>
+                <div class="form-group">
+                    <label for="field-14" class="col-sm-3 control-label"><strong>{{ form_label(form.activo) }} :</strong></label>
+                    <div class="col-sm-5">
+						{{ form_widget(form.activo, { 'attr' : {'class' : 'form-control' }} ) }}
+              		</div>
+                </div>
+      
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <p>
+    		        {{ form_widget(form.guardar, {'label' : 'Create user', 'attr': {'class': 'btn btn-success'}}) }}
+    		          </p> 
+                    </div>
+                </div>
             {{ form_end(form) }}
         </div>
         
         
 
-     
+     </div>
     {% endblock %}
 
 
