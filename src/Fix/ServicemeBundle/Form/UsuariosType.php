@@ -25,15 +25,19 @@ class UsuariosType extends AbstractType
             ->add('usuario', TextType::class)
             ->add('nombres', TextType::class)
             ->add('apellidos', TextType::class)
-            ->add('genero', ChoiceType::class)
+            ->add('genero', ChoiceType::class,
+                array('choices' => array(
+                        'Femenino' => '0',
+                        'Masculino' => '1',
+                    ), 'placeholder' => 'Seleccione una Opción'))
             ->add('fechaNacimiento', DateType::class, array('label' => 'Fecha Nacimiento'))
             ->add('correo', EmailType::class)
             ->add('contrasena', PasswordType::class, array('label' => 'Contraseña'))
-            ->add('documentoTipo')
-            ->add('documentoNumero')
-            ->add('telefonoFijo')
-            ->add('telefonoMovil')
-            ->add('cargo')
+            ->add('documentoTipo', TextType::class, array('label' => 'Tipo Documento'))
+            ->add('documentoNumero', TextType::class, array('label' => 'Número Documento'))
+            ->add('telefonoFijo', TextType::class, array('label' => 'Teléfono Fijo'))
+            ->add('telefonoMovil', TextType::class, array('label' => 'Teléfono Móvil'))
+            ->add('cargo', TextType::class)
             ->add('role', ChoiceType::class, 
                     array('choices' => array(
                         'ROLE_ADMIN' => 'Administrador',
@@ -42,7 +46,7 @@ class UsuariosType extends AbstractType
                     ), 'placeholder' => 'Seleccione una Opción')
                  )
             ->add('activo')
-            ->add('guardar', SubmitType::class, array('label' => 'Crear Usuario'))
+            //->add('guardar', SubmitType::class, array('label' => 'Crear Usuario'))
         ;
     }
     

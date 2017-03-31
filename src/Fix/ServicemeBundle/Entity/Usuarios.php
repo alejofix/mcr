@@ -53,7 +53,7 @@ class Usuarios implements UserInterface
     /**
      * @var bool
      *
-     * @ORM\Column(name="GENERO", type="boolean", nullable=true)
+     * @ORM\Column(name="GENERO", type="string", length=10)
      */
     private $genero;
 
