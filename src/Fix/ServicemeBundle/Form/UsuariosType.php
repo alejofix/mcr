@@ -22,9 +22,9 @@ class UsuariosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('usuario')
-            ->add('nombres')
-            ->add('apellidos')
+            ->add('usuario', TextType::class)
+            ->add('nombres', TextType::class)
+            ->add('apellidos', TextType::class)
             ->add('genero', ChoiceType::class)
             ->add('fechaNacimiento', DateType::class, array('label' => 'Fecha Nacimiento'))
             ->add('correo', EmailType::class)
@@ -36,9 +36,8 @@ class UsuariosType extends AbstractType
             ->add('cargo')
             ->add('role', ChoiceType::class, 
                     array('choices' => array(
-                        '' => '',
                         'ROLE_ADMIN' => 'Administrador',
-                        'ROLE_MCR' => 'MCR',
+                        'ROLE_MCR' => 'Analista',
                         'ROLE_INV' => 'Invitado'
                     ), 'placeholder' => 'Seleccione una Opción')
                  )

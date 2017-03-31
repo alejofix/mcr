@@ -3,6 +3,11 @@
 namespace Fix\ServicemeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Usuarios
@@ -11,8 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
     * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_EMPRESA", columns={"EMPRESA"})
  })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\UsuariosRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Usuarios
+class Usuarios implements UserInterface
 {
     /**
      * @var int
@@ -110,7 +116,7 @@ class Usuarios
     /**
      * @var string
      *
-     * @ORM\Column(name="ROLE", type="string", columnDefinition="ENUM('ROOT', 'ROLE_ADMIN', 'ROLE_MCR', 'ROLE_INV')", length=50)
+     * @ORM\Column(name="ROLE", type="string", columnDefinition="ENUM('ROLE_ADMIN', 'ROLE_MCR', 'ROLE_INV')", length=50)
      */
     private $role;
 
@@ -537,5 +543,65 @@ class Usuarios
     {
         return $this->fechaActualizado;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setfechaCreadoValue()
+    {
+        $this->fechaCreado = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function setfechaActualizadoValue()
+    {
+        $this->fechaActualizado = new \DateTime();
+    }
+    
+    
+    /**
+     * Usuarios::getPassword()
+     * 
+     */
+    public function getPassword()
+    {
+     
+    }
+    /**
+     * Usuarios::getUsername()
+     * 
+     */
+    public function getUsername()
+    {
+     
+    }
+    /**
+     * Usuarios::getRoles()
+     * 
+     */
+    public function getRoles()
+    {
+     
+    }
+    /**
+     * Usuarios::getSalt()
+     * 
+     */
+    public function getSalt()
+    {
+     
+    }
+    /**
+     * Usuarios::eraseCredentials()
+     * 
+     */
+    public function eraseCredentials()
+    {
+        
+    }
+    
 }
 

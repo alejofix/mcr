@@ -86,6 +86,13 @@ class UsuariosController extends Controller
         $form = $this->createCreateForm($usuario);
         $form->handleRequest($request);
         
+            $contrasena = $form->get('contrasena')->getData();
+            
+            $encoder = $this->container->get('security.password_encoder');
+            $encoded = $encoder->encodePassword($usuario, $contrasena);
+            
+            $usuario->setContrasena($encoded);       
+        
         if($form->isValid())
         {
             $em = $this->getDoctrine()->getManager();
