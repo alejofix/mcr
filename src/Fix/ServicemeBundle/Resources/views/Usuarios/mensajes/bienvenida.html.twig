@@ -1,0 +1,83 @@
+<!-- 
+    <script type="text/javascript">
+		jQuery(document).ready(function($)
+		{
+			setTimeout(function()
+			{
+				var opts = {
+					"closeButton": true,
+					"debug": false,
+					//"positionClass": "toast-top-full-width",
+                    //"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-bottom-right" : "toast-bottom-right",
+					"toastClass": "black",
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				};
+		
+				toastr.success("Aconsejamos el uso de Navegador CHROME para una mejor Experiencia. ", "Bienvenido al APP de MCR", opts);
+			}, 700);
+		
+			var seriesData = [ [], [] ];
+		
+			var random = new Rickshaw.Fixtures.RandomData(50);
+		
+			for (var i = 0; i < 50; i++)
+			{
+				random.addData(seriesData);
+			}
+		
+			var graph = new Rickshaw.Graph( {
+				element: document.getElementById("rickshaw-chart-demo"),
+				height: 193,
+				renderer: 'area',
+				stroke: false,
+				preserve: true,
+				series: [{
+						color: '#73c8ff',
+						data: seriesData[0],
+						name: 'Upload'
+					}, {
+						color: '#e0f2ff',
+						data: seriesData[1],
+						name: 'Download'
+					}
+				]
+			} );
+		
+			graph.render();
+		
+			var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+				graph: graph,
+				xFormatter: function(x) {
+					return new Date(x * 1000).toString();
+				}
+			} );
+		
+			var legend = new Rickshaw.Graph.Legend( {
+				graph: graph,
+				element: document.getElementById('rickshaw-legend')
+			} );
+		
+			var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
+				graph: graph,
+				legend: legend
+			} );
+		
+			setInterval( function() {
+				random.removeData(seriesData);
+				random.addData(seriesData);
+				graph.update();
+    		
+			}, 500 );
+		});
+    </script>
+    
+    
+    ->

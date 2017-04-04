@@ -13,8 +13,9 @@ use \Symfony\Component\Form\Extension\Core\Type\DateType;
 use \Symfony\Component\Form\Extension\Core\Type\SubmitType; 
 use \Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use \Symfony\Component\Form\Extension\Core\Type\TextType;
+#
+use \Symfony\Component\Validator\Constraints as Assert;
 
-use \Symfony\Component\Validator\Constraints;
 
 
 class UsuariosType extends AbstractType
@@ -25,12 +26,12 @@ class UsuariosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-   #         ->add('usuario', TextType::class, 
-#                    array('label' => 'Usuario',
-#                          'constraints' => array(
-#                          new Constraints\NotBlank(array('message' => 'Debe ingresar el Usuario')),
-#                            )
-#                        ))
+            ->add('usuario', TextType::class, 
+                    array('label' => 'Usuario',
+                          'constraints' => array(
+                          new Assert\NotBlank(array('message' => 'Debe ingresar el Usuario')),
+                            )
+                        ))
             ->add('usuario', TextType::class)
             ->add('nombres', TextType::class)
             ->add('apellidos', TextType::class)
@@ -64,7 +65,7 @@ class UsuariosType extends AbstractType
                     ), 'placeholder' => 'Seleccione una Opción')
                  )
             ->add('activo')
-            //->add('guardar', SubmitType::class, array('label' => 'Crear Usuario'))
+           #->add('guardar', SubmitType::class, array('label' => 'Crear Usuario'))
         ;
     }
     

@@ -1,15 +1,21 @@
 {% extends 'neon/base.html.twig' %}
-
+    
+    
+    
     {% block body %}
     
-        <h3>
-            hola index service me
-        </h3>
-        
+
+    
+    
+    {{ include('FixServicemeBundle:Usuarios:mensajes/bienvenida.html.twig') }}    
     {% endblock %}
-
-
+    
+        
 {% block javascripts  %}
     {{ parent() }}
+    
+    
+    
+
 
 {% endblock %}

@@ -99,6 +99,8 @@ class UsuariosController extends Controller
             $em->persist($usuario);
             $em->flush();
             
+            $this->addFlash('mensajecreado', 'Usuario creado, no sabe lo que le Espera.');
+            
             return $this->redirectToRoute('indexUsuarios');
         }
         

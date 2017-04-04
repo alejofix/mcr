@@ -16,6 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_EMPRESA", columns={"EMPRESA"})
  })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\UsuariosRepository")
+ * @UniqueEntity("usuario")
  * @ORM\HasLifecycleCallbacks()
  */
 class Usuarios implements UserInterface
@@ -32,7 +33,7 @@ class Usuarios implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="USUARIO", type="string", length=50, unique=true)
+     * @ORM\Column(name="USUARIO", type="string", length=50)
      */
     private $usuario;
 

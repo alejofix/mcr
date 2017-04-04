@@ -1,7 +1,9 @@
 {% extends 'neon/base.html.twig' %}
 
     {% block body %}
-       
+    {{ parent() }}
+    {{ include('FixServicemeBundle:Usuarios:mensajes/exito.html.twig') }}
+    
             <h3>
                 <span class="label label-warning">Administrador</span> 
                 Lista Usuarios
@@ -61,15 +63,14 @@
     			</tbody>
                 
     		</table>
-                
+          
 
     {% endblock %}
 
 
 {% block javascripts  %}
     {{ parent() }}
-    
-
+        
 		<script type="text/javascript">
 			jQuery(document).ready(function($)
 			{
