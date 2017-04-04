@@ -57,9 +57,31 @@
   $ php.exe bin/console doctrine:generate:form FixServicemeBundle:Usuarios
  	 </br>
  
+ ///////////////////////
+ # validación COMPOSER Formularios 
  
+ ??? $ composer require symfony/symfony
+??? composer require symfony/finder
+
+ use \Symfony\Component\Validator\Constraints\NotBlank;
  
+             ->add('usuario', TextType::class, 
+                    array('label' => 'Usuario',
+                          'constraints' => array(
+                            new Constraint\NotBlank(array('message' => 'Debe ingresar el Usuario')),
+                            )
+                        ))
+						
+						
+		            ->add('usuario', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+				'label' => 'Usuario',
+				'constraints' => array(
+					new Constraints\NotBlank(array('message' => 'Ingresar'))
+					
+				)
+			))  
  
+ /////////////////////////////////
  
  <hr/>
  <br/>
