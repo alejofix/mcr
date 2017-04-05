@@ -1,5 +1,9 @@
-            {% for flashMessage in app.session.flashbag.get('mensajecreado') %}
-            	<div class="alert alert-success" role="alert">
-            		<div class="container"> {{ flashMessage }} </div>
-            	</div>
-            {% endfor %}  
+		{% for flashMessage in app.session.flashbag.get('mensajecreado') %}
+            <div class="row">
+    			
+    			<div class="col-md-12">
+    				<div class="alert alert-success"><strong>Bien hecho!</strong> {{ flashMessage }}</div>
+    			</div>
+    			
+    		</div>
+        {% endfor %}

@@ -99,12 +99,61 @@ class UsuariosController extends Controller
             $em->persist($usuario);
             $em->flush();
             
-            $this->addFlash('mensajecreado', 'Usuario creado, no sabe lo que le Espera.');
+            #$successMessage = $this->get('translator')->trans('The user has been created.');
+            #$this->addFlash('mensajecreado', $successMessage);
+            $this->addFlash('mensajecreado', 'Usuario Creado... No sabe lo que le Espera.');
             
             return $this->redirectToRoute('indexUsuarios');
         }
         
         return $this->render('FixServicemeBundle:Usuarios:agregar.html.twig',  array('form' => $form->createView()));
+        
+    }
+    
+    
+    /**
+     * UsuariosController::editarAction()
+     * 
+     * @param mixed $id
+     * @return void
+     * @Route(path="/editar/{id}", name="editarUsuario")
+     */
+    public function editarAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $usuario = $em->getRepository('FixServicemeBundle:Usuarios')->find($id);
+        
+        if(!$usuario)
+        {
+           throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+        }
+        
+        $form = $this->createEditForm($usuario);
+        
+        return $this->render('FixServicemeBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
+    }
+    
+    /**
+     * UsuariosController::createEditForm()
+     * 
+     * @param mixed $entity
+     * @return void
+     * @Route(path="/actualizar/{id}", name="actualizarUsuario")
+     * @Method({"PUT", "POST"})
+     */
+    private function createEditForm(Usuarios $entity)
+    {
+        $form = $this->createForm(UsuariosType::class, $entity, array
+            ('action' => $this->generateUrl('actualizarUsuario', array('id' => $entity->getId())), 'method' => 'PUT'));
+            
+            return $form; 
+        
+    }
+    
+    public function actualizarAction()
+    {
+              
         
     }
     

@@ -1,44 +1,46 @@
 {% extends 'neon/base.html.twig' %}
 
-    {% block body %}
+    {% block body %}    
+    {{ parent() }}
+    {{ include('FixServicemeBundle:Usuarios:mensajes/exito.html.twig') }}
     
     <div class="panel panel-primary" data-collapsed="0">
-    
+
         <div class="panel-heading">
 			<div class="panel-title">
         	   <h3>
                     <span class="label label-warning">Administrador</span> 
-                    Nuevo Usuario {# {% trans %}New User{% endtrans %} #}
+                    Editar Usuario {# {{ usuario.usuario }} #}
                 </h3>
 			</div>
 			<div class="panel-options">
 				<a href="javascript:;" data-rel="collapse"><i class="entypo-down-open"></i></a>
-				<a href="{{ url('crearUsuario') }}"><i class="entypo-arrows-ccw"></i></a>
+				<a href="{{ url('editarUsuario', { id: usuario.id }) }}"><i class="entypo-arrows-ccw"></i></a>
 			</div>
 		</div>
         
-        <div class="panel-body">
-         
-         {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered' } }) }}
+        <div class="panel-body">            
         
+        {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered' } }) }}
+                
                 <div class="form-group">
                     <label for="field-1" class="col-sm-3 control-label"><strong>{{ form_label(form.usuario) }} <i class="entypo-user-add"></i></strong></label>
                     <div class="col-sm-5">
                         
-                        {{ form_widget(form.usuario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Usuario', 'autofocus' : 'autofocus' }} ) }}
+                        {{ form_widget(form.usuario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Usuario', 'disabled' : 'disabled' }} ) }}
                     
                     </div>
                 </div>
-              
+                
                 <div class="form-group">
                     <label for="field-2" class="col-sm-3 control-label"><strong>{{ form_label(form.nombres) }} :</strong></label>
                     <div class="col-sm-5">
                         
-                        {{ form_widget(form.nombres, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Nombres Usuario' }} ) }}
+                        {{ form_widget(form.nombres, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Nombres Usuario', 'autofocus' : 'autofocus', }} ) }}
                     
                     </div>
                 </div>
-              
+                
                 <div class="form-group">
                     <label for="field-3" class="col-sm-3 control-label"><strong>{{ form_label(form.apellidos) }} :</strong></label>
                     <div class="col-sm-5">
@@ -47,7 +49,7 @@
                     
                     </div>
                 </div>
-              
+                
                 <div class="form-group">
 					<label for="field-4" class="col-sm-3 control-label"><strong>{{ form_label(form.genero) }} :</strong></label>
 					<div class="col-sm-5">
@@ -56,7 +58,7 @@
               		
                     </div>
 				</div>
-              
+                
                 <div class="form-group">
                     <label for="field-5" class="col-sm-3 control-label"><strong>{{ form_label(form.fechaNacimiento) }} :</strong></label>
                     <div class="col-sm-3">
@@ -66,16 +68,6 @@
                     </div>
                 </div>
                 
-                <!--
-                <div class="form-group">
-					<label class="col-sm-3 control-label">3 Clicks Date Select</label>
-					
-					<div class="col-sm-3">
-						<input type="text" class="form-control datepicker" data-start-view="2"/>
-					</div>
-				</div>
-                -->
-              
                 <div class="form-group">
                     <label for="field-6" class="col-sm-3 control-label"><strong>{{ form_label(form.correo) }} <i class="entypo-mail"></i></strong></label>
                     <div class="col-sm-5">
@@ -84,16 +76,16 @@
               		
                     </div>
                 </div>
-              
+                
                 <div class="form-group">
                     <label for="field-7" class="col-sm-3 control-label"><strong>{{ form_label(form.contrasena) }} <i class="entypo-key"></i></strong></label>
                     <div class="col-sm-5">
-    
+     
                    		  {{ form_widget(form.contrasena, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Contraseña de fácil Recordación' }} ) }}
-    
+     
               		</div>
                 </div>
-              
+                
                 <div class="form-group">
                     <label for="field-8" class="col-sm-3 control-label"><strong>{{ form_label(form.documentoTipo) }} :</strong></label>
                     <div class="col-sm-5">
@@ -102,7 +94,7 @@
               		
                     </div>
                 </div>
-              
+                
                 <div class="form-group">
                     <label for="field-9" class="col-sm-3 control-label"><strong>{{ form_label(form.documentoNumero) }} :</strong></label>
                     <div class="col-sm-5">
@@ -111,7 +103,7 @@
               		
                     </div>
                 </div>
-              
+                
                 <div class="form-group">
                     <label for="field-10" class="col-sm-3 control-label"><strong>{{ form_label(form.telefonoFijo) }} :</strong></label>
                     <div class="col-sm-5">
@@ -129,13 +121,13 @@
                           
               		</div>
                 </div>
-              
+                
                 <div class="form-group">
                     <label for="field-12" class="col-sm-3 control-label"><strong>{{ form_label(form.cargo) }} :</strong></label>
                     <div class="col-sm-5">
-	
-    					  {{ form_widget(form.cargo, { 'attr' : {'class' : 'form-control' }} ) }}
-    
+		
+        				  {{ form_widget(form.cargo, { 'attr' : {'class' : 'form-control' }} ) }}
+        
               		</div>
                 </div>
               
@@ -147,7 +139,7 @@
                           
               		</div>
                 </div>
-              
+                
                 <div class="form-group">
                     <label for="field-14" class="col-sm-3 control-label"><strong>{{ form_label(form.activo) }} :</strong></label>
                     <div class="col-sm-5">
@@ -157,47 +149,23 @@
               		</div>
                 </div>
                 
-                <!--
-                <div class="form-group">
-					<label class="col-sm-3 control-label">Toggle Check</label>
-					
-					<div class="col-sm-5">
-						<div class="make-switch">
-						    <input type="checkbox" checked=""/>
-						</div>
-					</div>
-				</div>
-                -->
-                
-                
                 <div class="form-group default-padding">
                     <div class="col-sm-offset-3 col-sm-5">
-				        {# {{ form_widget(form.guardar, {'label' : 'Create user', 'attr': {'class': 'btn btn-success'}}) }} #} 
-                        <button type="submit" class="btn btn-primary btn-icon icon-left">
-                            Crear Usuario<i class="entypo-floppy"></i>
+				        <button type="submit" class="btn btn-blue btn-icon icon-left">
+                            Editar Usuario<i class="entypo-floppy"></i>
 				        </button>
-                        <button type="reset" class="btn btn-default btn-icon icon-left">
-							Borrar Formulario<i class="entypo-trash"></i>
-                		</button>
                     </div>                            
 			     </div>
-
-            
+                
+        
         {{ form_end(form) }}
         
         </div>
         
-        
-
-     </div>
-     
+    </div>
+                    
     {% endblock %}
-
-
-{% block javascripts  %}
-    {{ parent() }}
+    {% block javascripts  %}
+        {{ parent() }}
     
-    <script src="{{ asset('public/neon/assets/js/bootstrap-switch.min.js') }}"></script>
-    
-
-{% endblock %}   
+    {% endblock %}  

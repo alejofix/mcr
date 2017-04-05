@@ -53,8 +53,8 @@
                                 {% endif  %}       
                             </td>
                             <td>    
-                                <a class="btn btn-primary" href="javascript:;"><i class="entypo-info"></i></a>
-                                <a class="btn btn-blue" href="javascript:;"><i class="entypo-pencil"></i></a>
+                                <a class="btn btn-primary" href="{{ path('verUsuario',   { id: usuario.id }) }}"><i class="entypo-info"></i></a>
+                                <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>
                                 <a class="btn btn-red" href="javascript:;"><i class="entypo-cancel"></i></a>
                             </td>
         				</tr>
