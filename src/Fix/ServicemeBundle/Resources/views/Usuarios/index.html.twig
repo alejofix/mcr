@@ -7,34 +7,27 @@
             <h3>
                 <span class="label label-warning">Administrador</span> 
                 Lista Usuarios
-            </h3>
-                
+                <span class="badge badge-success">{{ pagination.getTotalItemCount }}</span>
+		    </h3>
+            <hr />
+
     		<table class="table table-bordered datatable" id="table-usuarios">
                                                 
                 <thead>
     				<tr class="replace-inputs">
-    					<th>Usuarios</th>
-    					<th>Nombre</th>
-    					<th>Apellido</th>
-    					<th>Correo</th>
-    					<th>Filtrar Fecha</th>
-                        <th>Cargo/Rol</th>
-                        <th></th>                        
+    					<th>{{ knp_pagination_sortable(pagination, 'Usuario', 'u.usuario') }} </th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Nombres', 'u.nombres') }} </th>                               
+                        <th>{{ knp_pagination_sortable(pagination, 'Apellidos', 'u.apellidos') }} </th> 
+                        <th>{{ knp_pagination_sortable(pagination, 'Correo', 'u.correo') }} </th> 
+    			        <th>{{ knp_pagination_sortable(pagination, 'Fecha Creado', 'u.fechaCreado') }} </th>  
+    			        <th>{{ knp_pagination_sortable(pagination, 'Cargo/Rol', 'u.cargo') }} </th> 
+    			        <th>Acción</th>                        
                   	</tr>
-    				<tr>
-    					<th>Lista Usuarios</th>
-    					<th>Nombre</th>
-    					<th>Apellido</th>
-    					<th>Correo</th>
-    					<th>Fecha Creación</th>
-                        <th>Permisos</th>
-                        <th>Acción</th>
-    				</tr>
     			</thead>
     			
                 <tbody>
     				
-                    {% for usuario in usuarios  %}
+                    {% for usuario in pagination  %}
                         <tr class="gradeU">
         					<td>{{ usuario.usuario }}</td>
         					<td>{{ usuario.nombres }}</td>
@@ -63,37 +56,18 @@
     			</tbody>
                 
     		</table>
-          
+            
+            <!-- display Navigation KNP --> 
+            <div class="pagination-container">
+				{{ knp_pagination_render(pagination) }}
+            </div>
 
     {% endblock %}
-
+    
 
 {% block javascripts  %}
     {{ parent() }}
-        
-		<script type="text/javascript">
-			jQuery(document).ready(function($)
-			{
-				var table = $("#table-usuarios").dataTable({
-					"sPaginationType": "bootstrap",
-					"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-					"bStateSave": true
-				});
-				
-				table.columnFilter({
-					"sPlaceHolder" : "head:after"
-				});
-			});
-		</script>
 
-   	<!-- Bottom scripts (common) -->
-	<script src="{{ asset('public/neon/assets/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('public/neon/assets/js/datatables/TableTools.min.js') }}"></script>
-	<!-- Imported scripts on this page -->
-	<script src="{{ asset('public/neon/assets/js/dataTables.bootstrap.js') }} "></script>
-	<script src="{{ asset('public/neon/assets/js/datatables/jquery.dataTables.columnFilter.js') }} "></script>
-	<script src="{{ asset('public/neon/assets/js/datatables/lodash.min.js') }} "></script>
-	<script src="{{ asset('public/neon/assets/js/datatables/responsive/js/datatables.responsive.js') }} "></script>
 
 
 {% endblock %}

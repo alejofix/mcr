@@ -22,11 +22,12 @@ class UsuariosController extends Controller
      * UsuariosController::indexAction()
      * 
      * @Route(path="/index", name="indexUsuarios")
+     * @author alejo_fix@hotmail.com
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
        $em = $this->getDoctrine()->getManager();
-       $usuarios = $em->getRepository('FixServicemeBundle:Usuarios')->findAll();
+       #$usuarios = $em->getRepository('FixServicemeBundle:Usuarios')->findAll();
        
     /*
        $res = 'Lista de Usuarios: <br />';
@@ -36,7 +37,20 @@ class UsuariosController extends Controller
        }   
        return new Response($res);
     */
-        return $this->render('FixServicemeBundle:Usuarios:index.html.twig', array('usuarios' => $usuarios));
+    
+        $dql   = "SELECT u FROM FixServicemeBundle:Usuarios u";
+        $usuarios = $em->createQuery($dql);
+    
+        
+        $paginator = $this->get('knp_paginator');
+        
+        $pagination = $paginator->paginate(
+        
+            $usuarios, $request->query->getInt('page', 1),
+            3
+        );
+    
+        return $this->render('FixServicemeBundle:Usuarios:index.html.twig', array('pagination' => $pagination));
     }
     
     /**
@@ -110,7 +124,6 @@ class UsuariosController extends Controller
         
     }
     
-    
     /**
      * UsuariosController::editarAction()
      * 
@@ -132,6 +145,7 @@ class UsuariosController extends Controller
         $form = $this->createEditForm($usuario);
         
         return $this->render('FixServicemeBundle:Usuarios:editar.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
+
     }
     
     /**
@@ -151,10 +165,40 @@ class UsuariosController extends Controller
         
     }
     
-    public function actualizarAction()
+    /**
+     * UsuariosController::actualizarAction()
+     * 
+     * @return void
+     * @Route(path="/actualizar/{id}", name="redireccion_editar")
+     */
+    public function actualizarAction($id, Request $request)
     {
-              
+        $em = $this->getDoctrine()->getManager();
         
+        $usuario = $em->getRepository('FixServicemeBundle:Usuario')->find($id);   
+        
+        if(!$usuario)
+        {
+           throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+        }
+        
+        $form = $this->createEditForm($usuario);
+        
+        $form->handleRequest($request);
+        
+         if($form->isSubmitted() && $form->isValid())
+         {
+            
+            $em->flush();
+            $this->addFlash('mensajecreado', 'Usuario Actualizado... Información inyectada.');
+            
+            return $this->redirectToRoute('editarUsuario', array('id' => $usuario->getId()));
+            
+         }
+        
+        return $this->render('FixServicemeBundle:Usuarios:editar.html.twig', 
+            array('usuario' => $usuario, 'form' => $form->createView()));
+            
     }
     
     /**
@@ -170,8 +214,13 @@ class UsuariosController extends Controller
        
         $usuario = $repository->find($id);
         //$usuario = $repository->findOneById($id); 
+        
+        if(!$usuario)
+        {
+           throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+        }
        
-        return new Response('Usuario : ' . $usuario->getUsuario() . ' - Correo: ' . $usuario->getCorreo() . '<br />');     
+        return new Response('Usuario : ' . $usuario->getUsuario() . ' - Correo: ' . $usuario->getCorreo() . '<br />');
         
     }
     

@@ -4,16 +4,18 @@
     
     {% block body %}
     
-
+    
+    <div>
     
     
-    {{ include('FixServicemeBundle:Usuarios:mensajes/bienvenida.html.twig') }}    
+    
+    </div>    
     {% endblock %}
     
         
 {% block javascripts  %}
     {{ parent() }}
-    
+    {{ include('FixServicemeBundle:Serviceme:mensajes/bienvenida.html.twig') }}
     
     
 
