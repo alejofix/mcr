@@ -81,5 +81,52 @@ class Formulariostipo
     {
         return $this->nombre;
     }
-}
 
+    /**
+     * Set estado
+     *
+     * @param \Fix\ServicemeBundle\Entity\Estados $estado
+     *
+     * @return Formulariostipo
+     */
+    public function setEstado(\Fix\ServicemeBundle\Entity\Estados $estado = null)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return \Fix\ServicemeBundle\Entity\Estados
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set servicio
+     *
+     * @param \Fix\ServicemeBundle\Entity\Servicios $servicio
+     *
+     * @return Formulariostipo
+     */
+    public function setServicio(\Fix\ServicemeBundle\Entity\Servicios $servicio = null)
+    {
+        $this->servicio = $servicio;
+    
+        return $this;
+    }
+
+    /**
+     * Get servicio
+     *
+     * @return \Fix\ServicemeBundle\Entity\Servicios
+     */
+    public function getServicio()
+    {
+        return $this->servicio;
+    }
+}

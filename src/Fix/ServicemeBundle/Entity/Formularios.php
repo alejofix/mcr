@@ -297,5 +297,52 @@ class Formularios
     {
         return $this->datos;
     }
-}
 
+    /**
+     * Set tipo
+     *
+     * @param \Fix\ServicemeBundle\Entity\Formulariostipo $tipo
+     *
+     * @return Formularios
+     */
+    public function setTipo(\Fix\ServicemeBundle\Entity\Formulariostipo $tipo = null)
+    {
+        $this->tipo = $tipo;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return \Fix\ServicemeBundle\Entity\Formulariostipo
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set razon
+     *
+     * @param \Fix\ServicemeBundle\Entity\Formulariosrazon $razon
+     *
+     * @return Formularios
+     */
+    public function setRazon(\Fix\ServicemeBundle\Entity\Formulariosrazon $razon = null)
+    {
+        $this->razon = $razon;
+    
+        return $this;
+    }
+
+    /**
+     * Get razon
+     *
+     * @return \Fix\ServicemeBundle\Entity\Formulariosrazon
+     */
+    public function getRazon()
+    {
+        return $this->razon;
+    }
+}

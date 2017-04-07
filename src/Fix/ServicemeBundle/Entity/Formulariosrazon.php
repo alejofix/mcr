@@ -82,5 +82,52 @@ class Formulariosrazon
     {
         return $this->nombre;
     }
-}
 
+    /**
+     * Set estado
+     *
+     * @param \Fix\ServicemeBundle\Entity\Estados $estado
+     *
+     * @return Formulariosrazon
+     */
+    public function setEstado(\Fix\ServicemeBundle\Entity\Estados $estado = null)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return \Fix\ServicemeBundle\Entity\Estados
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param \Fix\ServicemeBundle\Entity\Formulariostipo $tipo
+     *
+     * @return Formulariosrazon
+     */
+    public function setTipo(\Fix\ServicemeBundle\Entity\Formulariostipo $tipo = null)
+    {
+        $this->tipo = $tipo;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return \Fix\ServicemeBundle\Entity\Formulariostipo
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+}

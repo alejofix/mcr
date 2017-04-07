@@ -63,4 +63,3 @@ class Estados
         return $this->nombre;
     }
 }
-

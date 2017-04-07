@@ -72,5 +72,39 @@ class Empresas
     {
         return $this->nombre;
     }
-}
+    
+    /**
+     * Empresas::getFullName()
+     * 
+     * @return id y nombre empresa
+     */
+    public function getFullName()
+    {
+        return $this->id . ".   " . $this->nombre;
+    }
+    
 
+    /**
+     * Set estado
+     *
+     * @param \Fix\ServicemeBundle\Entity\Estados $estado
+     *
+     * @return Empresas
+     */
+    public function setEstado(\Fix\ServicemeBundle\Entity\Estados $estado = null)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return \Fix\ServicemeBundle\Entity\Estados
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+}

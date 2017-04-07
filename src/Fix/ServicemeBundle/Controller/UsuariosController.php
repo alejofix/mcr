@@ -47,7 +47,7 @@ class UsuariosController extends Controller
         $pagination = $paginator->paginate(
         
             $usuarios, $request->query->getInt('page', 1),
-            3
+            6
         );
     
         return $this->render('FixServicemeBundle:Usuarios:index.html.twig', array('pagination' => $pagination));
