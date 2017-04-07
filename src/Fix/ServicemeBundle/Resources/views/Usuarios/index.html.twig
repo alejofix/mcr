@@ -20,7 +20,8 @@
                         <th>{{ knp_pagination_sortable(pagination, 'Apellidos', 'u.apellidos') }} </th> 
                         <th>{{ knp_pagination_sortable(pagination, 'Correo', 'u.correo') }} </th> 
     			        <th>{{ knp_pagination_sortable(pagination, 'Fecha Creado', 'u.fechaCreado') }} </th>  
-    			        <th>{{ knp_pagination_sortable(pagination, 'Cargo/Rol', 'u.cargo') }} </th> 
+    			        <th>{{ knp_pagination_sortable(pagination, 'Cargo/Rol', 'u.cargo') }} </th>
+                        <th><b>Empresa</b> </th> 
     			        <th>Acción</th>                        
                   	</tr>
     			</thead>
@@ -45,6 +46,7 @@
                                     /Invitado    
                                 {% endif  %}       
                             </td>
+                           <td> {{ usuario.empresa.getNombre }}</td> 
                             <td>    
                                 <a class="btn btn-primary" href="{{ path('verUsuario',   { id: usuario.id }) }}"><i class="entypo-info"></i></a>
                                 <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>

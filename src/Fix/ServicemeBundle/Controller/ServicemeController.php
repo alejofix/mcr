@@ -18,10 +18,26 @@ class ServicemeController extends Controller
      * @return
      * @Route(path="/index", name="inicio") 
      */
-    public function indexAction(){
+    public function indexAction()
+    {
         
        return $this->render('FixServicemeBundle:Serviceme:index.html.twig');
    
     }
+    
+    
+    /**
+     * ServicemeController::errorAction()
+     * 
+     * @return
+     * @Route(path="/error", name="mensajeError")
+     */
+    public function errorAction()
+    {
+       
+       return $this->render('FixServicemeBundle:Serviceme:error.html.twig'); 
+        
+    }
+    
     	
 }

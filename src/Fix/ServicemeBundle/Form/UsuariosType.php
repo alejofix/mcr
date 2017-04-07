@@ -75,7 +75,7 @@ class UsuariosType extends AbstractType
                             ->where('u.estado = :only')
                             ->setParameter('only', '1');
                         },
-                        'choice_label' => 'getFullName',
+                        'choice_label' => 'getNombre',
                         'placeholder' => 'Seleccione una Opción',
                         'label' => 'Empresa'
                         ))     

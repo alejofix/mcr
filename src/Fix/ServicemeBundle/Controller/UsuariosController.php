@@ -139,7 +139,9 @@ class UsuariosController extends Controller
         
         if(!$usuario)
         {
-           throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+           // throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+           $this->addFlash('mensajeerror', 'Usuario Inexistente o Exterminado.');
+           return $this->redirectToRoute('mensajeError');
         }
         
         $form = $this->createEditForm($usuario);
@@ -179,7 +181,9 @@ class UsuariosController extends Controller
         
         if(!$usuario)
         {
-           throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+           // throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+           $this->addFlash('mensajeerror', 'Usuario Inexistente o Exterminado.');
+           return $this->redirectToRoute('mensajeError');
         }
         
         $form = $this->createEditForm($usuario);
@@ -217,7 +221,9 @@ class UsuariosController extends Controller
         
         if(!$usuario)
         {
-           throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+           // throw $this->createNotFoundException('Usuario Inexistente o Exterminado');
+           $this->addFlash('mensajeerror', 'Usuario Inexistente o Exterminado.');
+           return $this->redirectToRoute('mensajeError');
         }
        
         return new Response('Usuario : ' . $usuario->getUsuario() . ' - Correo: ' . $usuario->getCorreo() . '<br />');
