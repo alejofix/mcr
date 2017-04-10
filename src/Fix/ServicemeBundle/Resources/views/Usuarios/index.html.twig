@@ -46,7 +46,7 @@
                                     /Invitado    
                                 {% endif  %}       
                             </td>
-                           <td> {{ usuario.empresa.getNombre }}</td> 
+                           <td>{{ usuario.empresa.getNombre }}</td> 
                             <td>    
                                 <a class="btn btn-primary" href="{{ path('verUsuario',   { id: usuario.id }) }}"><i class="entypo-info"></i></a>
                                 <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>

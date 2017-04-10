@@ -1,10 +1,149 @@
 {% extends 'neon/base.html.twig' %}
 
-    {% block body %}
-    
-    {% endblock %}
-    
-    
-    {% block javascripts  %}
-    
-    {% endblock %}  
+{% block body %}
+    {{ parent() }}       
+        
+		
+		<div class="profile-env">
+			
+			<header class="row">
+				
+				<div class="col-sm-2">
+					
+					<a class="profile-picture">
+    			        {% if usuario.genero == '1' %}
+                        <img src="{{ asset('public/neon/assets/images/fix/niño.png') }}" class="img-responsive img-circle"  />
+                        {% elseif usuario.genero == '0' %}
+                        <img src="{{ asset('public/neon/assets/images/fix/niña.png') }}" class="img-responsive img-circle"  />
+                        {% endif  %}
+					</a>
+					
+				</div>
+				
+				<div class="col-sm-7">
+					
+					<ul class="profile-info-sections">
+						<li>
+							<div class="profile-name">
+								<strong>
+									<a>{{ usuario.usuario|upper }}</a>
+									<a class="user-status is-online tooltip-primary" data-toggle="tooltip" data-placement="top" data-original-title="Online"></a>
+									<!-- User statuses available classes "is-online", "is-offline", "is-idle", "is-busy" -->						</strong>
+								<span><b>{{ usuario.nombres|title }} {{ usuario.apellidos|title }}</b></span>
+							</div>
+						</li>
+						
+						<li>
+							<div class="profile-stat">
+								<h3>{{ usuario.cargo|title }}</h3>
+								<span><b>Cargo</b></span>
+							</div>
+						</li>
+						
+						<li>
+							<div class="profile-stat">
+								<h3>
+                                    {% if usuario.role == 'ROOT' %}
+                                        Root
+                                    {% elseif usuario.role == 'ROLE_ADMIN' %}
+                                        Administrador
+                                    {% elseif usuario.role == 'ROLE_MCR' %}
+                                        MCR
+                                    {% elseif usuario.role == 'ROLE_INV' %}
+                                        Invitado    
+                                    {% endif  %} 
+                                </h3>
+								<span><a href="#">Rol</a></span>
+							</div>
+						</li>
+					</ul>
+					
+				</div>
+                
+                <div class="col-sm-3">
+					
+					<div class="profile-buttons">
+						<a href="#" class="btn btn-default">
+							<h4><i class="entypo-suitcase"></i> {{ usuario.empresa.getNombre|title }}</h4>
+						</a>
+					</div>
+
+				</div>
+				
+			</header>
+			
+			<section class="profile-info-tabs">
+				
+				<div class="row">
+					
+					<div class="col-sm-offset-2 col-sm-10">
+						
+						<ul class="user-details">
+							<li>
+								<a>
+									<i class="entypo-calendar"></i>
+									Cumpleaños {{ usuario.fechaNacimiento|date('d-m-Y') }}
+								</a>
+							</li>
+                            <li>
+								<a href="#">
+									<i class="entypo-mail"></i>
+									Correo <span>{{ usuario.correo|raw }}</span>
+								</a>
+							</li>
+                            <li>
+								<a>
+									<i class="entypo-vcard"></i>
+									Documento: {{ usuario.documentoTipo|upper }} - {{ usuario.documentoNumero|raw }}
+								</a>
+							</li>
+                            <li>
+								<a>
+								    Telefonos
+                                    <i class="entypo-phone"></i>
+							        Fijo  :
+                                    {% if usuario.telefonoFijo == NULL %}
+                                        Sin Registrar 
+                                    {% elseif usuario.telefonoFijo > 1  %}
+                                        {{ usuario.telefonoFijo|raw }}
+                                    {% endif  %}
+                                    
+                                    <i class="entypo-mobile"></i>
+                                    Móvil  :
+                                    {% if usuario.telefonoMovil == NULL %}
+                                        Sin Registrar 
+                                    {% elseif usuario.telefonoMovil > 1  %}
+                                        {{ usuario.telefonoMovil|raw }}
+                                    {% endif  %}
+   								</a>
+							</li>
+							
+							
+						</ul>
+                        <ul>
+                                <hr />
+                                <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>
+                                <a class="btn btn-red" href="javascript:;"><i class="entypo-cancel"></i></a>
+                        
+                        </ul>
+						
+						
+
+                        
+					</div>
+					
+				</div>
+				
+			</section>
+			
+		</div>
+		
+
+
+{% endblock %}
+
+
+{% block javascripts  %}
+    {{ parent() }}
+
+{% endblock %}  

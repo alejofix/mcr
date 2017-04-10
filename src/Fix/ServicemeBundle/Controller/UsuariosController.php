@@ -226,8 +226,8 @@ class UsuariosController extends Controller
            return $this->redirectToRoute('mensajeError');
         }
        
-        return new Response('Usuario : ' . $usuario->getUsuario() . ' - Correo: ' . $usuario->getCorreo() . '<br />');
-        
+        //return new Response('Usuario : ' . $usuario->getUsuario() . ' - Correo: ' . $usuario->getCorreo() . '<br />');
+        return $this->render('FixServicemeBundle:Usuarios:ver.html.twig', array('usuario' => $usuario));
     }
     
     
