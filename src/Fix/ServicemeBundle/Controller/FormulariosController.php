@@ -18,10 +18,17 @@ class FormulariosController extends Controller
      * @return
      * @Route(path="/index", name="formularios") 
      */
-    public function indexAction(){
+    public function indexAction()
+    {
      
         return $this->render('FixServicemeBundle:Formularios:index.html.twig');
  
     }
     
+    public function ccaaAction()
+    {
+        
+        
+    }
+       
 }
