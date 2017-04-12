@@ -47,10 +47,14 @@
                                 {% endif  %}       
                             </td>
                            <td>{{ usuario.empresa.getNombre }}</td> 
-                            <td>    
+                            <td>
+                                {% if usuario.activo == '1' %}
                                 <a class="btn btn-primary" href="{{ path('verUsuario',   { id: usuario.id }) }}"><i class="entypo-info"></i></a>
                                 <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>
                                 <a class="btn btn-red" href="javascript:;"><i class="entypo-cancel"></i></a>
+                                {% elseif usuario.activo == '0' %}
+                                <a class="btn btn-primary" href="{{ path('verUsuario',   { id: usuario.id }) }}"><i class="entypo-info"></i></a>
+                                {% endif  %}
                             </td>
         				</tr>
                     {% endfor %}

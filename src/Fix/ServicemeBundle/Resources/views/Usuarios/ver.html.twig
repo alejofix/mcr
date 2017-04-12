@@ -53,7 +53,7 @@
                                         Invitado    
                                     {% endif  %} 
                                 </h3>
-								<span><a href="#">Rol</a></span>
+								<span><a>Rol</a></span>
 							</div>
 						</li>
 					</ul>
@@ -63,10 +63,17 @@
                 <div class="col-sm-3">
 					
 					<div class="profile-buttons">
-						<a href="#" class="btn btn-default">
-							<h4><i class="entypo-suitcase"></i> {{ usuario.empresa.getNombre|title }}</h4>
-						</a>
-					</div>
+						<a href="#" class="btn btn-default"><h4><i class="entypo-suitcase"></i> {{ usuario.empresa.getNombre|title }}</h4></a>
+                        {% if usuario.activo == '1' %}
+                        <a type="button" class="btn btn-primary tooltip-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Usuario Activo">
+                            <i class="fa fa-thumbs-up"> </i>
+                        </a>
+                        {% elseif usuario.activo == '0' %}
+                        <a type="button" class="btn btn-red tooltip-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Usuario Inactivo">
+                            <i class="fa fa-thumbs-down"> </i>
+                        </a>
+                        {% endif  %}
+                	</div>
 
 				</div>
 				
@@ -120,15 +127,18 @@
 							
 							
 						</ul>
-                        <ul>
-                                <hr />
-                                <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>
-                                <a class="btn btn-red" href="javascript:;"><i class="entypo-cancel"></i></a>
                         
+                                                
+                        {% if usuario.activo == '1' %}
+                        <ul>
+                            <hr />
+                            <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>
+                            <a class="btn btn-red" href="javascript:;"><i class="entypo-cancel"></i></a>
                         </ul>
-						
-						
-
+                        {% elseif usuario.activo == '0' %}
+                        
+                        {% endif  %}
+                        
                         
 					</div>
 					
@@ -145,5 +155,6 @@
 
 {% block javascripts  %}
     {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('public/neon/assets/css/font-icons/font-awesome/css/font-awesome.min.css') }}"/>   
 
 {% endblock %}  

@@ -158,26 +158,14 @@
               		</div>
                 </div>
               
-                <div class="form-group">
+                <div class="hide">
                     <label for="field-15" class="col-sm-3 control-label"><strong>{{ form_label(form.activo) }} :</strong></label>
                     <div class="col-sm-5">
 						  
-                          {{ form_widget(form.activo, { 'attr' : {'class' : 'form-control' }} ) }}
+                          {{ form_widget(form.activo, { 'attr' : {'class' : 'form-control', 'checked' : 'checked' }} ) }}
                           
               		</div>
-                </div>
-                
-                <!--
-                <div class="form-group">
-					<label class="col-sm-3 control-label">Toggle Check</label>
-					
-					<div class="col-sm-5">
-						<div class="make-switch">
-						    <input type="checkbox" checked=""/>
-						</div>
-					</div>
-				</div>
-                -->
+                </div><hr />
                 
                 
                 <div class="form-group default-padding">
