@@ -5,6 +5,7 @@ namespace Fix\ServicemeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,107 +22,74 @@ class UsuariosController extends Controller
     /**
      * UsuariosController::indexAction()
      * 
-     * @Route(path="/index", name="indexUsuarios")
+     * @Route(path="/index/{page}", name="indexUsuarios", requirements={"page" = "\d+"}, defaults={"page" = 1})
+     * @Template("FixServicemeBundle:Usuarios:index.html.twig")
+     * @Method({"GET"})
+     * 
      * @author alejo_fix@hotmail.com
      */
-    public function indexAction(Request $request)
-    {
-       $em = $this->getDoctrine()->getManager();
-       #$usuarios = $em->getRepository('FixServicemeBundle:Usuarios')->findAll();
-       
-    /*
-       $res = 'Lista de Usuarios: <br />';
-       foreach($usuarios as $usuario)
-       {
-            $res .= 'Usuario : ' . $usuario->getUsuario() . ' - Correo: ' . $usuario->getCorreo() . '<br />';
-       }   
-       return new Response($res);
-    */
-    
-        $dql   = "SELECT u FROM FixServicemeBundle:Usuarios u";
-        $usuarios = $em->createQuery($dql);
-    
-        
-        $paginator = $this->get('knp_paginator');
-        
-        $pagination = $paginator->paginate(
-        
-            $usuarios, $request->query->getInt('page', 1),
-            6
-        );
-    
-        return $this->render('FixServicemeBundle:Usuarios:index.html.twig', array('pagination' => $pagination));
+    public function indexAction(Request $request, $page = 1) {
+		
+		$em = $this->getDoctrine()->getManager();
+		
+		$paginator = $this->get('knp_paginator');
+		$paginacion = $paginator->paginate(
+			$em->getRepository('Fix\ServicemeBundle\Entity\Usuarios')->findBy([], ['fechaCreado' => 'DESC']),
+			$page,
+			8
+		);
+		
+		return array('pagination' => $paginacion);
     }
     
     /**
      * UsuariosController::agregarAction()
      * 
-     * @Route(path="/agregar", name="agregarUsuario") 
-     * @return
-     */
-    public function agregarAction()
-    {
-        $usuario = new Usuarios();
-        $form = $this->createCreateForm($usuario);
-        
-        return $this->render('FixServicemeBundle:Usuarios:agregar.html.twig',  array('form' => $form->createView()));   
-        
-    }
-    
-    /**
-     * UsuariosController::createCreateForm()
+     * Genera un nuevo usuario dentro de la base de datos
      * 
-     * @param mixed $entity
-     * @return void
-     * @Method({"GET", "POST"})  
+     * @Route(path="/agregar", name="agregarUsuario")
+     * @Template("FixServicemeBundle:Usuarios:agregar.html.twig")
+	 * @Method({"GET", "POST"})
+	 * 
+     * @return object
      */
-    private function createCreateForm(Usuarios $entity)
-    {
-        $form = $this->createForm(UsuariosType::class, $entity, array(
-        
-            'action' => $this->generateUrl('crearUsuario'),
-            'method' => 'POST'
-        ));
-        
-        return $form;       
-    }
-    
-    /**
-     * UsuariosController::crearAction()
-     * 
-     * @param mixed $request
-     * @return
-     * @Route(path="/crear", name="crearUsuario")
-
-     */
-    public function crearAction(Request $request)
+    public function agregarAction(Request $request)
     {
         $usuario = new Usuarios();
         $form = $this->createCreateForm($usuario);
         $form->handleRequest($request);
         
-            $contrasena = $form->get('contrasena')->getData();
-            
-            $encoder = $this->container->get('security.password_encoder');
-            $encoded = $encoder->encodePassword($usuario, $contrasena);
-            
-            $usuario->setContrasena($encoded);       
-        
-        if($form->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($usuario);
-            $em->flush();
-            
-            #$successMessage = $this->get('translator')->trans('The user has been created.');
-            #$this->addFlash('mensajecreado', $successMessage);
-            $this->addFlash('mensajecreado', 'Usuario Creado... No sabe lo que le Espera.');
-            
+        if($form->isSubmitted() == true AND $form->isValid() == true) {
+        	
+        	$encoder = $this->container->get('security.password_encoder');
+            $encoded = $encoder->encodePassword($usuario, $form->get('contrasena')->getData());
+            $usuario->setContrasena($encoded);
+        	
+        	$em = $this->getDoctrine()->getManager();
+        	$em->persist($usuario);
+        	$em->flush();
+        	
+        	$this->addFlash('mensajecreado', 'Usuario Creado... No sabe lo que le Espera.');
             return $this->redirectToRoute('indexUsuarios');
         }
         
-        return $this->render('FixServicemeBundle:Usuarios:agregar.html.twig',  array('form' => $form->createView()));
-        
+        return array('form' => $form->createView());
+    }
+    
+    /**
+     * UsuariosController::createCreateForm()
+     * 
+     * Crea el formulario correspondiente
+     * 
+     * @param mixed $entity
+     * @return object
+     */
+    private function createCreateForm(Usuarios $entity) {
+    	
+        return $this->createForm(UsuariosType::class, $entity, array(
+            'action' => $this->generateUrl('agregarUsuario'),
+            'method' => 'POST'
+        ));
     }
     
     /**

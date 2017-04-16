@@ -1,43 +1,43 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/security.html
 security:
 
-    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        our_db_provider:
+        serviceme:
             entity:
                 class: FixServicemeBundle:Usuarios
-                property: username
-
-    firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-            http_basic: ~
-            form_login:
-                login_path: /login
-                check_path: /login_check
-                # field names for the username and password fields:
-                username_parameter: _usuario
-                password_parameter: _contrasena
-                # default_target_path: default_security_target
-                # always_use_default_target_path: true
-            logout:
-                path:   /logout
-                target: /login
+                property: usuario
 
     encoders:
         Fix\ServicemeBundle\Entity\Usuarios:
             algorithm: bcrypt
             cost: 12
+
+    firewalls:
+        
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            anonymous: true
+            provider: serviceme
+            form_login:
+                login_path: login
+                check_path: login_check
+                username_parameter: _usuario
+                password_parameter: _contrasena
+                always_use_default_target_path: true
+                default_target_path: dahsboard
+                csrf_token_generator: security.csrf.token_manager
+                post_only: true
+            
+            logout:
+                path: logout
+                target: login
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/$, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/serviceme/*, roles: IS_AUTHENTICATED_FULLY }
+
+        

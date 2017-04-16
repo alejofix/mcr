@@ -27,15 +27,25 @@ class UsuariosType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('usuario', TextType::class, 
-                    array('label' => 'Usuario',
-                          'constraints' => array(
-                          new Assert\NotBlank(array('message' => 'Debe ingresar el Usuario')))
-                    ))
-            ->add('usuario', TextType::class)
-            ->add('nombres', TextType::class)
-            ->add('apellidos', TextType::class)
+        $builder->add('usuario', TextType::class, array(
+			'label' => 'Usuario',
+			'attr' => array('placeholder' => 'Agregar Usuario'),
+			'constraints' => array(
+				new \Symfony\Component\Validator\Constraints\NotBlank(array('message' => 'Es un campo requerido'))
+			)
+		));
+		
+		$builder->add('nombres', TextType::class, array(
+			'label' => 'Nombre',
+			'attr' => array('placeholder' => 'Agregar Nombre'),
+			'constraints' => array(
+				new \Symfony\Component\Validator\Constraints\NotBlank(array('message' => 'Es un campo requerido'))
+			)
+		));
+		
+		
+		
+        $builder    ->add('apellidos', TextType::class)
             ->add('genero', ChoiceType::class,
                     array('choices' => array(
                             'Femenino' => '0',
@@ -78,8 +88,7 @@ class UsuariosType extends AbstractType
                         'choice_label' => 'getNombre',
                         'placeholder' => 'Seleccione una Opción',
                         'label' => 'Empresa'
-                        ))     
-            ->add('activo')
+                        ))
            #->add('guardar', SubmitType::class, array('label' => 'Crear Usuario'))
         ;
     }
@@ -101,6 +110,4 @@ class UsuariosType extends AbstractType
     {
         return 'usuario';
     }
-
-
 }

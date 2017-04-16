@@ -156,7 +156,7 @@ class Usuarios implements UserInterface
      */
     public function getPassword()
     {
-     
+     	return $this->contrasena;
     }
     /**
      * Usuarios::getUsername()
@@ -164,7 +164,7 @@ class Usuarios implements UserInterface
      */
     public function getUsername()
     {
-     
+     	return $this->usuario;
     }
     /**
      * Usuarios::getRoles()
@@ -172,7 +172,7 @@ class Usuarios implements UserInterface
      */
     public function getRoles()
     {
-     
+     	return array($this->role);
     }
     /**
      * Usuarios::getSalt()
@@ -180,7 +180,7 @@ class Usuarios implements UserInterface
      */
     public function getSalt()
     {
-     
+     	return null;
     }
     /**
      * Usuarios::eraseCredentials()
@@ -190,6 +190,32 @@ class Usuarios implements UserInterface
     {
         
     }
+    
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->usuario,
+            $this->contrasena,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->usuario,
+            $this->contrasena,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
+    }
+    
+    
 ///////////////////////////////////
 
     /**
@@ -197,6 +223,7 @@ class Usuarios implements UserInterface
      */
     public function setfechaCreadoValue()
     {
+    	$this->activo = 1;
         $this->fechaCreado = new \DateTime();
     }
 
