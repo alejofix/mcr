@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="ServiceMe" content="APP Mejoramiento" />
+        <meta name="author" content="jorge.montenegro.t@claro.com.co" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+        <title>{% block title %}MCR | Login {% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('public/images/favicon/favicon4-03-03.png') }}" />
+
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/css/font-icons/entypo/css/entypo.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/css/bootstrap.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/css/neon-core.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/css/neon-theme.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/css/neon-forms.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/css/custom.css') }}"/>
+
+        <script src="{{ asset('public/neon/assets/js/jquery-1.11.0.min.js') }}"></script>
+        <script>$.noConflict();</script>
+    </head>
+
+    <body class="page-body login-page login-form-fall">
+        <!-- This is needed when you send requests via Ajax -->
+        <script type="text/javascript">
+            var baseurl = '';
+        </script>
+
+        <div class="login-container">
+
+            <!-- Contenido Principal  -->
+            {% block body %}{% endblock %}
+            <!-- -->
+
+        </div>
+
+        {% block javascripts %}
+        <!-- Bottom scripts (common) -->
+        <script src="{{ asset('public/neon/assets/js/gsap/main-gsap.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/joinable.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/resizeable.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/neon-api.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/neon-login.js') }}"></script>
+        <!-- JavaScripts initializations and stuff -->
+        <script src="{{ asset('public/neon/assets/js/neon-custom.js') }}"></script>
+        <!-- Demo Settings -->
+        <script src="{{ asset('public/neon/assets/js/neon-demo.js') }}"></script>
+            <style>
+                .errortext {
+                    color: red;
+                }
+            </style>
+        {% endblock %}
+
+    </body>
+</html>
