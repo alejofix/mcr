@@ -10,7 +10,7 @@
 		
 		public function load(ObjectManager $manager) {
 			
-			$lista = array('ACTIVO', 'INACTIVO');
+			$lista = array('ACTIVO', 'INACTIVO', 'PENDIENTE', 'FINALIZADO', 'GUARDADO', 'ELIMINADO', 'ASIGNADO', 'PROCESO', 'PAUSADO', 'EMERGENCIA');
 			
 			foreach ($lista AS $nombre) {
 				

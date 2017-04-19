@@ -7,7 +7,7 @@
             <h3>
                 <span class="label label-warning">Administrador</span> 
                 Lista Usuarios
-                <span class="badge badge-success">{{ pagination.getTotalItemCount }}</span>
+                <span class="badge badge-success">{{ pagination.getTotalItemCount - 1 }}</span>
 		    </h3>
             <hr />
 
@@ -29,6 +29,7 @@
                 <tbody>
     				
                     {% for usuario in pagination  %}
+                        {% if usuario.role != 'ROLE_ROOT'  %}
                         <tr class="gradeU">
         					<td>{{ usuario.usuario }}</td>
         					<td>{{ usuario.nombres }}</td>
@@ -36,17 +37,19 @@
         					<td>{{ usuario.correo }}</td>
         					<td class="center">{{ usuario.fechaCreado|date('d-m-Y H:i') }}</td>
                             <td class="center">{{ usuario.cargo }}
-                                {% if usuario.role == 'ROOT' %}
-                                    /Root
-                                {% elseif usuario.role == 'ROLE_ADMIN' %}
+                                {% if usuario.role == 'ROLE_ADMIN' %}
                                     /Administrador
                                 {% elseif usuario.role == 'ROLE_MCR' %}
-                                    /MCR
+                                    /Mejoramiento
+                                {% elseif usuario.role == 'ROLE_SD' %}
+                                    /Service Desk
+                                {% elseif usuario.role == 'ROLE_EXP' %}
+                                    /Experto
                                 {% elseif usuario.role == 'ROLE_INV' %}
-                                    /Invitado    
+                                    /Invitado
                                 {% endif  %}       
                             </td>
-                           <td>{{ usuario.empresa.getNombre }}</td> 
+                           <td></td>
                             <td>
                                 {% if usuario.activo == '1' %}
                                 <a class="btn btn-primary" href="{{ path('verUsuario',   { id: usuario.id }) }}"><i class="entypo-info"></i></a>
@@ -57,6 +60,7 @@
                                 {% endif  %}
                             </td>
         				</tr>
+                        {% endif %}
                     {% endfor %}
                     
     			</tbody>

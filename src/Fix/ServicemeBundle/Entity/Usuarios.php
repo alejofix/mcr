@@ -117,7 +117,7 @@ class Usuarios implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="ROLE", type="string", columnDefinition="ENUM('ROLE_ADMIN', 'ROLE_MCR', 'ROLE_INV')", length=50)
+     * @ORM\Column(name="ROLE", type="string", columnDefinition="ENUM('ROLE_ROOT', 'ROLE_ADMIN', 'ROLE_MCR', 'ROLE_SD', 'ROLE_EXP', 'ROLE_INV')", length=50)
      */
     private $role;
 

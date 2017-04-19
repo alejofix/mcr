@@ -43,14 +43,18 @@
 						<li>
 							<div class="profile-stat">
 								<h3>
-                                    {% if usuario.role == 'ROOT' %}
-                                        Root
+                                    {% if usuario.role == 'ROLE_ROOT' %}
+										Súper Usuario
                                     {% elseif usuario.role == 'ROLE_ADMIN' %}
-                                        Administrador
+										Administrador
                                     {% elseif usuario.role == 'ROLE_MCR' %}
-                                        MCR
+										Mejoramiento
+                                    {% elseif usuario.role == 'ROLE_SD' %}
+										Service Desk
+                                    {% elseif usuario.role == 'ROLE_EXP' %}
+										Experto
                                     {% elseif usuario.role == 'ROLE_INV' %}
-                                        Invitado    
+										Invitado
                                     {% endif  %} 
                                 </h3>
 								<span><a>Rol</a></span>
@@ -129,14 +133,14 @@
 						</ul>
                         
                                                 
-                        {% if usuario.activo == '1' %}
+                        {% if usuario.activo == '1' and usuario.role != 'ROLE_ROOT' %}
                         <ul>
                             <hr />
                             <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>
                             <a class="btn btn-red" href="javascript:;"><i class="entypo-cancel"></i></a>
                         </ul>
                         {% elseif usuario.activo == '0' %}
-                        
+                        <hr/>
                         {% endif  %}
                         
                         

@@ -23,22 +23,21 @@
          			{{ form_label(params, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                     <div class="col-sm-5">
                         {{ form_widget(params, { 'attr' : {'class' : 'form-control'}} ) }}
-                        {{ form_errors(params) }}
+                        <span class="text-danger">{{ form_errors(params) }}</span>
                     </div>
                 </div>
          	{% endfor %}
-                
-                <div class="form-group default-padding">
-                    <div class="col-sm-offset-3 col-sm-5">
-				        {# {{ form_widget(form.guardar, {'label' : 'Create user', 'attr': {'class': 'btn btn-success'}}) }} #} 
-                        <button type="submit" class="btn btn-primary btn-icon icon-left">
-                            Crear Usuario<i class="entypo-floppy"></i>
-				        </button>
-                        <button type="reset" class="btn btn-default btn-icon icon-left">
-							Borrar Formulario<i class="entypo-trash"></i>
-                		</button>
-                    </div>                            
-			     </div>
+
+                <br/>
+                <div class="col-sm-offset-3 col-sm-5">
+                    {# {{ form_widget(form.guardar, {'label' : 'Create user', 'attr': {'class': 'btn btn-success'}}) }} #}
+                    <button type="submit" class="btn btn-primary btn-icon icon-left">
+                        Crear Usuario<i class="entypo-floppy"></i>
+                    </button>
+                    <button type="reset" class="btn btn-default btn-icon icon-left">
+                        Borrar Formulario<i class="entypo-trash"></i>
+                    </button>
+                </div>
 
             
         {{ form_end(form) }}

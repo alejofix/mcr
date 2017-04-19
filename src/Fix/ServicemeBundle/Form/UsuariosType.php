@@ -28,34 +28,51 @@ class UsuariosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('usuario', TextType::class, array(
-			'label' => 'Usuario',
-			'attr' => array('placeholder' => 'Agregar Usuario'),
-			'constraints' => array(
-				new \Symfony\Component\Validator\Constraints\NotBlank(array('message' => 'Es un campo requerido'))
-			)
-		));
+            'label' => 'Usuario',
+            'attr' => array('placeholder' => 'Agregar Usuario', 'autofocus' => 'autofocus'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Es un campo Requerido')))
+        ));
+
+        $builder->add('nombres', TextType::class, array(
+            'label' => 'Nombre',
+            'attr' => array('placeholder' => 'Agregar Nombres'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Es un campo Requerido')))
+        ));
+
+        $builder->add('apellidos', TextType::class, array(
+            'label' => 'Apellidos',
+            'attr' => array('placeholder' => 'Agregar Apellidos'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Es un campo Requerido')))
+        ));
+
+        $builder->add('genero', ChoiceType::class, array(
+            'label' => 'Género',
+            'choices' => array('Femenino' => '0', 'Masculino' => '1'),
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Es un campo Requerido')))
+        ));
+
+        $builder->add('fechaNacimiento', BirthdayType::class, array(
+            'label' => 'Fecha de Nacimiento',
+        ));
+
+        $builder->add('correo', EmailType::class, array(
+            'label' => 'Correo',
+            'attr' => array('placeholder' => 'Agregar Correo electrónico'),
+            'constraints' => array(
+                new Assert\Email(array('message' => 'Dirección de Correo electrónico no Válida')),
+                new Assert\NotBlank(array('message' => 'Es un campo Requerido'))
+                )
+        ));
 		
-		$builder->add('nombres', TextType::class, array(
-			'label' => 'Nombre',
-			'attr' => array('placeholder' => 'Agregar Nombre'),
-			'constraints' => array(
-				new \Symfony\Component\Validator\Constraints\NotBlank(array('message' => 'Es un campo requerido'))
-			)
-		));
 		
-		
-		
-        $builder    ->add('apellidos', TextType::class)
-            ->add('genero', ChoiceType::class,
-                    array('choices' => array(
-                            'Femenino' => '0',
-                            'Masculino' => '1',), 
-                            'placeholder' => 'Seleccione una Opción'))
-            ->add('fechaNacimiento', BirthdayType::class, array(
-                            'placeholder' => array(
-                            'year' => 'Año', 'month' => 'Mes', 'day' => 'Día',)
-                            ))
-            ->add('correo', EmailType::class, array('label' => 'Correo'))
+        $builder
+
+          #  ->add('correo', EmailType::class, array('label' => 'Correo'))
             ->add('contrasena', PasswordType::class, array('label' => 'Contraseña'))
             ->add('documentoTipo', ChoiceType::class,
                     array( 'choices' => array(
@@ -72,8 +89,10 @@ class UsuariosType extends AbstractType
             ->add('role', ChoiceType::class, 
                     array('choices' => array(
                         'Administrador' => 'ROLE_ADMIN',
-                        'Analista' => 'ROLE_MCR',
-                        'Invitado' => 'ROLE_INV'), 
+                        'Mejoramiento' => 'ROLE_MCR',
+                        'Service Desk' => 'ROLE_SD',
+                        'Experto' => 'ROLE_EXP',
+                        'Invitado' => 'ROLE_INV'),
                             'placeholder' => 'Seleccione una Opción',
                             'label' => 'Role'
                         ))

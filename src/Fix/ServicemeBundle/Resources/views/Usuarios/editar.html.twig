@@ -148,24 +148,15 @@
                           
               		</div>
                 </div>
-                
-                <div class="hide">
-                    <label for="field-15" class="col-sm-3 control-label"><strong>{{ form_label(form.activo) }} :</strong></label>
-                    <div class="col-sm-5">
-						  
-                          {{ form_widget(form.activo, { 'attr' : {'class' : 'form-control', 'checked' : 'checked' }} ) }}
-                          
-              		</div>
-                </div><hr />
-                
-                <div class="form-group default-padding">
-                    <div class="col-sm-offset-3 col-sm-5">
-				        <button type="submit" class="btn btn-blue btn-icon icon-left">
-                            Editar Usuario<i class="entypo-floppy"></i>
-				        </button>
-                    </div>                            
-			     </div>
-                
+
+                <br/>
+            {% if usuario.role != 'ROLE_ROOT'  %}
+                <div class="col-sm-offset-3 col-sm-5">
+                    <button type="submit" class="btn btn-blue btn-icon icon-left">
+                        Editar Usuario<i class="entypo-floppy"></i>
+                    </button>
+                </div>
+            {% endif %}
         
         {{ form_end(form) }}
         
