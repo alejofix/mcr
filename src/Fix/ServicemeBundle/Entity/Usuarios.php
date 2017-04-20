@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_EMPRESA", columns={"EMPRESA"})
  })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\UsuariosRepository")
- * @UniqueEntity("usuario")
+ * @UniqueEntity("usuario", message="¡Caracoles! ...Usuario ya existe")
  * @ORM\HasLifecycleCallbacks()
  */
 class Usuarios implements UserInterface

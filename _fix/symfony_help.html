@@ -184,8 +184,33 @@ Esas serian las opciones que existen para concatenar en twig sin generar codigo 
 
 
 
-/////////////
+/////////////otros
+Hola a todos, cansado ya de que caduque la sesión del phpMyAdmin a los 1440 segundos, busque la manera de aumentar dicho valor por lo menos a una hora.
 
+La solución a sido sencilla...
+En la carpeta donde esta instalado el phpMyAdmin, hay que editar el archivo libraries/config.default.php
+
+y modificar la linea:
+1
+$cfg['LoginCookieValidity'] = 1440;
+por (en mi caso a una hora):
+1
+$cfg['LoginCookieValidity'] = 3600;
+
+Pero también hay que aumentar el tamaño en el php.ini, ya que, si en PHP el limite es 1440, por mucho que aumentemos en el phpMyAdmin, el PHP cortara a los 1440.
+
+En el archivo php.ini, hay que modificar la linea:
+1
+session.gc_maxlifetime = 1440
+por:
+1
+session.gc_maxlifetime = 3600
+
+
+Hay que reiniciar el Apache o el servidor web que utilicéis para que los cambios tengan efecto!!
+
+ 
+ /////
  
  
  

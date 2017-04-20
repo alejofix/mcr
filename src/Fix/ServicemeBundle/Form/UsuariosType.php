@@ -29,23 +29,29 @@ class UsuariosType extends AbstractType
     {
         $builder->add('usuario', TextType::class, array(
             'label' => 'Usuario',
-            'attr' => array('placeholder' => 'Agregar Usuario', 'autofocus' => 'autofocus'),
+            'attr' => array('placeholder' => 'Agregar Usuario RR', 'autofocus' => 'autofocus'),
             'constraints' => array(
-                new Assert\NotBlank(array('message' => 'Es un campo Requerido')))
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')),
+                new Assert\Length(array(
+                        'min'        => 8,
+                        'max'        => 10,
+                        'minMessage' => 'Usuario permitido - mínimo {{ limit }} Caracteres',
+                        'maxMessage' => 'Usuario permitido - máximo {{ limit }} Caracteres'
+                        )))
         ));
 
         $builder->add('nombres', TextType::class, array(
-            'label' => 'Nombre',
+            'label' => 'Nombres',
             'attr' => array('placeholder' => 'Agregar Nombres'),
             'constraints' => array(
-                new Assert\NotBlank(array('message' => 'Es un campo Requerido')))
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
         $builder->add('apellidos', TextType::class, array(
             'label' => 'Apellidos',
             'attr' => array('placeholder' => 'Agregar Apellidos'),
             'constraints' => array(
-                new Assert\NotBlank(array('message' => 'Es un campo Requerido')))
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
         $builder->add('genero', ChoiceType::class, array(
@@ -53,39 +59,88 @@ class UsuariosType extends AbstractType
             'choices' => array('Femenino' => '0', 'Masculino' => '1'),
             'placeholder' => 'Seleccione una Opción',
             'constraints' => array(
-                new Assert\NotBlank(array('message' => 'Es un campo Requerido')))
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
         $builder->add('fechaNacimiento', BirthdayType::class, array(
             'label' => 'Fecha de Nacimiento',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
         $builder->add('correo', EmailType::class, array(
             'label' => 'Correo',
             'attr' => array('placeholder' => 'Agregar Correo electrónico'),
             'constraints' => array(
-                new Assert\Email(array('message' => 'Dirección de Correo electrónico no Válida')),
-                new Assert\NotBlank(array('message' => 'Es un campo Requerido'))
-                )
+                new Assert\Email(array('message' => '¡Caramba!  \'{{ value }}\' No es un dato Correo')),
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
-		
-		
+
+        $builder->add('contrasena', PasswordType::class, array(
+            'label' => 'Contraseña',
+            'attr' => array('placeholder' => 'Agregar Contraseña de fácil Recordación'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')),
+                new Assert\Length(array(
+                    'min'        => 6,
+                    'max'        => 18,
+                    'minMessage' => 'Seguridad permitida - mínimo {{ limit }} Caracteres',
+                    'maxMessage' => 'Seguridad permitida - máximo {{ limit }} Caracteres'
+                    )))
+        ));
+
+        $builder->add('documentoTipo', ChoiceType::class, array(
+            'label' => 'Tipo Documento',
+            'choices' => array(
+                'Cédula de Ciudadanía' => 'CC',
+                'Tarjeta de identidad' => 'TI',
+                'Cédula de Extranjería' => 'CE'),
+                    'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
+        ));
+
+        $builder->add('documentoNumero', TextType::class, array(
+            'label' => 'Número Documento',
+            'attr' => array('placeholder' => 'Agregar Número de Identificación'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')),
+                new Assert\Type(array(
+                    'type' => 'numeric',
+                    'message' => '¡Caray!... Se requiere un dato Numérico'
+                )))
+        ));
+
+        $builder->add('telefonofijo', TextType::class, array(
+            'label' => 'Teléfono Fijo',
+            'attr' => array('placeholder' => 'Agregar Número de Teléfono Fijo'),
+            'constraints' => array(
+                new Assert\Type(array(
+                    'type' => 'numeric',
+                    'message' => '¡Caray!... Se requiere un dato Numérico'
+                )))
+        ));
+
+        $builder->add('telefonoMovil', TextType::class, array(
+            'label' => 'Teléfono Fijo',
+            'attr' => array('placeholder' => 'Agregar Número de Teléfono Móvil'),
+            'constraints' => array(
+                new Assert\Type(array(
+                    'type' => 'numeric',
+                    'message' => '¡Caray!... Se requiere un dato Numérico'
+                )))
+        ));
+
+        $builder->add('cargo', TextType::class, array(
+            
+
+        ));
+
+
+
         $builder
 
-          #  ->add('correo', EmailType::class, array('label' => 'Correo'))
-            ->add('contrasena', PasswordType::class, array('label' => 'Contraseña'))
-            ->add('documentoTipo', ChoiceType::class,
-                    array( 'choices' => array(
-                        'Cédula de Ciudadanía' => 'CC',
-                        'Tarjeta de identidad' => 'TI',
-                        'Cédula de Extranjería' => 'CE'), 
-                            'placeholder' => 'Seleccione una Opción',
-                            'label' => 'Tipo Documento'
-                       ))
-            ->add('documentoNumero', TextType::class, array('label' => 'Número Documento'))
-            ->add('telefonoFijo', TextType::class, array('label' => 'Teléfono Fijo'))
-            ->add('telefonoMovil', TextType::class, array('label' => 'Teléfono Móvil'))
-            ->add('cargo', TextType::class, array('label' => 'Cargo'))
+         #  ->add('cargo', TextType::class, array('label' => 'Cargo'))
             ->add('role', ChoiceType::class, 
                     array('choices' => array(
                         'Administrador' => 'ROLE_ADMIN',
