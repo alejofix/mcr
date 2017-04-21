@@ -22,132 +22,16 @@
         <div class="panel-body">            
         
         {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered' } }) }}
-                
+
+            {% for name, params in form if name != '_token' and name != 'submit' %}
                 <div class="form-group">
-                    <label for="field-1" class="col-sm-3 control-label"><strong>{{ form_label(form.usuario) }} <i class="entypo-user-add"></i></strong></label>
+                    {{ form_label(params, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                     <div class="col-sm-5">
-                        
-                        {{ form_widget(form.usuario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Usuario', 'disabled' : 'disabled' }} ) }}
-                    
+                        {{ form_widget(params) }}
+                        <span class="text-danger">{{ form_errors(params) }}</span>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="field-2" class="col-sm-3 control-label"><strong>{{ form_label(form.nombres) }} :</strong></label>
-                    <div class="col-sm-5">
-                        
-                        {{ form_widget(form.nombres, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Nombres Usuario', 'autofocus' : 'autofocus', }} ) }}
-                    
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="field-3" class="col-sm-3 control-label"><strong>{{ form_label(form.apellidos) }} :</strong></label>
-                    <div class="col-sm-5">
-                        
-                        {{ form_widget(form.apellidos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Apellidos Usuario' }} ) }}
-                    
-                    </div>
-                </div>
-                
-                <div class="form-group">
-					<label for="field-4" class="col-sm-3 control-label"><strong>{{ form_label(form.genero) }} :</strong></label>
-					<div class="col-sm-5">
-			             
-                         {{ form_widget(form.genero, { 'attr' : {'class' : 'form-control' }} ) }}
-              		
-                    </div>
-				</div>
-                
-                <div class="form-group">
-                    <label for="field-5" class="col-sm-3 control-label"><strong>{{ form_label(form.fechaNacimiento) }} :</strong></label>
-                    <div class="col-sm-3">
-		                
-                        {{ form_widget(form.fechaNacimiento, { 'attr' : {'class' : 'form-control' }} ) }}
-                    
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="field-6" class="col-sm-3 control-label"><strong>{{ form_label(form.correo) }} <i class="entypo-mail"></i></strong></label>
-                    <div class="col-sm-5">
-		                  
-                          {{ form_widget(form.correo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese correo Corporativo' }} ) }}
-              		
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="field-7" class="col-sm-3 control-label"><strong>{{ form_label(form.contrasena) }} <i class="entypo-key"></i></strong></label>
-                    <div class="col-sm-5">
-     
-                   		  {{ form_widget(form.contrasena, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ingrese Contraseña de fácil Recordación' }} ) }}
-     
-              		</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="field-8" class="col-sm-3 control-label"><strong>{{ form_label(form.documentoTipo) }} :</strong></label>
-                    <div class="col-sm-5">
-			             
-                         {{ form_widget(form.documentoTipo, { 'attr' : {'class' : 'form-control' }} ) }}
-              		
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="field-9" class="col-sm-3 control-label"><strong>{{ form_label(form.documentoNumero) }} :</strong></label>
-                    <div class="col-sm-5">
-            			 
-                         {{ form_widget(form.documentoNumero, { 'attr' : {'class' : 'form-control' }} ) }}
-              		
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="field-10" class="col-sm-3 control-label"><strong>{{ form_label(form.telefonoFijo) }} :</strong></label>
-                    <div class="col-sm-5">
-						  
-                          {{ form_widget(form.telefonoFijo, { 'attr' : {'class' : 'form-control' }} ) }}
-                          
-              		</div>
-                </div>
-              
-                <div class="form-group">
-                    <label for="field-11" class="col-sm-3 control-label"><strong>{{ form_label(form.telefonoMovil) }} :</strong></label>
-                    <div class="col-sm-5">
-						  
-                          {{ form_widget(form.telefonoMovil, { 'attr' : {'class' : 'form-control' }} ) }}
-                          
-              		</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="field-12" class="col-sm-3 control-label"><strong>{{ form_label(form.cargo) }} :</strong></label>
-                    <div class="col-sm-5">
-		
-        				  {{ form_widget(form.cargo, { 'attr' : {'class' : 'form-control' }} ) }}
-        
-              		</div>
-                </div>
-              
-                <div class="form-group">
-                    <label for="field-13" class="col-sm-3 control-label"><strong>{{ form_label(form.role) }} :</strong></label>
-                    <div class="col-sm-5">
-						  
-                          {{ form_widget(form.role, { 'attr' : {'class' : 'form-control' }} ) }}
-                          
-              		</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="field-14" class="col-sm-3 control-label"><strong>{{ form_label(form.empresa) }} :</strong></label>
-                    <div class="col-sm-5">
-						  
-                          {{ form_widget(form.empresa, { 'attr' : {'class' : 'form-control', 'disabled' : 'disabled' }} ) }}
-                          
-              		</div>
-                </div>
+            {% endfor %}
 
                 <br/>
             {% if usuario.role != 'ROLE_ROOT'  %}

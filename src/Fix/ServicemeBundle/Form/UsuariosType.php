@@ -11,11 +11,9 @@ use Doctrine\ORM\EntityRepository;
 use \Symfony\Component\Form\Extension\Core\Type\EmailType;
 use \Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use \Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use \Symfony\Component\Form\Extension\Core\Type\DateType;
-use \Symfony\Component\Form\Extension\Core\Type\SubmitType; 
 use \Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use \Symfony\Component\Form\Extension\Core\Type\TextType;
-#
+#use \Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use \Symfony\Component\Validator\Constraints as Assert;
 use \Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
@@ -29,11 +27,11 @@ class UsuariosType extends AbstractType
     {
         $builder->add('usuario', TextType::class, array(
             'label' => 'Usuario',
-            'attr' => array('placeholder' => 'Agregar Usuario RR', 'autofocus' => 'autofocus'),
+            'attr' => array('placeholder' => 'Agregar Usuario RR', 'class' => 'form-control', 'autofocus' => 'autofocus'),
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')),
                 new Assert\Length(array(
-                        'min'        => 8,
+                        'min'        => 5,
                         'max'        => 10,
                         'minMessage' => 'Usuario permitido - mínimo {{ limit }} Caracteres',
                         'maxMessage' => 'Usuario permitido - máximo {{ limit }} Caracteres'
@@ -42,35 +40,39 @@ class UsuariosType extends AbstractType
 
         $builder->add('nombres', TextType::class, array(
             'label' => 'Nombres',
-            'attr' => array('placeholder' => 'Agregar Nombres'),
+            'attr' => array('placeholder' => 'Agregar Nombres', 'class' => 'form-control'),
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
         $builder->add('apellidos', TextType::class, array(
             'label' => 'Apellidos',
-            'attr' => array('placeholder' => 'Agregar Apellidos'),
+            'attr' => array('placeholder' => 'Agregar Apellidos', 'class' => 'form-control'),
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
         $builder->add('genero', ChoiceType::class, array(
             'label' => 'Género',
-            'choices' => array('Femenino' => '0', 'Masculino' => '1'),
-            'placeholder' => 'Seleccione una Opción',
+            'attr' => array('class' => 'form-control'),
+            'choices' => array(
+                'Femenino' => '0',
+                'Masculino' => '1'),
+                    'placeholder' => 'Seleccione una Opción',
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
         $builder->add('fechaNacimiento', BirthdayType::class, array(
             'label' => 'Fecha de Nacimiento',
+            'attr' => array('class' => 'form-control'),
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
         $builder->add('correo', EmailType::class, array(
             'label' => 'Correo',
-            'attr' => array('placeholder' => 'Agregar Correo electrónico'),
+            'attr' => array('placeholder' => 'Agregar Correo electrónico', 'class' => 'form-control'),
             'constraints' => array(
                 new Assert\Email(array('message' => '¡Caramba!  \'{{ value }}\' No es un dato Correo')),
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
@@ -78,7 +80,7 @@ class UsuariosType extends AbstractType
 
         $builder->add('contrasena', PasswordType::class, array(
             'label' => 'Contraseña',
-            'attr' => array('placeholder' => 'Agregar Contraseña de fácil Recordación'),
+            'attr' => array('placeholder' => 'Agregar Contraseña de fácil Recordación', 'class' => 'form-control'),
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')),
                 new Assert\Length(array(
@@ -91,6 +93,7 @@ class UsuariosType extends AbstractType
 
         $builder->add('documentoTipo', ChoiceType::class, array(
             'label' => 'Tipo Documento',
+            'attr' => array('class' => 'form-control'),
             'choices' => array(
                 'Cédula de Ciudadanía' => 'CC',
                 'Tarjeta de identidad' => 'TI',
@@ -102,7 +105,7 @@ class UsuariosType extends AbstractType
 
         $builder->add('documentoNumero', TextType::class, array(
             'label' => 'Número Documento',
-            'attr' => array('placeholder' => 'Agregar Número de Identificación'),
+            'attr' => array('placeholder' => 'Agregar Número de Identificación', 'class' => 'form-control'),
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')),
                 new Assert\Type(array(
@@ -113,7 +116,7 @@ class UsuariosType extends AbstractType
 
         $builder->add('telefonofijo', TextType::class, array(
             'label' => 'Teléfono Fijo',
-            'attr' => array('placeholder' => 'Agregar Número de Teléfono Fijo'),
+            'attr' => array('placeholder' => 'Agregar Número de Teléfono Fijo', 'class' => 'form-control'),
             'constraints' => array(
                 new Assert\Type(array(
                     'type' => 'numeric',
@@ -123,7 +126,7 @@ class UsuariosType extends AbstractType
 
         $builder->add('telefonoMovil', TextType::class, array(
             'label' => 'Teléfono Fijo',
-            'attr' => array('placeholder' => 'Agregar Número de Teléfono Móvil'),
+            'attr' => array('placeholder' => 'Agregar Número de Teléfono Móvil', 'class' => 'form-control'),
             'constraints' => array(
                 new Assert\Type(array(
                     'type' => 'numeric',
@@ -132,38 +135,45 @@ class UsuariosType extends AbstractType
         ));
 
         $builder->add('cargo', TextType::class, array(
-            
-
+            'label' => 'Cargo',
+            'attr' => array('placeholder' => "Agregar Cargo", 'name' => "typeahead_local", 'class' =>"form-control typeahead",
+                'data-local' => "Analista,Asesor,Auditor,Auxiliar,BackOffice,Coordinador,DataMarshall,Director,Especialista,Experto,Formador,Gestor,HelpDesk,Jefe,Líder,Programador,Representante,Supervisor,Torre Control,Workforce Management"),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
+        $builder->add('role', ChoiceType::class, array(
+            'label' => 'Role',
+            'attr' => array('class' => 'form-control'),
+            'choices' => array(
+                'Administrador' => 'ROLE_ADMIN',
+                'Mejoramiento' => 'ROLE_MCR',
+                'Service Desk' => 'ROLE_SD',
+                'Experto' => 'ROLE_EXP',
+                'Invitado' => 'ROLE_INV'),
+                    'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
+        ));
 
-
-        $builder
-
-         #  ->add('cargo', TextType::class, array('label' => 'Cargo'))
-            ->add('role', ChoiceType::class, 
-                    array('choices' => array(
-                        'Administrador' => 'ROLE_ADMIN',
-                        'Mejoramiento' => 'ROLE_MCR',
-                        'Service Desk' => 'ROLE_SD',
-                        'Experto' => 'ROLE_EXP',
-                        'Invitado' => 'ROLE_INV'),
-                            'placeholder' => 'Seleccione una Opción',
-                            'label' => 'Role'
-                        ))
-            ->add('empresa', EntityType::class, array(
-                    'class' => 'FixServicemeBundle:Empresas',
-                    'query_builder' => function (EntityRepository $er) 
-                        {
+        $builder->add('empresa', EntityType::class, array(
+            'label' => 'Empresa',
+            'attr' => array('class' => 'form-control'),
+            'class' => 'FixServicemeBundle:Empresas',
+                'query_builder' => function (EntityRepository $er)
+                    {
                         return $er->createQueryBuilder('u')
                             ->where('u.estado = :only')
                             ->setParameter('only', '1');
-                        },
-                        'choice_label' => 'getNombre',
-                        'placeholder' => 'Seleccione una Opción',
-                        'label' => 'Empresa'
-                        ))
+                    },
+                'choice_label' => 'getNombre',
+                'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
+        ));
+
            #->add('guardar', SubmitType::class, array('label' => 'Crear Usuario'))
+
         ;
     }
     

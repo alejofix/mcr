@@ -22,7 +22,8 @@
          		<div class="form-group">
          			{{ form_label(params, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                     <div class="col-sm-5">
-                        {{ form_widget(params, { 'attr' : {'class' : 'form-control'}} ) }}
+                        {#{{ form_widget(params, { 'attr' : {'class' : 'form-control'}} ) }}#}
+                        {{ form_widget(params) }}
                         <span class="text-danger">{{ form_errors(params) }}</span>
                     </div>
                 </div>
@@ -55,5 +56,6 @@
     {{ parent() }}
     
     <script src="{{ asset('public/neon/assets/js/bootstrap-switch.min.js') }}"></script>
+    <script src="{{ asset('public/neon/assets/js/typeahead.min.js') }}"></script>
 
 {% endblock %}   

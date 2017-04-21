@@ -5,6 +5,9 @@ namespace Fix\ServicemeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+
+
+
 /**
  * @Route(path="/formularios")
  */
@@ -14,7 +17,7 @@ class FormulariosController extends Controller
 {
     /**
      * FormulariosController::indexAction()
-     * 
+     *
      * @return
      * @Route(path="/index/{id}", name="formularios", requirements={"id" = "\d+"}) 
      */
@@ -22,10 +25,10 @@ class FormulariosController extends Controller
     {
     	
 		if($id == 1) {
-    		return $this->redirectToRoute('formulario_1');
+    		return $this->redirectToRoute('motivo_1');
     	}
     	elseif($id == 2) {
-    		return $this->redirectToRoute('formulario_2');
+    		return $this->redirectToRoute('motivo_2');
     	}
      
         return $this->render('FixServicemeBundle:Formularios:index.html.twig');
@@ -34,19 +37,20 @@ class FormulariosController extends Controller
     
     /**
      * FormulariosController::form1Action()
-     * @Route(path="/formulario/proceso_1", name="formulario_1")
+     * @Route(path="/index/motivo_1", name="motivo_1")
      * @return void
      */
-    public function form1Action() {
-    	
+    public function motivo1Action() {
+
+
     }
     
     /**
      * FormulariosController::form2Action()
-     * @Route(path="/formulario/proceso_2", name="formulario_2")
+     * @Route(path="/index/motivo_2", name="motivo_2")
      * @return void
      */
-    public function form2Action() {
+    public function motivo2Action() {
     	
     }
        
