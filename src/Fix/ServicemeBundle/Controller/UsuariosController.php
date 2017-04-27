@@ -175,6 +175,8 @@ class UsuariosController extends Controller
     
     /**
      * UsuariosController::verAction()
+     *
+     * Vista detalle Usuario por ID
      * 
      * @param mixed $id
      * @return usuarios
