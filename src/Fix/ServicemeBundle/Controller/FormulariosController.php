@@ -14,7 +14,7 @@ use \Fix\ServicemeBundle\Form\FormulariosType;
 
 
 /**
- * Gestón General de Formularios Mejoramiento
+ * Gestión General de Formularios Mejoramiento
  *
  * @Route(path="/formularios")
  */
@@ -65,7 +65,6 @@ class FormulariosController extends Controller
         $form = $this->createCreateForm($formularios);
 
         return array('form' => $form->createView());
-
     }
 
     /**
