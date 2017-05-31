@@ -13,7 +13,7 @@ use \Fix\ServicemeBundle\Entity\Usuarios;
 use \Fix\ServicemeBundle\Form\UsuariosType;
 
 /**
- * @Route(path="serviceme/usuarios")
+ * @Route(path="serviceme/administracion/usuarios")
  */
 
 class UsuariosController extends Controller

@@ -26,7 +26,7 @@ class ListaformulariosController extends Controller
      * ListaformulariosController::listaAction
      *
      * @return
-     * @Route(path="/lista", name="listaFormularios"), requirements={"page" = "\d+"}, defaults={"page" = 1}
+     * @Route(path="/lista/{page}", name="listaFormularios"), requirements={"page" = "\d+"}, defaults={"page" = 1}
      * @Template("FixServicemeBundle:Formularios:lista.html.twig")
      */
     public function listaAction(Request $request, $page = 1)
@@ -37,7 +37,7 @@ class ListaformulariosController extends Controller
         $paginacion = $paginator->paginate(
             $em->getRepository('Fix\ServicemeBundle\Entity\Formularios')->findBy([], ['fecha' => 'DESC']),
             $page,
-            30
+            9
         );
 
         return array('pagination' => $paginacion);

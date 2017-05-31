@@ -7,7 +7,7 @@
             <h3>
                 <span class="label label-warning">Administrador</span> 
                 Lista Usuarios
-                <span class="badge badge-success">{{ pagination.getTotalItemCount - 1 }}</span>
+                <span class="badge badge-info">{{ pagination.getTotalItemCount - 1 }}</span>
 		    </h3>
             <hr />
 
@@ -52,11 +52,23 @@
                            <td>{{ usuario.empresa.nombre }}</td>
                             <td>
                                 {% if usuario.activo == '1' %}
-                                <a class="btn btn-primary" href="{{ path('verUsuario',   { id: usuario.id }) }}"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Información"><i class="entypo-info"></i></a>
-                                <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="entypo-pencil"></i></a>
-                                <a class="btn btn-red" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar"    href="javascript:;"><i class="entypo-cancel"></i></a>
+                                    <a href="{{ path('editarUsuario', { id: usuario.id }) }}" class="btn btn-default btn-sm btn-icon icon-left">
+                                        <i class="entypo-pencil"></i>
+                                        Editar
+                                    </a>
+                                    <a href="{{ path('verUsuario', { id: usuario.id }) }}" class="btn btn-info btn-sm btn-icon icon-left">
+                                        <i class="entypo-info"></i>
+                                        Perfil
+                                    </a>
+                                    <a href="javascript:;" class="btn btn-danger btn-sm btn-icon icon-left">
+                                        <i class="entypo-cancel"></i>
+                                        Borrar
+                                    </a>
                                 {% elseif usuario.activo == '0' %}
-                                    <a class="btn btn-primary" href="{{ path('verUsuario',   { id: usuario.id }) }}"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Información"><i class="entypo-info"></i></a>
+                                    <a href="{{ path('editarUsuario', { id: usuario.id }) }}" class="btn btn-success btn-sm btn-icon icon-left">
+                                        <i class="entypo-info"></i>
+                                        Perfil
+                                    </a>
                                 {% endif  %}
                             </td>
         				</tr>

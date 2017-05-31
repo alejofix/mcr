@@ -38,9 +38,6 @@ class Usuarios extends AbstractFixture implements FixtureInterface, ContainerAwa
         $usuario->setEmpresa($this->getReference('EMPRESA_'));
 
         ////
-
-
-
         ######
         #for ($i = 0; $i <= 100; $i++) {
 

@@ -73,7 +73,7 @@ class FormulariosController extends Controller
      */
     private function createCreateForm(Formularios $entity){
 
-        $form = $this->createForm(UserType::class, $entity, array(
+        $form = $this->createForm(FormulariosType::class, $entity, array(
             'action' => $this->generateUrl('motivo_1'),
             'method' => 'POST'
             ));
