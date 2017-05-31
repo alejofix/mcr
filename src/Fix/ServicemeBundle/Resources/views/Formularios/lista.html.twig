@@ -19,6 +19,7 @@
                         <th>{{ knp_pagination_sortable(pagination, 'Cuenta', 'u.cuenta') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Fecha', 'u.fecha') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Razon', 'u.razon') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Responsable', 'u.usuario') }}</th>
                         <th>{{ knp_pagination_sortable(pagination, 'Producto', 'u.producto') }}</th>
                     </tr>
             </thead>
@@ -31,6 +32,7 @@
                       <td>{{ formulario.cuenta }}</td>
                       <td class="center">{{ formulario.fecha|date('d-m-Y H:i') }}</td>
                       <td>{{ formulario.razon.nombre }}</td>
+                      <td><b data-toggle="tooltip" data-placement="left" title="" data-original-title="{{ formulario.tipo.usuario.nombres }} {{ formulario.tipo.usuario.apellidos }}">{{ formulario.tipo.usuario.usuario }}</b></td>
                       <td class="center">
                             {% if formulario.tipo.servicio.id in [1] %}
                                 <img src="{{ asset('public/images/icons/internet1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Internet"  />

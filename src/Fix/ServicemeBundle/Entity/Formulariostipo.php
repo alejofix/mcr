@@ -9,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="TBL_FORMULARIOS_SEC_TIPO", indexes={
     * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_ESTADO", columns={"ESTADO"}),
-    * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_SERVICIO", columns={"SERVICIO"})
+    * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_SERVICIO", columns={"SERVICIO"}),
+    * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_USUARIO", columns={"USUARIO"})
  })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\FormulariostipoRepository")
  */
@@ -46,6 +47,14 @@ class Formulariostipo
      * @ORM\JoinColumn(name="SERVICIO", referencedColumnName="ID")
      */
      private $servicio;
+
+    /**
+     * @var Fix\ServicemeBundle\Entity\Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Usuarios")
+     * @ORM\JoinColumn(name="USUARIO", referencedColumnName="ID")
+     */
+    private $usuario;
     
     
     /**
@@ -129,4 +138,30 @@ class Formulariostipo
     {
         return $this->servicio;
     }
+
+    /**
+     * Set usuario
+     *
+     * @param \Fix\ServicemeBundle\Entity\Usuarios $usuario
+     *
+     * @return Formulariostipo
+     */
+    public function setUsuario(\Fix\ServicemeBundle\Entity\Usuarios $usuario = null)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return \Fix\ServicemeBundle\Entity\Usuarios
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+
 }

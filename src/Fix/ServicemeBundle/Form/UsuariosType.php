@@ -137,7 +137,7 @@ class UsuariosType extends AbstractType
         $builder->add('cargo', TextType::class, array(
             'label' => 'Cargo',
             'attr' => array('placeholder' => "Agregar Cargo", 'name' => "typeahead_local", 'class' =>"form-control typeahead",
-                'data-local' => "Analista,Asesor,Auditor,Auxiliar,BackOffice,Coordinador,DataMarshall,Director,Especialista,Experto,Formador,Gestor,HelpDesk,Jefe,Líder,Programador,Representante,Supervisor,Torre Control,Workforce Management"),
+                'data-local' => "Analista,Asesor,Auditor,Auxiliar,BackOffice,Coordinador,DataMarshall,Director,Especialista,Experto,Formador,Gerente,Gestor,HelpDesk,Jefe,Líder,Programador,Representante,Supervisor,Torre Control,Workforce Management"),
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
