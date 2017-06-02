@@ -49,7 +49,7 @@
             		<!-- Menú Lateral -->
             		<ul id="main-menu" class="main-menu">
                     
-                      {{ include('neon/body/menulateral.html.twig') }}  
+                      {{ include('neon/body/menu_lateral.html.twig') }}
             
             		</ul>
             
@@ -66,13 +66,13 @@
                     <!-- Menú Usuario --> 
                     <div class="col-md-6 col-sm-8 clearfix">
                     
-                        {{ include('neon/body/menuusuario.html.twig') }}
+                        {{ include('neon/body/menu_usuario.html.twig') }}
                     
                     </div>		
                     <!--menu Cesión  -->
             		<div class="col-md-6 col-sm-4 clearfix hidden-xs">
                         
-                        {{ include('neon/body/menucesion.html.twig') }}
+                        {{ include('neon/body/menu_sesion.html.twig') }}
         
             		</div>		
                 
@@ -106,7 +106,7 @@
         
         <!-- Imported styles on this page -->
         <script src="{{ asset('public/neon/assets/js/jvectormap/jquery-jvectormap-1.2.2.css') }}"></script>
-        <script src="{{ asset('public/neon/assets/js/jvectormap/jquery-jvectormap-1.2.2.css') }}"></script>
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/css/font-icons/font-awesome/css/font-awesome.min.css') }}"/>
         <!-- Bottom scripts (common) -->
         <script src="{{ asset('public/neon/assets/js/gsap/main-gsap.js') }}"></script>
         <script src="{{ asset('public/neon/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}"></script>

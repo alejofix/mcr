@@ -23,13 +23,13 @@ class ListaformulariosController extends Controller
 {
 
     /**
-     * ListaformulariosController::listaAction
+     * ListaformulariosController::indexAction
      *
      * @return
-     * @Route(path="/lista/{page}", name="listaFormularios"), requirements={"page" = "\d+"}, defaults={"page" = 1}
-     * @Template("FixServicemeBundle:Formularios:lista.html.twig")
+     * @Route(path="/index/{page}", name="indexFormularios"), requirements={"page" = "\d+"}, defaults={"page" = 1}
+     * @Template("FixServicemeBundle:Formularios:Lista/index.html.twig")
      */
-    public function listaAction(Request $request, $page = 1)
+    public function indexAction(Request $request, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
 

@@ -1,0 +1,139 @@
+{% extends 'neon/base_comunicacion.html.twig' %}
+
+{% block body %}
+
+    <style>
+        b   {   color: white ;  font-size: 30px }
+        i   {   color: white;   opacity: 0.5;   }
+        d   {   color: white ;  font-size: 14px;    font: oblique 120% cursive; }
+        x   {   font-size: 19px }
+    </style>
+
+
+    <!-- row avisos -->
+    <div class="row">
+
+        <div class="col-sm-3 col-xs-6">
+            <div class="tile-stats tile-plum">
+                <div class="icon"><i class="entypo-traffic-cone"></i></div>
+                <b>Sin Señal 3play</b>
+                <div class="num" data-start="2000000000" data-end="2018660010" data-postfix="" data-duration="150" data-delay="600">2000000000</div>
+
+                <h3>Nodo 4a</h3>
+                <div align="left" ><d>Ruptura de fibra </d></div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <div class="tile-stats tile-plum">
+                <div class="icon"><i class="entypo-traffic-cone"></i></div>
+                <b>Sin Señal 3play</b>
+                <div class="num" data-start="2000000000" data-end="2019660010" data-postfix="" data-duration="150" data-delay="600">2000000000</div>
+
+                <h3>Nodos 4a 5a 6a</h3>
+                <div align="left" ><d>Fluido eléctrico </d></div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <div class="tile-stats tile-plum">
+                <div class="icon"><i class="entypo-traffic-cone"></i></div>
+                <b>Sin Señal 3play</b>
+                <div class="num" data-start="2000000000" data-end="2010669010" data-postfix="" data-duration="150" data-delay="600">2000000000</div>
+
+                <h3>Soacha</h3>
+                <div align="left" ><d>Hurto </d></div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <div class="tile-stats tile-blue">
+                <div class="icon"><i class="entypo-network"></i></div>
+                <b>Lenitud Nacional</b>
+                <div class="num" data-start="2000000000" data-end="2019000010" data-postfix="" data-duration="150" data-delay="600">2000000000</div>
+
+                <h3>Afecta todas las Regionales</h3>
+                <div align="left" ><d>causa exógeno</d></div>
+            </div>
+        </div>
+<!--
+        <div class="col-sm-3 col-xs-6">
+            <div class="tile-stats tile-aqua">
+                <div class="icon"><i class="entypo-monitor"></i></div>
+                <b>Sin Señal</b>
+                <div class="num" data-start="2000000000" data-end="2016600010" data-postfix="" data-duration="150" data-delay="600">2000000000</div>
+
+                <h3>Regional Soacha</h3>
+                <div align="left" ><d>Fluido eléctrico</d></div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <div class="tile-stats tile-red">
+                <div class="icon"><i class="entypo-phone"></i></div>
+                <b>Falla telefonía</b>
+                <div class="num" data-start="2000000000" data-end="2016000010" data-postfix="" data-duration="150" data-delay="600">2000000000</div>
+
+                <h3>SoftSwitch</h3>
+                <div align="left" ><d>Plataforma Telefonía</d></div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <div class="tile-stats tile-cyan">
+                <div class="icon"><i class="entypo-comment"></i></div>
+                <b>Diagnosticador</b>
+                <div class="num" data-start="2000000000" data-end="2010080010" data-postfix="" data-duration="150" data-delay="600">2000000000</div>
+
+                <h3>Lentitud</h3>
+                <div align="left" ><d>Estándar </d></div>
+            </div>
+        </div>
+-->
+    </div>
+    <!-- row avisos FIN -->
+    <br />
+
+    <!-- row INFORMATIVOS - NOTAS  -->
+    <div class="row">
+
+        <!-- DIV INFORMATIVOS -->
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title"><strong><y class="fa fa-comments"></y> I n f o r m a t i v o s</strong></div>
+                </div>
+                <div class="panel-body">
+
+
+                </div>
+            </div>
+        </div>
+        <!-- DIV NOTAS  -->
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title"><strong><y class="fa fa-file"></y> N o t a s</strong></div>
+
+                </div>
+                <div class="panel-body">
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+{% block javascripts  %}
+    {{ parent() }}
+
+
+
+{% endblock %}

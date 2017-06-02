@@ -131,13 +131,18 @@
 							
 							
 						</ul>
-                        
-                                                
+
                         {% if usuario.activo == '1' and usuario.role != 'ROLE_ROOT' %}
                         <ul>
                             <hr />
-                            <a class="btn btn-blue"    href="{{ path('editarUsuario', { id: usuario.id }) }}"><i class="entypo-pencil"></i></a>
-                            <a class="btn btn-red" href="javascript:;"><i class="entypo-cancel"></i></a>
+							<a href="{{ path('editarUsuario', { id: usuario.id }) }}" class="btn btn-primary btn-sm btn-icon icon-left">
+								<i class="entypo-pencil"></i>
+								Editar
+							</a>
+							<a href="javascript:;" class="btn btn-danger btn-sm btn-icon icon-left">
+								<i class="entypo-cancel"></i>
+								Borrar
+							</a>
                         </ul>
                         {% elseif usuario.activo == '0' %}
                         <hr/>
