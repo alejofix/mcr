@@ -43,4 +43,12 @@ class ListaformulariosController extends Controller
         return array('pagination' => $paginacion);
 
     }
+
+    /**
+     * @Route(path="/fix")
+     */
+    public function testAction() {
+        dump($this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup());
+        die;
+    }
 }

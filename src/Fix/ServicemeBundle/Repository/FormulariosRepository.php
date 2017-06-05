@@ -20,8 +20,8 @@
                 ->innerJoin('FixServicemeBundle:Formulariostipo', 't', Expr\Join::WITH, $qb->expr()->eq('f.tipo', 't.id'))
                 ->where($qb->expr()->between('f.fecha', ':inicio', ':final'))
                 ->groupBy('f.tipo')
-                ->setParameter('inicio', '2017-06-05 00:00:00')
-                ->setParameter('final', '2017-06-05 23:59:59')
+                ->setParameter('inicio', '2017-06-00 00:00:00')
+                ->setParameter('final', '2017-06-30 23:59:59')
                 ->getQuery()
                 ->getResult()
             ;
