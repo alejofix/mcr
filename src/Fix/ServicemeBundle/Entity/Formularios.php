@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
     * @ORM\Index(name="IDX_TBL_FORMULARIOS_COLUMN_RAZON", columns={"RAZON"})
  })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\FormulariosRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Formularios
 {
@@ -95,6 +96,13 @@ class Formularios
      * @ORM\JoinColumn(name="RAZON", referencedColumnName="ID")
      */
      private $razon;
+
+    /**
+     * @ORM\PrePersist()
+     */
+     public function setPrePersistData() {
+         $this->fecha = new \DateTime();
+     }
     
     /**
      * Get id

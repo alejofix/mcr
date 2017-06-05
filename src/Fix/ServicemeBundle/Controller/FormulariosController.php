@@ -5,12 +5,9 @@ namespace Fix\ServicemeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use \Fix\ServicemeBundle\Entity\Formularios;
-use \Fix\ServicemeBundle\Form\FormulariosType;
 
 
 /**
@@ -22,89 +19,67 @@ use \Fix\ServicemeBundle\Form\FormulariosType;
 class FormulariosController extends Controller
 {
     /**
-     * FormulariosController::indexAction()
+     * Redirecciona a la plantilla correspondiente
      *
-     * Selección inicial Index FORMULARIO por ID.
+     * @Route(path="/motivos/{id}", name="formularios_motivos", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
      *
-     * @return
-     * @Route(path="/index/{id}", name="formularios", requirements={"id" = "\d+"}, defaults={"id" = 0})
+     * @param $id
+     * @return Response
      */
-    public function indexAction($id)
-    {
+    public function motivosAction(Request $request, $id) {
 
-        switch ($id) {
+        $fs = new Filesystem();
+        $archivo = sprintf('%s.html.twig', $id);
+        $ruta = implode(DIRECTORY_SEPARATOR, array(dirname(__DIR__), 'Resources', 'views', 'Formularios', 'Motivo', $archivo));
 
-            case 1:
-                return $this->redirectToRoute('motivo_1');
-                break;
-            case 2:
-                return $this->redirectToRoute('motivo_2');
-                break;
-            case 3:
-                return $this->redirectToRoute('motivo_3');
-                break;
+        if($fs->exists($ruta) == false) {
+            throw $this->createNotFoundException('No existe el proceso solicitado');
+        }
 
-            default:
-                return $this->render('FixServicemeBundle:Formularios:index.html.twig');
+        $entity = new \Fix\ServicemeBundle\Entity\Formularios();
+        $form = $this->createNewFormularioForm($entity, $id);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() AND $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $entity->setTipo($em->getRepository('FixServicemeBundle:Formulariostipo')->findOneBy(array('id' => $id)));
+            $em->persist($entity);
+            $em->flush();
+//agregar addflash
+            return $this->redirectToRoute('formularios_motivos', array('id' => $id));
 
         }
 
+        return $this->render(sprintf('FixServicemeBundle:Formularios/Motivo:%s.html.twig', $id), array('form' => $form->createView()));
     }
 
     /**
-     * FormulariosController::add1Action()
+     * Genera el formulario solicitado
      *
-     * @Route(path="/index/motivo_1", name="motivo_1")
-     * @Template("FixServicemeBundle:Formularios:Motivo/1.html.twig")
-     *
-     * @return void
-     */
-    public function add1Action() {
-
-        $formularios = new Formularios();
-        $form = $this->createCreateForm($formularios);
-
-        return array('form' => $form->createView());
-    }
-
-    /**
-     * @param Formularios $entity
+     * @param $entity
+     * @param $id
      * @return \Symfony\Component\Form\Form
      */
-    private function createCreateForm(Formularios $entity){
+    private function createNewFormularioForm($entity, $id) {
 
-        $form = $this->createForm(FormulariosType::class, $entity, array(
-            'action' => $this->generateUrl('motivo_1'),
+        if($id == 1) {
+            $clase = \Fix\ServicemeBundle\Form\Formularios\UnoType::class;
+        }
+
+        return $this->createForm($clase, $entity, array(
+            'action' => $this->generateUrl('formularios_motivos', array('id' => $id)),
             'method' => 'POST'
-            ));
-
-        return $form;
+        ));
     }
 
     /**
-     * FormulariosController::add2Action()
-     *
-     *
-     * @Route(path="/index/motivo_2", name="motivo_2")
-     * @Template("FixServicemeBundle:Formularios:Motivo/2.html.twig")
-     * @return void
+     * @Route(path="/test")
      */
-    public function add2Action() {
-
-
-    }
-
-    /**
-     * FormulariosController::add2Action()
-     *
-     *
-     * @Route(path="/index/motivo_3", name="motivo_3")
-     * @Template("FixServicemeBundle:Formularios:Motivo/3.html.twig")
-     * @return void
-     */
-    public function add3Action() {
-
-
+    public function testAction() {
+        dump($this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup());
+        die;
     }
 
 }
