@@ -34,7 +34,7 @@ class FormulariosController extends Controller
         $ruta = implode(DIRECTORY_SEPARATOR, array(dirname(__DIR__), 'Resources', 'views', 'Formularios', 'Motivo', $archivo));
 
         if($fs->exists($ruta) == false) {
-            throw $this->createNotFoundException('No existe el proceso solicitado');
+            throw $this->createNotFoundException('No existe el formularios solicitado');
         }
 
         $entity = new \Fix\ServicemeBundle\Entity\Formularios();
@@ -64,9 +64,21 @@ class FormulariosController extends Controller
      */
     private function createNewFormularioForm($entity, $id) {
 
-        if($id == 1) {
-            $clase = \Fix\ServicemeBundle\Form\Formularios\UnoType::class;
-        }
+        switch ($id) {
+            case 007:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\TestType::class;
+                // formulario de pruebas
+                break;
+            case 1:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\UnoType::class;
+                break;
+            case 2:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\DosType::class;
+                break;
+            default:
+                echo "hola default";
+            }
+
 
         return $this->createForm($clase, $entity, array(
             'action' => $this->generateUrl('formularios_motivos', array('id' => $id)),

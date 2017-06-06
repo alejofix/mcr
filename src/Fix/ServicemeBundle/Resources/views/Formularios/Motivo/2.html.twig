@@ -2,7 +2,20 @@
 
 {% block body %}
 
-hola mundo 2
+    <h1>hola mundo 2</h1>
+    {{ form_start(form, {'attr' : {'role' : 'form' }}) }}
+
+    <div class="form-group">
+
+        {{ form_label(form.cuenta) }}
+        {{ form_widget(form.cuenta, {'attr' : {'class' : 'form-control', 'placeholder' : 'Cuenta Suscriptor'} }) }}
+        <span>
+        {{ form_errors(form.cuenta) }}
+        </span>
+
+    </div>
+
+    {{ form_end(form) }}
 
 {% endblock %}
 
