@@ -7,7 +7,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,9 +22,6 @@ class DosType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        /*
-         * INICIO FORMULARIO
-         */
         // Imprescindible:cuenta
         $builder->add('cuenta', IntegerType::class, array(
             'label' => 'Cuenta',
@@ -60,7 +56,9 @@ class DosType extends AbstractType {
             )
         ));
 
-
+        /*
+         * edit FORMULARIO
+         */
         /**
          *  Opción REFERENCIA :     indicativo hacia un objeto - CH, DECO, MODEM, FIRMWARE ETC...
          *  puede ser un choice
@@ -71,6 +69,11 @@ class DosType extends AbstractType {
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'información Requerida')))
         ));
+        $builder->get('referencia')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         /**
          *  Opción DETALLE :        información suplementaria - UN MENSAJE DE ERROR, UNA ALERTA, UN VALOR...
@@ -82,6 +85,11 @@ class DosType extends AbstractType {
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'información Requerida')))
         ));
+        $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         /**
          *  Opción INFORMACION UNO :
@@ -96,7 +104,6 @@ class DosType extends AbstractType {
                     'max' => 140,
                     'minMessage' => 'Información - mínimo {{ limit }} Caracteres',
                     'maxMessage' => 'Información - máximo {{ limit }} Caracteres'
-
                 ))
             )
 
@@ -115,7 +122,6 @@ class DosType extends AbstractType {
                     'max' => 140,
                     'minMessage' => 'Información - mínimo {{ limit }} Caracteres',
                     'maxMessage' => 'Información - máximo {{ limit }} Caracteres'
-
                 ))
             )
 
@@ -150,31 +156,21 @@ class DosType extends AbstractType {
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'información Requerida')))
         ));
-
-        // Imprescindible:submit
-        $builder->add('submit', SubmitType::class, array(
-            'label' => 'Guardar',
-            'attr' => array('class' => 'btn btn-gray')
-        ));
-        /*
-         * FIN FORMULARIO
-         */
-        //strtoupper
-        $builder->get('referencia')->addModelTransformer(new CallbackTransformer(function($data) {
-            return mb_strtoupper($data);
-        }, function($data) {
-            return mb_strtoupper($data);
-        }));
-        $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
-            return mb_strtoupper($data);
-        }, function($data) {
-            return mb_strtoupper($data);
-        }));
         $builder->get('datos')->addModelTransformer(new CallbackTransformer(function($data) {
             return mb_strtoupper($data);
         }, function($data) {
             return mb_strtoupper($data);
         }));
+
+        /*
+         * FIN edit FORMULARIO
+         */
+
+        // submit
+        # $builder->add('submit', SubmitType::class, array(
+        #     'label' => 'Guardar',
+        #     'attr' => array('class' => 'btn btn-gray')
+        # ));
 
 
     }
