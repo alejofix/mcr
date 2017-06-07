@@ -12,27 +12,27 @@
 
         protected function configure() {
             $this->setName('zyos:install')
-                ->setDescription('Instalacion de la aplicacion');
+                ->setDescription('Installation of the application');
         }
 
         protected function execute(InputInterface $input, OutputInterface $output) {
 
             $io = new SymfonyStyle($input, $output);
-            $io->title('Instalacion de Service ME');
+            $io->title('Installation of Service ME');
             
-            $io->comment('Borrando Base de datos');
+            $io->comment('Deleting Database //');
             $this->ejecutarComando($output, 'doctrine:database:drop', array('--if-exists' => true, '--force' => true));
 			            
-            $io->comment('Generando creacion de la base de datos');
+            $io->comment('Generating the creation of the database //');
             $this->ejecutarComando($output, 'doctrine:database:create', array('--if-not-exists' => true));
             
-            $io->comment('Generando actualizacion de Esquema');
+            $io->comment('Creating schema update //');
             $this->ejecutarComando($output, 'doctrine:schema:update', array('--force' => true));
             
-            $io->comment('Generando fixtures de datos');
+            $io->comment('Creating DataFixtures //');
             $this->ejecutarComando($output, 'doctrine:fixtures:load', array('--append' => true));
             
-            $io->comment('Limpiando Cache');
+            $io->comment('Clearing Cache //');
             $this->ejecutarComando($output, 'cache:clear', array('--no-warmup' => true, '--no-optional-warmers' => true));
 
         }

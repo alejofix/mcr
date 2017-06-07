@@ -18,11 +18,11 @@ class Empresas extends AbstractFixture implements OrderedFixtureInterface {
             $empresa->setEstado($this->getReference('ESTADO_ACTIVO'));
             $empresa->setNombre($nombre);
             $manager->persist($empresa);
-
+            $this->addReference('EMPRESA_'.$nombre, $empresa);
         }
 
         $manager->flush();
-        $this->addReference('EMPRESA_', $empresa);
+        //$this->addReference('EMPRESA_', $empresa);
         //  $this->addReference('EMPRESA_'.$nombre, $empresa);
 
 

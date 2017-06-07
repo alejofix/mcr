@@ -35,7 +35,7 @@ class Usuarios extends AbstractFixture implements FixtureInterface, ContainerAwa
         $password = $encoder->encodePassword($usuario, 'qwerty');
         $usuario->setContrasena($password);
         $manager->persist($usuario);
-        $usuario->setEmpresa($this->getReference('EMPRESA_'));
+        $usuario->setEmpresa($this->getReference('EMPRESA_CLARO'));
 
         ////
         ######
