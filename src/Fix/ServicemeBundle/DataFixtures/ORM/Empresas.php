@@ -22,9 +22,6 @@ class Empresas extends AbstractFixture implements OrderedFixtureInterface {
         }
 
         $manager->flush();
-        //$this->addReference('EMPRESA_', $empresa);
-        //  $this->addReference('EMPRESA_'.$nombre, $empresa);
-
 
     }
 

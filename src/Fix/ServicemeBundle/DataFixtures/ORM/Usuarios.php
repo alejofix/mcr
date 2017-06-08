@@ -22,7 +22,7 @@ class Usuarios extends AbstractFixture implements FixtureInterface, ContainerAwa
 
         ///add de usuario Alejandro Montenegro
         $usuario = new \Fix\ServicemeBundle\Entity\Usuarios();
-        $usuario->setUsuario('fix');
+        $usuario->setUsuario('FIX');
         $usuario->setNombres('Alejandro');
         $usuario->setApellidos('Montenegro');
         $usuario->setCargo('Analista');
@@ -34,28 +34,11 @@ class Usuarios extends AbstractFixture implements FixtureInterface, ContainerAwa
         $encoder = $this->container->get('security.password_encoder');
         $password = $encoder->encodePassword($usuario, 'qwerty');
         $usuario->setContrasena($password);
+
         $manager->persist($usuario);
         $usuario->setEmpresa($this->getReference('EMPRESA_CLARO'));
 
-        ////
-        ######
-        #for ($i = 0; $i <= 100; $i++) {
-
-        #	$usuario->setUsuario('usuario_'.$i);
-        #	$usuario->setContrasena('123');
-        #	$usuario->setNombres('Nombres '.$i);
-        #	$usuario->setApellidos('Apellido '.$i);
-        #	$usuario->setCargo('Cargo');
-        #	$usuario->setCorreo('correo@correo.com');
-        #	$usuario->setDocumentoNumero('123456789');
-        #	$usuario->setDocumentoTipo('cedula');
-        #	$usuario->setEmpresa($this->getReference('EMPRESA_'));
-        #	$usuario->setGenero(rand(0, 1));
-        #	$usuario->setRole('ROLE_ADMIN');
-        #
-        #	$manager->persist($usuario);
-        #}
-
+        $this->addReference('USUARIO_'.'FIX', $usuario);
         $manager->flush();
 
     }

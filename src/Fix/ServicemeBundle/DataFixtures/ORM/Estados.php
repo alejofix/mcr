@@ -13,7 +13,6 @@
 			$lista = array('ACTIVO', 'INACTIVO', 'PENDIENTE', 'FINALIZADO', 'GUARDADO', 'ELIMINADO', 'ASIGNADO', 'PROCESO', 'PAUSADO', 'EMERGENCIA');
 			
 			foreach ($lista AS $nombre) {
-				
 				$estado = new \Fix\ServicemeBundle\Entity\Estados();
 				$estado->setNombre($nombre);
 				$manager->persist($estado);
