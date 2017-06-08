@@ -30,8 +30,15 @@
             $this->ejecutarComando($output, 'doctrine:schema:update', array('--force' => true));
             
             $io->comment('Creating DataFixtures //');
+
             $this->ejecutarComando($output, 'doctrine:fixtures:load', array('--append' => true));
-            
+            //$this->ejecutarComando($output, 'doctrine:fixtures:load', array('--fixtures=src/Fix/ServicemeBundle/DataFixtures/ORM/' => true, '--append' => true));
+
+            // ok consola
+            // D:\xampp\htdocs\_fix\mcr\src
+            //$ php.exe bin/console doctrine:fixtures:load --fixtures=src/Fix/ServicemeBundle/DataFixtures/ORM/ --append;
+
+
             $io->comment('Clearing Cache //');
             $this->ejecutarComando($output, 'cache:clear', array('--no-warmup' => true, '--no-optional-warmers' => true));
 

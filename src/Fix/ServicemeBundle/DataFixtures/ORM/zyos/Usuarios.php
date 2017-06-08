@@ -41,6 +41,27 @@ class Usuarios extends AbstractFixture implements FixtureInterface, ContainerAwa
         $this->addReference('USUARIO_'.'FIX', $usuario);
         $manager->flush();
 
+
+
+        //// Ejemplo FOR
+        #   for ($i = 0; $i <= 100; $i++) {
+        #	$usuario->setUsuario('usuario_'.$i);
+        #	$usuario->setContrasena('123');
+        #	$usuario->setNombres('Nombres '.$i);
+        #	$usuario->setApellidos('Apellido '.$i);
+        #	$usuario->setCargo('Cargo');
+        #	$usuario->setCorreo('correo@correo.com');
+        #	$usuario->setDocumentoNumero('123456789');
+        #	$usuario->setDocumentoTipo('cedula');
+        #	$usuario->setEmpresa($this->getReference('EMPRESA_'));
+        #	$usuario->setGenero(rand(0, 1));
+        #	$usuario->setRole('ROLE_ADMIN');
+        #
+        #	$manager->persist($usuario);
+        #   $manager->flush();
+        #}
+
+
     }
 
     public function getOrder() {
