@@ -45,7 +45,7 @@ class ListaformulariosController extends Controller
     }
 
     /**
-     * @Route(path="/fix")
+     * @Route(path="/test")
      */
     public function testAction() {
         dump($this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup());

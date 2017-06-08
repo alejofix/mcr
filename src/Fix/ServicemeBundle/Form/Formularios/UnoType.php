@@ -45,6 +45,7 @@ class UnoType extends AbstractType {
             'query_builder' => function(EntityRepository $er) {
                 $qb = $er->createQueryBuilder('t');
                 return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                    ->andWhere('t.tipo = 1')
                     ->orderBy('t.nombre', 'ASC')
                     ->setParameter('estado', 1)
                     ;
@@ -147,7 +148,7 @@ class UnoType extends AbstractType {
         ));
 
         /**
-         *  Opción DATO :  representación representación simbólica -- 1, 0 - si, no ..etc
+         *  Opción DATO :   representación simbólica -- 1, 0 - si, no ..etc
          *  puede ser un choice
          */
         $builder->add('datos', TextType::class, array(

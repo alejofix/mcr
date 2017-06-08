@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\CallbackTransformer;
 
 use \Symfony\Component\Form\Extension\Core\Type\EmailType;
 use \Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -37,6 +38,11 @@ class UsuariosType extends AbstractType
                         'maxMessage' => 'Usuario permitido - máximo {{ limit }} Caracteres'
                         )))
         ));
+        $builder->get('usuario')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         $builder->add('nombres', TextType::class, array(
             'label' => 'Nombres',

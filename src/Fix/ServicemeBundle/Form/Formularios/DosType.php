@@ -45,6 +45,7 @@ class DosType extends AbstractType {
             'query_builder' => function(EntityRepository $er) {
                 $qb = $er->createQueryBuilder('t');
                 return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                    ->andWhere('t.tipo = 2')
                     ->orderBy('t.nombre', 'ASC')
                     ->setParameter('estado', 1)
                     ;

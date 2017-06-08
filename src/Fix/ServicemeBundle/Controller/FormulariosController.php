@@ -21,13 +21,13 @@ class FormulariosController extends Controller
     /**
      * Redirecciona a la plantilla correspondiente
      *
-     * @Route(path="/motivos/{id}", name="formularios_motivos", requirements={"id" = "\d+"})
+     * @Route(path="/motivo/{id}", name="formularios_motivos", requirements={"id" = "\d+"})
      * @Method({"GET", "POST"})
      *
      * @param $id
      * @return Response
      */
-    public function motivosAction(Request $request, $id) {
+    public function motivoAction(Request $request, $id) {
 
         $fs = new Filesystem();
         $archivo = sprintf('%s.html.twig', $id);
@@ -87,7 +87,7 @@ class FormulariosController extends Controller
     }
 
     /**
-     * @Route(path="/test")
+     * @Route(path="/fix")
      */
     public function testAction() {
         dump($this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup());
