@@ -5,6 +5,7 @@ namespace Fix\ServicemeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,36 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FormulariosController extends Controller
 {
+
+    /**
+     * FormulariosController::indexAction()
+     * 
+     * @return
+     * @Route(path="/index", name="inicioFormularios")
+     * @Template("FixServicemeBundle:Formularios:index.html.twig")
+     */
+    public function indexAction()
+    {
+    
+    }
+
+    /**
+     * FormulariosController::alertAction()
+     * 
+     * mensaje de confirmación <div class="alert alert-?">
+     * 
+     * @return 
+     * @Route(path="/motivo/alert", name="alertFormularios")
+     * @Template("FixServicemeBundle:Formularios:mensajes/alert.html.twig")
+     */
+    public function alertAction()
+    {
+    
+    }
+    
+
+
+    
     /**
      * Redirecciona a la plantilla correspondiente
      *
@@ -34,7 +65,9 @@ class FormulariosController extends Controller
         $ruta = implode(DIRECTORY_SEPARATOR, array(dirname(__DIR__), 'Resources', 'views', 'Formularios', 'Motivo', $archivo));
 
         if($fs->exists($ruta) == false) {
-            throw $this->createNotFoundException('No existe el formularios solicitado');
+            // throw $this->createNotFoundException('No existe el formularios solicitado');
+            $this->addFlash('mensajedanger', 'No existe el formularios solicitado.');
+            return $this->redirectToRoute('alertFormularios');
         }
 
         $entity = new \Fix\ServicemeBundle\Entity\Formularios();
@@ -47,8 +80,10 @@ class FormulariosController extends Controller
             $entity->setTipo($em->getRepository('FixServicemeBundle:Formulariostipo')->findOneBy(array('id' => $id)));
             $em->persist($entity);
             $em->flush();
-//agregar addflash
-            return $this->redirectToRoute('formularios_motivos', array('id' => $id));
+
+            $this->addFlash('mensajesuccess', 'Información almacenada con éxito… ¡Gracias!.');
+            return $this->redirectToRoute('alertFormularios');
+         // return $this->redirectToRoute('formularios_motivos', array('id' => $id));
 
         }
 
@@ -75,8 +110,6 @@ class FormulariosController extends Controller
             case 2:
                 $clase = \Fix\ServicemeBundle\Form\Formularios\DosType::class;
                 break;
-            default:
-                echo "hola default";
             }
 
 

@@ -57,9 +57,9 @@ class UnoType extends AbstractType {
             )
         ));
 
-        /*
-         * edit FORMULARIO
-         */
+/*
+ * edit FORMULARIO
+ */
         /**
          *  Opción REFERENCIA :     indicativo hacia un objeto - CH, DECO, MODEM, FIRMWARE ETC...
          *  puede ser un choice
@@ -163,9 +163,9 @@ class UnoType extends AbstractType {
             return mb_strtoupper($data);
         }));
 
-        /*
-         * FIN edit FORMULARIO
-         */
+/*
+ * FIN edit FORMULARIO
+ */
 
         // submit
         # $builder->add('submit', SubmitType::class, array(

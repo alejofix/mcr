@@ -1,0 +1,61 @@
+{% extends 'formularios/base.html.twig' %}
+
+{% block body %}
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Formulario Mejoramiento
+                    </div>
+                        
+                        {% for flashMessage in app.session.flashbag.get('mensajesuccess') %}
+                        <div class="col-lg-12">
+                        <br />
+                        
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                <br />
+                                
+                                    <div class="alert alert-success">
+                                        <a class="alert-link">Bien hecho</a>,<em> {{ flashMessage }}</em>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% for flashMessage in app.session.flashbag.get('mensajedanger') %}
+                        <div class="col-lg-12">
+                        <br />
+                        
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                <br />
+                                
+                                    <div class="alert alert-danger">
+                                        <a class="alert-link">Error</a>,<em> {{ flashMessage }}</em>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        <!--
+                            <div class="alert alert-danger">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                            </div>
+                            
+                            -->
+                </div>
+            </div>
+        </div>    
+
+{% endblock %}
+
+
+{% block javascripts  %}
+    {{ parent() }}
+
+{% endblock %}
