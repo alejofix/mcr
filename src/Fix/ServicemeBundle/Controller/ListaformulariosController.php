@@ -51,16 +51,16 @@ class ListaformulariosController extends Controller
     }
 
     /**
+     * test y pruebas para descargas .xls formularios
+     *
      * @Route(path="/test")
      */
     public function testAction() {
 
-
-
         $fs = new Filesystem();
 
         $finder = new Finder();
-        $buscar = $finder->in('C:\Users\Luz Angela\Downloads')->files()->name('*.xlsx');
+        $buscar = $finder->in('C:\Users\Expertos\Downloads')->files()->name('*.xlsx');
 
         foreach ($buscar AS $file) {
             $fs->remove($file->getRealPath());
@@ -70,7 +70,7 @@ class ListaformulariosController extends Controller
 
         $qb = $em->createQueryBuilder();
         $query = $qb->select('f')->from('FixServicemeBundle:Formularios', 'f')->where($qb->expr()->eq('f.tipo', 1))->getQuery()->getResult();
-        dump($query);
+  //      dump($query);
 
         $objPHPExcel = new PHPExcel();
         $objPHPExcel->getProperties()->setCreator($this->getUser()->getFullName())
@@ -85,27 +85,25 @@ class ListaformulariosController extends Controller
 
         $index = 1;
 
-        foreach ($query AS $file) {
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$index, $file->getCuenta());
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$index, $file->getFecha()->format("Y-m-d H:i:s"));
-            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$index, $file->getReferencia());
+            foreach ($query AS $file) {
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$index, $file->getCuenta());
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$index, $file->getFecha()->format("Y-m-d H:i:s"));
+                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$index, $file->getReferencia());
 
-            $index++;
-        }
+                    $index++;
+                }
 
         $objPHPExcel->getActiveSheet()->setTitle('Prueba Hoja X');
         $objPHPExcel->setActiveSheetIndex(0);
 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-        $objWriter->save(implode('/', ['C:\Users\Luz Angela\Downloads', 'mi_file.xlsx']));
+        $objWriter->save(implode('/', ['C:\Users\Expertos\Downloads', 'tipo_1.xlsx']));
 
-
-
-        $response = new BinaryFileResponse(implode('/', ['C:\Users\Luz Angela\Downloads', 'mi_file.xlsx']));
+        $response = new BinaryFileResponse(implode('/', ['C:\Users\Expertos\Downloads', 'tipo_1.xlsx']));
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            'Archivo_prueba.xlsx'
+            'tipo_1.xlsx'
         );
 
         return $response;

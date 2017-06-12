@@ -66,7 +66,7 @@ class FormulariosController extends Controller
 
         if($fs->exists($ruta) == false) {
             // throw $this->createNotFoundException('No existe el formularios solicitado');
-            $this->addFlash('mensajedanger', 'No existe el formularios solicitado.');
+            $this->addFlash('mensajedanger', 'No existe el formulario solicitado.');
             return $this->redirectToRoute('alertFormularios');
         }
 
