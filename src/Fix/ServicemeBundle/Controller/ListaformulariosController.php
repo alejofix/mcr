@@ -4,17 +4,22 @@ namespace Fix\ServicemeBundle\Controller;
 
 use PHPExcel;
 use PHPExcel_IOFactory;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Filesystem\Filesystem;
+
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 use \Fix\ServicemeBundle\Entity\Formularios;
+use \Fix\ServicemeBundle\Entity\Formulariostipo;
+use \Fix\ServicemeBundle\Entity\Formulariosrazon;
+
 use \Fix\ServicemeBundle\Form\FormulariosType;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
@@ -69,43 +74,74 @@ class ListaformulariosController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $qb = $em->createQueryBuilder();
-        $query = $qb->select('f')->from('FixServicemeBundle:Formularios', 'f')->where($qb->expr()->eq('f.tipo', 1))->getQuery()->getResult();
-  //      dump($query);
+        $query = $qb->select('f')
+                ->from('FixServicemeBundle:Formularios', 'f')
+                ->where($qb->expr()->eq('f.tipo', 1))
+                ->getQuery()->getResult();
+        //dump($query);
 
         $objPHPExcel = new PHPExcel();
-        $objPHPExcel->getProperties()->setCreator($this->getUser()->getFullName())
-            ->setLastModifiedBy("Maarten Balliauw")
-            ->setTitle("Office 2007 XLSX Test Document")
-            ->setSubject("Office 2007 XLSX Test Document")
-            ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-            ->setKeywords("office 2007 openxml php")
-            ->setCategory("Test result file");
+        $objPHPExcel
+            ->getProperties()->setCreator('Alejo_Fix')
+            ->setLastModifiedBy($this->getUser()->getFullName())
+            ->setTitle('developed by MCR')
+            ->setSubject("Office EXCEL_PHP")
+            ->setDescription('Reports - MCR')
+            ->setKeywords("office_open Symfony")
+            ->setCategory("Mejoramiento 2017");
 
         $objPHPExcel->setActiveSheetIndex(0);
 
-        $index = 1;
+            $index = 2;
 
             foreach ($query AS $file) {
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$index, $file->getCuenta());
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$index, $file->getFecha()->format("Y-m-d H:i:s"));
-                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$index, $file->getReferencia());
 
+                $objPHPExcel->setActiveSheetIndex(0)
+                        ->setCellValue('A1', 'ID_MOTIVO')
+                        ->setCellValue('A'.$index, $file->getId())
+                        ->setCellValue('B1', 'CUENTA')
+                        ->setCellValue('B'.$index, $file->getCuenta())
+                        ->setCellValue('C1', 'FECHA')
+                        ->setCellValue('C'.$index, $file->getFecha()->format("Y-m-d H:i:s"))
+                        ->setCellValue('D1', 'REFERENCIA')
+                        ->setCellValue('D'.$index, $file->getReferencia())
+                        ->setCellValue('E1', 'DETALLE')
+                        ->setCellValue('E'.$index, $file->getDetalle())
+                        ->setCellValue('F1', 'INFORMACION 1')
+                        ->setCellValue('F'.$index, $file->getInformacionuno())
+                        ->setCellValue('G1', 'INFORMACION 2')
+                        ->setCellValue('G'.$index, $file->getInformaciondos())
+                        ->setCellValue('H1', 'INFORMACION 3')
+                        ->setCellValue('H'.$index, $file->getInformaciontres())
+                        ->setCellValue('I1', 'DATOS')
+                        ->setCellValue('I'.$index, $file->getDatos())
+                        ->setCellValue('J1', 'ID_TIPO')
+                        ->setCellValue('J'.$index, $file->getTipo()->getId())
+                        ->setCellValue('K1', 'NOMBRE_TIPO')
+                        ->setCellValue('K'.$index, $file->getTipo()->getNombre())
+                        ->setCellValue('L1', 'ID_RAZON')
+                        ->setCellValue('L'.$index, $file->getRazon()->getId())
+                        ->setCellValue('M1', 'NOMBRE_RAZON')
+                        ->setCellValue('M'.$index, $file->getRazon()->getNombre())
+                        ;
                     $index++;
                 }
 
-        $objPHPExcel->getActiveSheet()->setTitle('Prueba Hoja X');
+        $objPHPExcel->getActiveSheet()->setTitle('MOTIVO_'.($file->getTipo()->getId()) .'_'.($file->getTipo()->getServicio()->getProducto()) );
         $objPHPExcel->setActiveSheetIndex(0);
 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-        $objWriter->save(implode('/', ['C:\Users\Expertos\Downloads', 'tipo_1.xlsx']));
+        $objWriter->save(implode('/', ['D:\xampp\htdocs\_fix\mcr\var\cache\dev', 'tmp.xlsx']));
 
-        $response = new BinaryFileResponse(implode('/', ['C:\Users\Expertos\Downloads', 'tipo_1.xlsx']));
+        $response = new BinaryFileResponse(implode('/', ['D:\xampp\htdocs\_fix\mcr\var\cache\dev', 'tmp.xlsx']));
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            'tipo_1.xlsx'
-        );
+            ('MOTIVO_'.$file->getTipo()->getId().'_'.$file->getTipo()->getServicio()->getProducto().'_RESPONSABLE_'.$file->getTipo()->getUsuario()->getUsername()).'.xlsx')
+            ;
 
         return $response;
     }
 }
+
+

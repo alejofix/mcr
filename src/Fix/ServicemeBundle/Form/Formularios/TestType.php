@@ -7,7 +7,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -58,9 +57,9 @@ class TestType extends AbstractType {
             )
         ));
 
-/*
- * edit FORMULARIO
- */
+        /*
+         * edit FORMULARIO
+         */
         /**
          *  Opción REFERENCIA :     indicativo hacia un objeto - CH, DECO, MODEM, FIRMWARE ETC...
          *  puede ser un choice
@@ -149,7 +148,7 @@ class TestType extends AbstractType {
         ));
 
         /**
-         *  Opción DATO :  representación representación simbólica -- 1, 0 - si, no ..etc
+         *  Opción DATO :   representación simbólica -- 1, 0 - si, no ..etc
          *  puede ser un choice
          */
         $builder->add('datos', TextType::class, array(
@@ -164,9 +163,9 @@ class TestType extends AbstractType {
             return mb_strtoupper($data);
         }));
 
-/*
- * FIN edit FORMULARIO
- */
+        /*
+         * FIN edit FORMULARIO
+         */
 
         // submit
         # $builder->add('submit', SubmitType::class, array(

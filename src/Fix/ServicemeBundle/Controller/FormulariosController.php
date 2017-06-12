@@ -47,8 +47,6 @@ class FormulariosController extends Controller
     }
     
 
-
-    
     /**
      * Redirecciona a la plantilla correspondiente
      *
@@ -107,9 +105,6 @@ class FormulariosController extends Controller
             case 1:
                 $clase = \Fix\ServicemeBundle\Form\Formularios\UnoType::class;
                 break;
-            case 2:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\DosType::class;
-                break;
             }
 
 
@@ -122,7 +117,7 @@ class FormulariosController extends Controller
     /**
      * @Route(path="/fix")
      */
-    public function testAction() {
+    public function fixAction() {
         dump($this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup());
         die;
     }
