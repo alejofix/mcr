@@ -55,19 +55,30 @@ class ListaformulariosController extends Controller
 
     }
 
+
+    /**
+     * @Route(path="/test")
+     * @Template("FixServicemeBundle:Formularios:test.html.twig")
+     */
+    public function fixAction() {
+        $em = $this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup();
+
+
+    }
+
     /**
      * test y pruebas para descargas .xls formularios
      *
-     * @Route(path="/test")
+     * @Route(path="/xls")
      */
-    public function testAction() {
+    public function xlsAction() {
 
         $fs = new Filesystem();
 
         $finder = new Finder();
         $buscar = $finder->in('C:\Users\Expertos\Downloads')->files()->name('*.xlsx');
 
-        foreach ($buscar AS $file) {
+            foreach ($buscar AS $file) {
             $fs->remove($file->getRealPath());
         }
 
@@ -131,9 +142,9 @@ class ListaformulariosController extends Controller
         $objPHPExcel->setActiveSheetIndex(0);
 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-        $objWriter->save(implode('/', ['D:\xampp\htdocs\_fix\mcr\var\cache\dev', 'tmp.xlsx']));
+        $objWriter->save(implode('/', ['D:\xampp\htdocs\_fix\mcr\var\cache\dev', ($this->getUser()->getFullName()).'_tmp.xlsx']));
 
-        $response = new BinaryFileResponse(implode('/', ['D:\xampp\htdocs\_fix\mcr\var\cache\dev', 'tmp.xlsx']));
+        $response = new BinaryFileResponse(implode('/', ['D:\xampp\htdocs\_fix\mcr\var\cache\dev', ($this->getUser()->getFullName()).'_tmp.xlsx']));
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
@@ -142,6 +153,7 @@ class ListaformulariosController extends Controller
 
         return $response;
     }
+
 }
 
 
