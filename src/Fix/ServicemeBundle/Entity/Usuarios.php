@@ -149,6 +149,10 @@ class Usuarios implements UserInterface
      * @ORM\JoinColumn(name="EMPRESA", referencedColumnName="ID")
      */
      private $empresa;
+
+     public function getFullName() {
+         return $this->nombres.' '.$this->apellidos;
+     }
 ///////////////////////////////////
     /**
      * Usuarios::getPassword()
