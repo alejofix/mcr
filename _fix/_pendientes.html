@@ -1,34 +1,30 @@
-tbl_serviceco_pri_alto_impacto
+TBL_SERVICECO_PRI_ALTOIMPACTO
+
 	Id
 	Fecha
-	Usuario login
-	Estado
 	Aviso
-	Referencia (color) *1
 	Síntoma (sin señal)
 	Afectación (regional ...)
-	Detalle (estándar…) *2
 	
-tbl_serviceco_log_alto_impacto	
-	id
-	fecha	
-	usuario
-	id alto impacto
-	evento (insertar, editar, eliminar)
-	descripción 
+	Estado  ---> relacion
+	
+	Usuario login --->relacion
+	Referencia (color) *1   ---->relacion
+	Detalle (estándar…) *2  --->relacion  
+	
 
-	
-tbl_serviceco_select_referencia *1 
+
+TBL_SERVICECO_SELECT_REFERENCIA
+ *1 
 	HFC
 	Televisión
 	Telefonía
 	Internet 
 	Informativo
-
+				estado --->relacion 
 	
-	
-
-tbl_serviceco_select_detalle *2	
+TBL_SERVICECO_SELECT_DETALLE
+*2	
 	Alarma óptica
 	Causa exógeno
 	Desenganche Masivo
@@ -42,6 +38,16 @@ tbl_serviceco_select_detalle *2
 	Plataforma Telefonía
 	Plataforma Televisión
 	Ruptura de fibra
+				estado --->relacion 
+				
+TBL_SERVICECO_LOG_ALTOIMPACTO				
+
+	id
+	fecha	
+	usuario		--->relacion 
+	id alto impacto ---->relacion 
+	evento (insertar, editar, eliminar)
+	descripción 
 
 	
 	
