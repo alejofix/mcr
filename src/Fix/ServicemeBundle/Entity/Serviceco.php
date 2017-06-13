@@ -7,7 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Serviceco
  *
- * @ORM\Table(name="TBL_SERVICECO_PRI_ALTOIMPACTO")
+ * @ORM\Table(name="TBL_SERVICECO_PRI_ALTOIMPACTO", indexes={
+    * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_ESTADO", columns={"ESTADO"}),
+    * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_USUARIO", columns={"USUARIO"}),
+    * @ORM\Index(name="IDX_TBL_SERVICECO_COLUMN_REFERENCIA", columns={"REFERENCIA"}),
+    * @ORM\Index(name="IDX_TBL_SERVICECO_COLUMN_DETALLE", columns={"DETALLE"})
+    })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\ServicecoRepository")
  */
 class Serviceco
@@ -49,6 +54,37 @@ class Serviceco
      */
     private $afectacion;
 
+    /**
+     * @var Fix\ServicemeBundle\Entity\Estados
+     *
+     * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Estados")
+     * @ORM\JoinColumn(name="ESTADO", referencedColumnName="ID")
+     */
+    private $estado;
+
+    /**
+     * @var Fix\ServicemeBundle\Entity\Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Usuarios")
+     * @ORM\JoinColumn(name="USUARIO", referencedColumnName="ID")
+     */
+    private $usuario;
+
+    /**
+     * @var Fix\ServicemeBundle\Entity\Servicecoreferencia
+     *
+     * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Servicecoreferencia")
+     * @ORM\JoinColumn(name="REFERENCIA", referencedColumnName="ID")
+     */
+    private $referencia;
+
+    /**
+     * @var Fix\ServicemeBundle\Entity\Servicecodetalle
+     *
+     * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Servicecodetalle")
+     * @ORM\JoinColumn(name="DETALLE", referencedColumnName="ID")
+     */
+    private $detalle;
 
     /**
      * Get id
@@ -155,5 +191,100 @@ class Serviceco
     {
         return $this->afectacion;
     }
-}
 
+    /**
+     * Set estado
+     *
+     * @param \Fix\ServicemeBundle\Entity\Estados $estado
+     *
+     * @return Serviceco
+     */
+    public function setEstado(\Fix\ServicemeBundle\Entity\Estados $estado = null)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return \Fix\ServicemeBundle\Entity\Estados
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set usuario
+     *
+     * @param \Fix\ServicemeBundle\Entity\Usuarios $usuario
+     *
+     * @return Serviceco
+     */
+    public function setUsuario(\Fix\ServicemeBundle\Entity\Usuarios $usuario = null)
+    {
+        $this->usuario = $usuario;
+    
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return \Fix\ServicemeBundle\Entity\Usuarios
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * Set referencia
+     *
+     * @param \Fix\ServicemeBundle\Entity\Servicecoreferencia $referencia
+     *
+     * @return Serviceco
+     */
+    public function setReferencia(\Fix\ServicemeBundle\Entity\Servicecoreferencia $referencia = null)
+    {
+        $this->referencia = $referencia;
+    
+        return $this;
+    }
+
+    /**
+     * Get referencia
+     *
+     * @return \Fix\ServicemeBundle\Entity\Servicecoreferencia
+     */
+    public function getReferencia()
+    {
+        return $this->referencia;
+    }
+
+    /**
+     * Set detalle
+     *
+     * @param \Fix\ServicemeBundle\Entity\Servicecodetalle $detalle
+     *
+     * @return Serviceco
+     */
+    public function setDetalle(\Fix\ServicemeBundle\Entity\Servicecodetalle $detalle = null)
+    {
+        $this->detalle = $detalle;
+    
+        return $this;
+    }
+
+    /**
+     * Get detalle
+     *
+     * @return \Fix\ServicemeBundle\Entity\Servicecodetalle
+     */
+    public function getDetalle()
+    {
+        return $this->detalle;
+    }
+}

@@ -109,6 +109,11 @@ class TestType extends AbstractType {
             )
 
         ));
+        $builder->get('informacionuno')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         /**
          *  Opción INFORMACION DOS :
@@ -127,6 +132,11 @@ class TestType extends AbstractType {
             )
 
         ));
+        $builder->get('informaciondos')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         /**
          *  Opción INFORMACION TRES :
@@ -146,6 +156,11 @@ class TestType extends AbstractType {
             )
 
         ));
+        $builder->get('informaciontres')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         /**
          *  Opción DATO :   representación simbólica -- 1, 0 - si, no ..etc

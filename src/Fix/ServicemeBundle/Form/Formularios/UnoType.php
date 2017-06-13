@@ -107,8 +107,12 @@ class UnoType extends AbstractType {
                     'maxMessage' => 'Información - máximo {{ limit }} Caracteres'
                 ))
             )
-
         ));
+        $builder->get('informacionuno')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         /**
          *  Opción INFORMACION DOS :
@@ -127,6 +131,11 @@ class UnoType extends AbstractType {
             )
 
         ));
+        $builder->get('informaciondos')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         /**
          *  Opción INFORMACION TRES :
@@ -146,6 +155,11 @@ class UnoType extends AbstractType {
             )
 
         ));
+        $builder->get('informaciontres')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         /**
          *  Opción DATO :   representación simbólica -- 1, 0 - si, no ..etc

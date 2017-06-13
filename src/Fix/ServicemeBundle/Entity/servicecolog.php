@@ -7,7 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * servicecolog
  *
- * @ORM\Table(name="TBL_SERVICECO_LOG_ALTOIMPACTO")
+ * @ORM\Table(name="TBL_SERVICECO_LOG_ALTOIMPACTO", indexes={
+    * @ORM\Index(name="IDX_TBL_GENERAL_COLUMN_USUARIO", columns={"USUARIO"}),
+    * @ORM\Index(name="IDX_TBL_SERVICECO_COLUMN_ALTOIMPACTO", columns={"ALTOIMPACTO"})
+    })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\servicecologRepository")
  */
 class servicecolog
@@ -42,6 +45,22 @@ class servicecolog
      */
     private $descripcion;
 
+    /**
+     * @var Fix\ServicemeBundle\Entity\Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Usuarios")
+     * @ORM\JoinColumn(name="USUARIO", referencedColumnName="ID")
+     */
+    private $usuario;
+
+    /**
+     * @var Fix\ServicemeBundle\Entity\Serviceco
+     *
+     * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Serviceco")
+     * @ORM\JoinColumn(name="ALTOIMPACTO", referencedColumnName="ID")
+     */
+    private $altoimpacto;
+
 
     /**
      * Get id
@@ -63,7 +82,7 @@ class servicecolog
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
-    
+
         return $this;
     }
 
@@ -87,7 +106,7 @@ class servicecolog
     public function setEvento($evento)
     {
         $this->evento = $evento;
-    
+
         return $this;
     }
 
@@ -111,7 +130,7 @@ class servicecolog
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
-    
+
         return $this;
     }
 
@@ -124,5 +143,52 @@ class servicecolog
     {
         return $this->descripcion;
     }
-}
 
+    /**
+     * Set usuario
+     *
+     * @param \Fix\ServicemeBundle\Entity\Usuarios $usuario
+     *
+     * @return servicecolog
+     */
+    public function setUsuario(\Fix\ServicemeBundle\Entity\Usuarios $usuario = null)
+    {
+        $this->usuario = $usuario;
+    
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return \Fix\ServicemeBundle\Entity\Usuarios
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * Set altoimpacto
+     *
+     * @param \Fix\ServicemeBundle\Entity\Serviceco $altoimpacto
+     *
+     * @return servicecolog
+     */
+    public function setAltoimpacto(\Fix\ServicemeBundle\Entity\Serviceco $altoimpacto = null)
+    {
+        $this->altoimpacto = $altoimpacto;
+    
+        return $this;
+    }
+
+    /**
+     * Get altoimpacto
+     *
+     * @return \Fix\ServicemeBundle\Entity\Serviceco
+     */
+    public function getAltoimpacto()
+    {
+        return $this->altoimpacto;
+    }
+}

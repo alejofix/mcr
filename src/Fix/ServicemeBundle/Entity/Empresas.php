@@ -29,10 +29,10 @@ class Empresas
      * @ORM\Column(name="NOMBRE", type="string", length=50)
      */
     private $nombre;
-    
+
     /**
      * @var Fix\ServicemeBundle\Entity\Estados
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Estados")
      * @ORM\JoinColumn(name="ESTADO", referencedColumnName="ID")
      */
@@ -72,17 +72,17 @@ class Empresas
     {
         return $this->nombre;
     }
-    
+
     /**
      * Empresas::getFullName()
-     * 
+     *
      * @return id y nombre empresa
      */
     public function getFullName()
     {
         return $this->id . ".   " . $this->nombre;
     }
-    
+
 
     /**
      * Set estado
@@ -94,7 +94,7 @@ class Empresas
     public function setEstado(\Fix\ServicemeBundle\Entity\Estados $estado = null)
     {
         $this->estado = $estado;
-    
+
         return $this;
     }
 
