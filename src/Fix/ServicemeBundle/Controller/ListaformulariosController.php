@@ -142,9 +142,9 @@ class ListaformulariosController extends Controller
         $objPHPExcel->setActiveSheetIndex(0);
 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-        $objWriter->save(implode('/', ['D:\xampp\htdocs\_fix\mcr\var\cache\dev', ($this->getUser()->getFullName()).'_tmp.xlsx']));
+        $objWriter->save(implode('/', ['D:\xampp\htdocs\mcr\var\cache\dev', ($this->getUser()->getFullName()).'_tmp.xlsx']));
 
-        $response = new BinaryFileResponse(implode('/', ['D:\xampp\htdocs\_fix\mcr\var\cache\dev', ($this->getUser()->getFullName()).'_tmp.xlsx']));
+        $response = new BinaryFileResponse(implode('/', ['D:\xampp\htdocs\mcr\var\cache\dev', ($this->getUser()->getFullName()).'_tmp.xlsx']));
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,

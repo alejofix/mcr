@@ -27,10 +27,13 @@
 
                                 {% endfor %}
 
+                                <div id="cargar_ajax">
+
+                                </div>
+
                                 <br/>
                                 <div class="col-sm-offset-3 col-sm-5">
-                                    <button type="submit" class="btn btn-default">Guardar</button>
-                                    <!--   <button type="reset" class="btn btn-default">Reset Button</button> -->
+                                    <button type="submit" class="btn btn-default" id="submit_data">Guardar</button>
                                 </div>
 
                                 {{ form_end(form) }}
@@ -48,5 +51,28 @@
 
     {% block javascripts  %}
         {{ parent() }}
-
+        <script>
+            jQuery(document).ready(function() {
+                jQuery("#formulario_detalle").change(function() {
+                    jQuery("#formulario_detalle option:selected").each(function() {
+                        var valor = jQuery(this).val();
+                        jQuery.ajax({
+                            url : "{{ path('formularios_ajax_field') }}",
+                            type: "POST",
+                            dataType: "html",
+                            data : {detalle : valor, id : "{{ id }}"},
+                            error: function(errorObj) {
+                                alert("Se ha presentado un error al enviar la informacion");
+                            },
+                            beforeSend: function() {
+                                jQuery("#cargar_ajax").html('<img src="url de un loader.gif">');
+                            },
+                            success : function(result) {
+                                jQuery("#cargar_ajax").html(result);
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
     {% endblock %}

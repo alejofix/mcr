@@ -3,6 +3,7 @@
 namespace Fix\ServicemeBundle\Form\Formularios;
 
 use Doctrine\ORM\EntityRepository;
+
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
@@ -10,6 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use \Symfony\Component\Validator\Constraints as Assert;
@@ -22,9 +26,9 @@ class UnoType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        // Imprescindible:cuenta
+
         $builder->add('cuenta', IntegerType::class, array(
-            'label' => 'Cuenta',
+            'label' => 'Cuenta de Suscriptor',
             'attr' => array('placeholder' => 'Agregar número Cuenta ', 'class' => 'form-control', 'autofocus' => 'autofocus'),
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'información Requerida')),
@@ -33,20 +37,27 @@ class UnoType extends AbstractType {
                     'max' => 8,
                     'minMessage' => 'número Cuenta - mínimo {{ limit }} Caracteres',
                     'maxMessage' => 'número Cuenta - máximo {{ limit }} Caracteres'
-
                 ))
             )
         ));
-        // Imprescindible:razon
+
+        $builder->add('datos', TextType::class, array(
+            'label' => 'IP Nagra',
+            'attr' => array('placeholder' => 'Informar Dirección IP Nagra', 'class' => 'form-control'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+                new Assert\Ip(array('message' => 'Esta no es una Dirección IP Valida'))
+            )
+        ));
+
         $builder->add('razon', EntityType::class, array(
-            'label' => 'Razon',
+            'label' => '¿Muestra icono Funcionalidad Grabaciones?',
             'attr' => array('class' => 'form-control'),
             'class' => 'FixServicemeBundle:Formulariosrazon',
             'query_builder' => function(EntityRepository $er) {
                 $qb = $er->createQueryBuilder('t');
                 return $qb->where($qb->expr()->eq('t.estado', ':estado'))
                     ->andWhere('t.tipo = 1')
-                    ->orderBy('t.nombre', 'ASC')
                     ->setParameter('estado', 1)
                     ;
             },
@@ -57,136 +68,76 @@ class UnoType extends AbstractType {
             )
         ));
 
-/*
- * edit FORMULARIO
- */
-        /**
-         *  Opción REFERENCIA :     indicativo hacia un objeto - CH, DECO, MODEM, FIRMWARE ETC...
-         *  puede ser un choice
-         */
-        $builder->add('referencia', TextType::class, array(
-            'label' => 'Referencia',
-            'attr' => array('placeholder' => 'Agregar Referencia', 'class' => 'form-control'),
-            'constraints' => array(
-                new Assert\NotBlank(array('message' => 'información Requerida')))
-        ));
-        $builder->get('referencia')->addModelTransformer(new CallbackTransformer(function($data) {
-            return mb_strtoupper($data);
-        }, function($data) {
-            return mb_strtoupper($data);
-        }));
-
-        /**
-         *  Opción DETALLE :        información suplementaria - UN MENSAJE DE ERROR, UNA ALERTA, UN VALOR...
-         *   puede ser un choice
-         */
-        $builder->add('detalle', TextType::class, array(
-            'label' => 'Detalle',
+        $builder->add('referencia', ChoiceType::class, array(
+            'label' => '¿Muestra icono Funcionalidad TimeShift?',
             'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+            'choices' => array(
+                'SI MUESTRA ÍCONO TIMESHIFT' => 'SI MUESTRA ÍCONO TIMESHIFT',
+                'NO MUESTRA ÍCONO TIMESHIFT' => 'NO MUESTRA ÍCONO TIMESHIFT',
+                ),
+            'placeholder' => 'Seleccione una Opción',
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'información Requerida')))
         ));
-        $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
-            return mb_strtoupper($data);
-        }, function($data) {
-            return mb_strtoupper($data);
-        }));
 
-        /**
-         *  Opción INFORMACION UNO :
-         */
-        $builder->add('informacionuno', TextareaType::class, array(
-            'label' => 'Información 1',
-            'attr' => array('placeholder' => 'Agregar Información 1', 'class' => 'form-control', 'rows' => 2),
-            'constraints' => array(
-                new Assert\NotBlank(array('message' => 'información Requerida')),
-                new Assert\Length(array(
-                    'min' => 14,
-                    'max' => 140,
-                    'minMessage' => 'Información - mínimo {{ limit }} Caracteres',
-                    'maxMessage' => 'Información - máximo {{ limit }} Caracteres'
-                ))
-            )
-        ));
-        $builder->get('informacionuno')->addModelTransformer(new CallbackTransformer(function($data) {
-            return mb_strtoupper($data);
-        }, function($data) {
-            return mb_strtoupper($data);
-        }));
-
-        /**
-         *  Opción INFORMACION DOS :
-         */
-        $builder->add('informaciondos', TextareaType::class, array(
-            'label' => 'Información 2',
-            'attr' => array('placeholder' => 'Agregar Información 2', 'class' => 'form-control', 'rows' => 2),
-            'constraints' => array(
-                new Assert\NotBlank(array('message' => 'información Requerida')),
-                new Assert\Length(array(
-                    'min' => 14,
-                    'max' => 140,
-                    'minMessage' => 'Información - mínimo {{ limit }} Caracteres',
-                    'maxMessage' => 'Información - máximo {{ limit }} Caracteres'
-                ))
-            )
-
-        ));
-        $builder->get('informaciondos')->addModelTransformer(new CallbackTransformer(function($data) {
-            return mb_strtoupper($data);
-        }, function($data) {
-            return mb_strtoupper($data);
-        }));
-
-        /**
-         *  Opción INFORMACION TRES :
-         */
-        $builder->add('informaciontres', TextareaType::class, array(
-            'label' => 'Información 3',
-            'attr' => array('placeholder' => 'Agregar Información 3', 'class' => 'form-control', 'rows' => 2),
-            'constraints' => array(
-                new Assert\NotBlank(array('message' => 'información Requerida')),
-                new Assert\Length(array(
-                    'min' => 14,
-                    'max' => 140,
-                    'minMessage' => 'Información - mínimo {{ limit }} Caracteres',
-                    'maxMessage' => 'Información - máximo {{ limit }} Caracteres'
-
-                ))
-            )
-
-        ));
-        $builder->get('informaciontres')->addModelTransformer(new CallbackTransformer(function($data) {
-            return mb_strtoupper($data);
-        }, function($data) {
-            return mb_strtoupper($data);
-        }));
-
-        /**
-         *  Opción DATO :   representación simbólica -- 1, 0 - si, no ..etc
-         *  puede ser un choice
-         */
-        $builder->add('datos', TextType::class, array(
-            'label' => 'Datos',
+        $builder->add('detalle', ChoiceType::class, array(
+            'label' => 'Canales en los que se evidencia el Problema',
             'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
+            'choices' => array(
+                'TODOS LOS CANALES' => 'TODOS LOS CANALES',
+                'ALGUNOS CANALES' => 'ALGUNOS CANALES',
+            ),
+            'placeholder' => 'Seleccione una Opción',
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'información Requerida')))
         ));
-        $builder->get('datos')->addModelTransformer(new CallbackTransformer(function($data) {
-            return mb_strtoupper($data);
-        }, function($data) {
-            return mb_strtoupper($data);
-        }));
 
-/*
- * FIN edit FORMULARIO
- */
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $product = $event->getData();
+            $form = $event->getForm();
 
-        // submit
-        # $builder->add('submit', SubmitType::class, array(
-        #     'label' => 'Guardar',
-        #     'attr' => array('class' => 'btn btn-gray')
-        # ));
+            if($product->getDetalle() == 'TODOS LOS CANALES') {
 
+                $form->add('informaciontres', ChoiceType::class, array(
+                    'label' => '¿Cuando se evidencia la falla?',
+                    'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
+                    'choices' => array(
+                        'TODO EL DÍA' => 'TODO EL DÍA',
+                        'EN HORAS DE LA TARDE DESPUÉS DE LAS 13:00' => 'EN HORAS DE LA TARDE',
+                        'EN HORAS DE LA NOCHE DESPUÉS DE LAS 18:00' => 'EN HORAS DE LA NOCHE',
+                        'EN LA MADRUGADA' => 'EN LA MADRUGADA'
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new Assert\NotBlank(array('message' => 'información Requerida')))
+                ));
+            }
+
+            elseif ($product->getDetalle() == 'ALGUNOS CANALES'){
+
+                $form->add('informacionuno', TextType::class, array(
+                    'label' => 'Canales',
+                    'attr' => array('placeholder' => 'Ej.  106,108,606 ...', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new Assert\NotBlank(array('message' => 'información Requerida')))
+                ));
+                $form->add('informaciondos', TextType::class, array(
+                    'label' => 'Programas',
+                    'attr' => array('placeholder' => 'Ej. Día a Día, Muy buenos Días, The Simpsons ...', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new Assert\NotBlank(array('message' => 'información Requerida')))
+                ));
+                $form->add('informaciontres', TextType::class, array(
+                    'label' => 'Hora de Inicio de Programa',
+                    'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new Assert\NotBlank(array('message' => 'información Requerida')))
+                ));
+
+            }
+
+
+        });
 
     }
 
@@ -196,7 +147,8 @@ class UnoType extends AbstractType {
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fix\ServicemeBundle\Entity\Formularios'
+            'data_class' => 'Fix\ServicemeBundle\Entity\Formularios',
+            'allow_extra_fields' => true
         ));
     }
 

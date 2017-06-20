@@ -1,0 +1,39 @@
+{% if id == 1 %}
+
+    {% if seleccion == 'TODOS LOS CANALES' %}
+
+        <div class="form-group">
+            {{ form_label(form.informaciontres, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-5">
+                {{ form_widget(form.informaciontres) }}
+                <span class="text-danger">{{ form_errors(form.informaciontres) }}</span>
+            </div>
+        </div>
+
+    {% elseif seleccion == 'ALGUNOS CANALES' %}
+
+        <div class="form-group">
+            {{ form_label(form.informacionuno, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-5">
+                {{ form_widget(form.informacionuno) }}
+                <span class="text-danger">{{ form_errors(form.informacionuno) }}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.informaciondos, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-5">
+                {{ form_widget(form.informaciondos) }}
+                <span class="text-danger">{{ form_errors(form.informaciondos) }}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.informaciontres, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-5">
+                {{ form_widget(form.informaciontres) }}
+                <span class="text-danger">{{ form_errors(form.informaciontres) }}</span>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endif %}

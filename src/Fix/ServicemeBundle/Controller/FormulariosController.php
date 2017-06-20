@@ -85,7 +85,29 @@ class FormulariosController extends Controller
 
         }
 
-        return $this->render(sprintf('FixServicemeBundle:Formularios/Motivo:%s.html.twig', $id), array('form' => $form->createView()));
+        return $this->render(sprintf('FixServicemeBundle:Formularios/Motivo:%s.html.twig', $id), array('form' => $form->createView(), 'id' => $id));
+    }
+
+    /**
+     * @Route(path="/ajax/form", name="formularios_ajax_field", condition="request.isXmlHttpRequest()")
+     * @Method({"POST"})
+     * @Template("FixServicemeBundle:Formularios:cargar_ajax_field.html.twig")
+     */
+    public function cargarAjaxFieldsAction(Request $request) {
+
+        if($request->request->has('detalle') AND $request->request->has('id')) {
+
+            $request->request->set('formulario', array('detalle' => $request->request->get('detalle')));
+            $entity = new \Fix\ServicemeBundle\Entity\Formularios();
+            $form = $this->createNewFormularioForm($entity, $request->request->get('id'));
+            $form->handleRequest($request);
+
+            return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
+        }
+        else {
+            //Aqui coloca un error
+            throw $this->createNotFoundException('No es posible cargar su peticion');
+        }
     }
 
     /**
@@ -98,12 +120,11 @@ class FormulariosController extends Controller
     private function createNewFormularioForm($entity, $id) {
 
         switch ($id) {
-            case 007:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\TestType::class;
-                // formulario de pruebas
-                break;
             case 1:
                 $clase = \Fix\ServicemeBundle\Form\Formularios\UnoType::class;
+                break;
+            case 2:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\DosType::class;
                 break;
             }
 
