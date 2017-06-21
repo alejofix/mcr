@@ -41,7 +41,7 @@ class SeisType extends AbstractType {
         ));
 
         $builder->add('razon', EntityType::class, array(
-            'label' => 'razon select',
+            'label' => 'Tiempo con el deco desconectado',
             'attr' => array('class' => 'form-control'),
             'class' => 'FixServicemeBundle:Formulariosrazon',
             'query_builder' => function(EntityRepository $er) {
@@ -52,6 +52,46 @@ class SeisType extends AbstractType {
                     ;
             },
             'choice_label' => 'nombre',
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+            )
+        ));
+
+        $builder->add('informacionuno', TextareaType::class, array(
+            'label' => 'Motivo por el cual lo tenía Desconectado',
+            'attr' => array('placeholder' => 'Ej. No tenía Televisor, No lo Usaba, se fue de Viaje … ', 'class' => 'form-control', 'rows' => 2),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+                new Assert\Length(array(
+                    'min' => 10,
+                    'max' => 50,
+                    'minMessage' => 'Información - mínimo {{ limit }} Caracteres',
+                    'maxMessage' => 'Información - máximo {{ limit }} Caracteres'
+                ))
+            )
+
+        ));
+        $builder->get('informacionuno')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
+
+
+
+        $builder->add('referencia', EntityType::class, array(
+            'label' => 'Modelo Decodificador RR',
+            'attr' => array('class' => 'form-control'),
+            'class' => 'FixServicemeBundle:Decodificadores',
+            'query_builder' => function(EntityRepository $er) {
+                $qb = $er->createQueryBuilder('t');
+                return $qb
+                    ->where($qb->expr()->eq('t.estado', ':estado'))
+                    ->setParameter('estado', 1)
+                    ;
+            },
+            'choice_label' => 'referencia',
             'placeholder' => 'Seleccione una Opción',
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'información Requerida')),

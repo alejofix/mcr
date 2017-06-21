@@ -129,7 +129,7 @@ class UnoType extends AbstractType {
                 ));
                 $form->add('informaciontres', TextType::class, array(
                     'label' => 'Hora de Inicio de Programa',
-                    'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
+                    'attr' => array('placeholder' => 'Ej. 8:00, 10:00 ...', 'class' => 'form-control'),
                     'constraints' => array(
                         new Assert\NotBlank(array('message' => 'información Requerida')))
                 ));

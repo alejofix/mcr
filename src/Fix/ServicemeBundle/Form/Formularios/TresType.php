@@ -58,6 +58,25 @@ class TresType extends AbstractType {
             )
         ));
 
+        $builder->add('referencia', EntityType::class, array(
+            'label' => 'Modelo Decodificador RR',
+            'attr' => array('class' => 'form-control'),
+            'class' => 'FixServicemeBundle:Decodificadores',
+            'query_builder' => function(EntityRepository $er) {
+                $qb = $er->createQueryBuilder('t');
+                return $qb
+                    ->where($qb->expr()->eq('t.estado', ':estado'))
+                    ->setParameter('estado', 1)
+                    ;
+            },
+            'choice_label' => 'referencia',
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+            )
+        ));
+
+
     }
 
     /**

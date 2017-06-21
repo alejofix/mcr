@@ -74,6 +74,10 @@ class FormulariosController extends Controller
 
         if($form->isSubmitted() AND $form->isValid()) {
 
+            if($id == '3' or $id == '6' or $id == '7'){
+                $entity->setReferencia($form->get('referencia')->getData()->getReferencia());
+            }
+
             $em = $this->getDoctrine()->getManager();
             $entity->setTipo($em->getRepository('FixServicemeBundle:Formulariostipo')->findOneBy(array('id' => $id)));
             $em->persist($entity);

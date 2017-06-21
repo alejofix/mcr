@@ -87,7 +87,7 @@ class ListaformulariosController extends Controller
         $qb = $em->createQueryBuilder();
         $query = $qb->select('f')
                 ->from('FixServicemeBundle:Formularios', 'f')
-                ->where($qb->expr()->eq('f.tipo', 1))
+                ->where($qb->expr()->eq('f.tipo', 2))
                 ->getQuery()->getResult();
         //dump($query);
 

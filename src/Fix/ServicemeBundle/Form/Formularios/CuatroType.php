@@ -40,8 +40,23 @@ class CuatroType extends AbstractType {
             )
         ));
 
+        $builder->add('referencia', IntegerType::class, array(
+            'label' => 'No. Orden',
+            'attr' => array('placeholder' => 'Llamada de Servicio | Orden de Trabajo', 'class' => 'form-control'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+                 new Assert\Length(array(
+                     'min' => 4,
+                     'max' => 9,
+                     'minMessage' => 'No. Orden - mínimo {{ limit }} Caracteres',
+                     'maxMessage' => 'No. Orden - máximo {{ limit }} Caracteres'
+
+                 ))
+            )
+        ));
+
         $builder->add('razon', EntityType::class, array(
-            'label' => 'razon select',
+            'label' => 'Tipo de Orden',
             'attr' => array('class' => 'form-control'),
             'class' => 'FixServicemeBundle:Formulariosrazon',
             'query_builder' => function(EntityRepository $er) {
@@ -57,6 +72,20 @@ class CuatroType extends AbstractType {
                 new Assert\NotBlank(array('message' => 'información Requerida')),
             )
         ));
+
+        $builder->add('detalle', ChoiceType::class, array(
+            'label' => 'Motivo de Insatisfacción',
+            'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+            'choices' => array(
+                'EL SERVICIO NO SE ENTREGO FUNCIONANDO' => 'EL SERVICIO NO SE ENTREGO FUNCIONANDO',
+                'SERVICIO FALLA DESPUÉS DE LA VISITA' => 'SERVICIO FALLA DESPUÉS DE LA VISITA',
+                'INCONFORMIDAD POR ESTÉTICA DEL TRABAJO' => 'INCONFORMIDAD POR ESTÉTICA DEL TRABAJO'
+                ),
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')))
+        ));
+
 
     }
 
