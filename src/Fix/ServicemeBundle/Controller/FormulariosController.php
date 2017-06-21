@@ -126,7 +126,28 @@ class FormulariosController extends Controller
             case 2:
                 $clase = \Fix\ServicemeBundle\Form\Formularios\DosType::class;
                 break;
-            }
+            case 3:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\TresType::class;
+                break;
+            case 4:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\CuatroType::class;
+                break;
+            case 5:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\CincoType::class;
+                break;
+            case 6:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\SeisType::class;
+                break;
+            case 7:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\SieteType::class;
+                break;
+            case 8:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\OchoType::class;
+                break;
+            case 9:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\NueveType::class;
+                break;
+        }
 
 
         return $this->createForm($clase, $entity, array(
