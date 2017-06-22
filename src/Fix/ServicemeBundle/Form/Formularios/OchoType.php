@@ -40,8 +40,28 @@ class OchoType extends AbstractType {
             )
         ));
 
+        $builder->add('detalle', TextType::class, array(
+            'label' => 'Canales Afectados',
+            'attr' => array('placeholder' => 'Máximo tres frecuencias Separadas por (,)', 'class' => 'form-control'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+                new Assert\Length(array(
+                    'min' => 3,
+                    'max' => 14,
+                    'minMessage' => 'Ingrese mínimo una Frecuencia ',
+                    'maxMessage' => 'Ingrese máximo tres Frecuencias '
+                ))
+            )
+
+        ));
+        $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
+
         $builder->add('razon', EntityType::class, array(
-            'label' => 'razon select',
+            'label' => 'Razón Ausencia de Canal',
             'attr' => array('class' => 'form-control'),
             'class' => 'FixServicemeBundle:Formulariosrazon',
             'query_builder' => function(EntityRepository $er) {
@@ -57,6 +77,25 @@ class OchoType extends AbstractType {
                 new Assert\NotBlank(array('message' => 'información Requerida')),
             )
         ));
+
+        $builder->add('referencia', EntityType::class, array(
+            'label' => 'Modelo Decodificador RR',
+            'attr' => array('class' => 'form-control'),
+            'class' => 'FixServicemeBundle:Decodificadores',
+            'query_builder' => function(EntityRepository $er) {
+                $qb = $er->createQueryBuilder('t');
+                return $qb
+                    ->where($qb->expr()->eq('t.estado', ':estado'))
+                    ->setParameter('estado', 1)
+                    ;
+            },
+            'choice_label' => 'referencia',
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+            )
+        ));
+
 
     }
 

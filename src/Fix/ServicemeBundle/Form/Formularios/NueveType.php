@@ -8,10 +8,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use \Symfony\Component\Validator\Constraints as Assert;
@@ -41,7 +40,7 @@ class NueveType extends AbstractType {
         ));
 
         $builder->add('razon', EntityType::class, array(
-            'label' => 'razon select',
+            'label' => 'Infografía que desea Enviar',
             'attr' => array('class' => 'form-control'),
             'class' => 'FixServicemeBundle:Formulariosrazon',
             'query_builder' => function(EntityRepository $er) {
@@ -54,9 +53,46 @@ class NueveType extends AbstractType {
             'choice_label' => 'nombre',
             'placeholder' => 'Seleccione una Opción',
             'constraints' => array(
-                new Assert\NotBlank(array('message' => 'información Requerida')),
+                new Assert\NotBlank(array('message' => 'información Requerida'))
             )
         ));
+
+
+        $builder->add('referencia', EmailType::class, array(
+            'label' => 'Correo electrónico Cliente',
+            'attr' => array('placeholder' => 'Correo electrónico Completo', 'class' => 'form-control'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+                new Assert\Email(array('message' => 'Dato \'{{ value }}\' No es un Correo.'))
+            )
+        ));
+        $builder->get('referencia')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
+
+        $builder->add('detalle', TextType::class, array(
+            'label' => 'Nombres y Apellidos Cliente',
+            'attr' => array('placeholder' => 'Nombre Completo ', 'class' => 'form-control'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')),
+                new Assert\Length(array(
+                    'min' => 11,
+                    'max' => 45,
+                    'minMessage' => 'Por favor ingresar Nombre completo',
+                    'maxMessage' => 'Nombre no válido'
+
+                ))
+
+            )
+        ));
+        $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
+
 
     }
 

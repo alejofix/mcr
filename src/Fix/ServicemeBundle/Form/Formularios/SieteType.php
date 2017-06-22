@@ -72,7 +72,6 @@ class SieteType extends AbstractType {
             )
 
         ));
-
         $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
             return mb_strtoupper($data);
         }, function($data) {
