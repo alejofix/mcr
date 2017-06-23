@@ -77,10 +77,12 @@ documentacion de symfony entrar a bundles y seleccionar bundlefixturesbundle
 
 # por consola xampp up bd
     # mysql -u root -p serviceme_2017 < serviceme_2017.sql
+	mysql -u root -p mcr < mcr.sql
+	<br/>
     Enter password: ******
     <br/>
-
-
+	consola <br/> 
+	php.exe bin/console doctrine:database:import mcr.sql
 
 
   
