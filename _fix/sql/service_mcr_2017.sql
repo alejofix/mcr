@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2017 a las 15:02:47
+-- Tiempo de generación: 23-06-2017 a las 07:24:20
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -119,7 +119,17 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (30, 'ENTRE 2 MESES Y 3 MESES', 1, 6),
 (31, 'MAS DE 3 MESES', 1, 6),
 (32, 'EN TODOS LOS CANALES MENOS EL 107', 1, 7),
-(33, 'ALGUNOS CANALES', 1, 7);
+(33, 'ALGUNOS CANALES', 1, 7),
+(34, 'CANALES CON PLACA RF', 1, 8),
+(35, 'SALTA U OMITE CANALES', 1, 8),
+(36, 'CANALES CON PANTALLA EN NEGRO', 1, 8),
+(37, 'CLAVE WI-FI - PORTAL MI-CLARO', 1, 9),
+(38, 'INTERNET REINICIO DE CM', 1, 9),
+(39, 'BLOQUEO PC O DISPOSITIVOS EXTERNOS CLIENTE - CON SOLUCIÓN', 1, 9),
+(40, 'INFORMACIÓN DE FUNCIONALIDADES DE TELEFONÍA', 1, 9),
+(41, 'BLOQUEO DE IDENTIFICADOR DE LLAMADAS', 1, 9),
+(42, 'PERSONALIZACIÓN DEL CANAL WI-FI', 1, 9),
+(43, 'CONFIGURACIÓN CONTROL REMOTO', 1, 9);
 
 -- --------------------------------------------------------
 
@@ -151,19 +161,21 @@ INSERT INTO `tbl_general_decodificadores` (`ID`, `PLATAFORMA`, `MARCA`, `MODELO`
 (9, 'DVB', 'HUAWEI', 'DC562', 'DBV - HPV', 1),
 (10, 'DVB', 'TECHNICOLOR', 'DCI420CLC', 'DBV - TCN', 1),
 (11, 'DVB', 'JIUZHOU', 'DTC1736', 'DBV - JZU', 1),
-(12, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DC7', 1),
-(13, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DCV', 1),
-(14, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DC1', 1),
-(15, 'ATSC', 'MOTOROLA', 'DCT3416', 'DDG - D34', 1),
-(16, 'ATSC', 'MOTOROLA', 'DCX3200', 'DDG - DCX', 1),
-(17, 'ATSC', 'MOTOROLA', 'DCX3400', 'DDG - DX4', 1),
-(18, 'ATSC', 'MOTOROLA', 'DCX700', 'DDG - DX7', 1),
-(19, 'ATSC', 'MOTOROLA', 'DCX3510', 'DDG - DX5', 1),
-(20, 'ATSC', 'MOTOROLA', 'DCX3210', 'DDG - DX2', 1),
-(21, 'ATSC', 'MOTOROLA', 'DCX525', 'DDG - X25', 1),
-(22, 'ATSC', 'MOTOROLA', 'DCT1800', 'DDG - DC8', 1),
-(23, 'CLARO VIDEO', 'COSHIP', 'N9085I', 'DLA - OTT', 1),
-(24, 'DTH', 'ARION', 'AF-5012S', 'DTH - ARI', 1);
+(12, 'DVB', 'COSHIP', 'N8776C', 'DBV - CH3', 1),
+(13, 'DVB', 'COSHIP', 'N8771C', 'DBV - CH2', 1),
+(14, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DC7', 1),
+(15, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DCV', 1),
+(16, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DC1', 1),
+(17, 'ATSC', 'MOTOROLA', 'DCT3416', 'DDG - D34', 1),
+(18, 'ATSC', 'MOTOROLA', 'DCX3200', 'DDG - DCX', 1),
+(19, 'ATSC', 'MOTOROLA', 'DCX3400', 'DDG - DX4', 1),
+(20, 'ATSC', 'MOTOROLA', 'DCX700', 'DDG - DX7', 1),
+(21, 'ATSC', 'MOTOROLA', 'DCX3510', 'DDG - DX5', 1),
+(22, 'ATSC', 'MOTOROLA', 'DCX3210', 'DDG - DX2', 1),
+(23, 'ATSC', 'MOTOROLA', 'DCX525', 'DDG - X25', 1),
+(24, 'ATSC', 'MOTOROLA', 'DCT1800', 'DDG - DC8', 1),
+(25, 'CLARO VIDEO', 'COSHIP', 'N9085I', 'DLA - OTT', 1),
+(26, 'DTH', 'ARION', 'AF-5012S', 'DTH - ARI', 1);
 
 -- --------------------------------------------------------
 
@@ -483,12 +495,12 @@ ALTER TABLE `tbl_formularios_sec_tipo`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_select_razon`
 --
 ALTER TABLE `tbl_formularios_select_razon`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_decodificadores`
 --
 ALTER TABLE `tbl_general_decodificadores`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_empresas`
 --
