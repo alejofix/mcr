@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-06-2017 a las 07:24:20
+-- Tiempo de generación: 27-06-2017 a las 15:18:36
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -67,7 +67,8 @@ INSERT INTO `tbl_formularios_sec_tipo` (`ID`, `NOMBRE`, `ESTADO`, `SERVICIO`, `U
 (6, 'CANAL NO DISPONIBLE 1', 1, 5, 2),
 (7, 'CANAL NO DISPONIBLE 2', 1, 5, 2),
 (8, 'AUSENCIA DE CANALES', 1, 5, 2),
-(9, 'INFOGRAFÍA CLIENTES', 1, 2, 3);
+(9, 'INFOGRAFÍA CLIENTES', 1, 2, 3),
+(10, 'MÉTODO DE SEGURIDAD', 1, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,9 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (40, 'INFORMACIÓN DE FUNCIONALIDADES DE TELEFONÍA', 1, 9),
 (41, 'BLOQUEO DE IDENTIFICADOR DE LLAMADAS', 1, 9),
 (42, 'PERSONALIZACIÓN DEL CANAL WI-FI', 1, 9),
-(43, 'CONFIGURACIÓN CONTROL REMOTO', 1, 9);
+(43, 'CONFIGURACIÓN CONTROL REMOTO', 1, 9),
+(44, 'CONECTADO PERO NO NAVEGA', 1, 10),
+(45, 'NO SE LOGRA CONECTAR A LA RED WI-FI', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -490,12 +493,12 @@ ALTER TABLE `tbl_formularios_pri_motivo`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
 ALTER TABLE `tbl_formularios_sec_tipo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_select_razon`
 --
 ALTER TABLE `tbl_formularios_select_razon`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_decodificadores`
 --
