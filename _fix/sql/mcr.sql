@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2017 a las 15:18:36
+-- Tiempo de generación: 30-06-2017 a las 14:43:33
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -40,7 +40,6 @@ CREATE TABLE `tbl_formularios_pri_motivo` (
   `RAZON` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tbl_formularios_sec_tipo`
@@ -68,7 +67,8 @@ INSERT INTO `tbl_formularios_sec_tipo` (`ID`, `NOMBRE`, `ESTADO`, `SERVICIO`, `U
 (7, 'CANAL NO DISPONIBLE 2', 1, 5, 2),
 (8, 'AUSENCIA DE CANALES', 1, 5, 2),
 (9, 'INFOGRAFÍA CLIENTES', 1, 2, 3),
-(10, 'MÉTODO DE SEGURIDAD', 1, 2, 3);
+(10, 'MÉTODO DE SEGURIDAD', 1, 2, 3),
+(11, 'CLIENTE NO ESTA EN CASA', 1, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -132,7 +132,13 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (42, 'PERSONALIZACIÓN DEL CANAL WI-FI', 1, 9),
 (43, 'CONFIGURACIÓN CONTROL REMOTO', 1, 9),
 (44, 'CONECTADO PERO NO NAVEGA', 1, 10),
-(45, 'NO SE LOGRA CONECTAR A LA RED WI-FI', 1, 10);
+(45, 'NO SE LOGRA CONECTAR A LA RED WI-FI', 1, 10),
+(46, 'TELEVISIÓN', 1, 11),
+(47, 'INTERNET', 1, 11),
+(48, 'TELEFONÍA', 1, 11),
+(49, '3 PLAY', 1, 11),
+(50, '2 PLAY', 1, 11),
+(51, 'PORTAL', 1, 11);
 
 -- --------------------------------------------------------
 
@@ -488,17 +494,17 @@ ALTER TABLE `tbl_serviceco_select_referencia`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_pri_motivo`
 --
 ALTER TABLE `tbl_formularios_pri_motivo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
 ALTER TABLE `tbl_formularios_sec_tipo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_select_razon`
 --
 ALTER TABLE `tbl_formularios_select_razon`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_decodificadores`
 --

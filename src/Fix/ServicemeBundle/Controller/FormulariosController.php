@@ -154,6 +154,9 @@ class FormulariosController extends Controller
             case 10:
                 $clase = \Fix\ServicemeBundle\Form\Formularios\DiezType::class;
                 break;
+            case 11:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\OnceType::class;
+                break;
         }
 
 
