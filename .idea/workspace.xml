@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="779dab9b-3d62-4869-91f8-e93a026d86c1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Lista/index.html.twig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/test.html.twig" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_fix/sql/mcr.sql" afterPath="$PROJECT_DIR$/_fix/sql/mcr.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_fix/sql/service_mcr_2017 (1).csv" afterPath="$PROJECT_DIR$/_fix/sql/service_mcr_2017 (1).csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_fix/sql/service_mcr_2017.csv" afterPath="$PROJECT_DIR$/_fix/sql/service_mcr_2017.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_fix/sql/service_mcr_2017.sql" afterPath="$PROJECT_DIR$/_fix/sql/service_mcr_2017.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mcr.sql" afterPath="$PROJECT_DIR$/mcr.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/ListaformulariosController.php" afterPath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/ListaformulariosController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/index.html.twig" afterPath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/test.html.twig" afterPath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/test.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/var/logs/dev.log" afterPath="$PROJECT_DIR$/var/logs/dev.log" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,20 +29,7 @@
     <favorites_list name="mcr" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-              <folding>
-                <element signature="e#12#31#0#Twig" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -76,8 +58,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/DataFixtures/ORM/Empresas.php" />
-        <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/DataFixtures/ORM/Estados.php" />
         <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/DataFixtures/ORM/Formulariostipo.php" />
         <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/DataFixtures/ORM/Usuarios.php" />
         <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/Command/ZyosInstallCommand.php" />
@@ -126,7 +106,9 @@
         <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/Command/FixInstallCommand.php" />
         <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Lista/test.html.twig" />
         <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Lista/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/test.html.twig" />
         <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/ListaformulariosController.php" />
+        <option value="$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/index.html.twig" />
       </list>
     </option>
   </component>
@@ -213,6 +195,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ServicemeBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr PRUEBAS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcr" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fix" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ServicemeBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Usuarios" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -377,7 +393,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -500,12 +516,12 @@
       <workItem from="1498221712386" duration="5386000" />
       <workItem from="1498567921848" duration="3450000" />
       <workItem from="1498840950573" duration="852000" />
-      <workItem from="1499172701829" duration="2352000" />
+      <workItem from="1499172701829" duration="10308000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174581000" />
+    <option name="totallyTimeSpent" value="182537000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -517,10 +533,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34114203" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29282576" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -573,29 +588,11 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/cargar_ajax_field..html.twig" />
-    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/borrar..html.twig" />
-    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Motivo/borrar" />
-    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/borrar.html.twig" />
-    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/mensajes/alert.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_fix/_pendientes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-309">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_fix/entity_list.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -771,14 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/FormulariosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Lista/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -795,22 +784,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/ListaformulariosController.php">
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/FormulariosController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="-1754">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
-            <element signature="e#1832#1872#1#PHP" expanded="true" />
+            <element signature="e#50#107#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Repository/UsuariosRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Entity/Usuarios.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Entity/Formulariostipo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/test.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+          <folding>
+            <element signature="e#12#31#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state relative-caret-position="51">
+          <caret line="40" column="2" lean-forward="false" selection-start-line="40" selection-start-column="2" selection-end-line="40" selection-end-column="2" />
           <folding>
             <element signature="e#12#31#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Usuarios/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding>
+            <element signature="e#12#31#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/ListaformulariosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="53" column="14" lean-forward="false" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+          <folding>
+            <element signature="e#50#63#0#PHP" expanded="true" />
+            <element signature="e#1551#1595#1#PHP" expanded="true" />
+            <element signature="e#2320#2360#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/UsuariosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="191" column="4" lean-forward="false" selection-start-line="191" selection-start-column="4" selection-end-line="191" selection-end-column="4" />
+          <folding>
+            <element signature="e#1108#1145#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

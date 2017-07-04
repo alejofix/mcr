@@ -6,24 +6,66 @@
         <h3>
             <span class="label label-warning">Mejoramiento</span>
             Lista Formularios
+            <span class="badge badge-success">{{ pagination.getTotalItemCount }}</span>
         </h3>
         <hr />
 
         <table class="table table-bordered datatable" id="table-formularios">
 
             <thead>
+
                 <tr class="replace-inputs">
-                    <th></th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Tipo', 'u.id') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Nombre Motivo', 'u.nombre') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Responsable', 'u.usuario') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Producto', 'u.servicio') }}</th>
+                    <th>Descargar</th>
                 </tr>
+
             </thead>
 
             <tbody>
+
+            {% for nombre in pagination  %}
+
                 <tr class="gradeU">
-                    <td></td>
+                    <td>{{ nombre.id }}</td>
+                    <td>{{ nombre.nombre }}</td>
+                    <td><p data-toggle="tooltip" data-placement="left" title="" data-original-title="{{ nombre.usuario.nombres }} {{ nombre.usuario.apellidos }}">{{ nombre.usuario.usuario }}</p></td>
+                    <td align="center">
+                        {% if nombre.servicio.id in [1] %}
+                            <img src="{{ asset('public/images/icons/internet1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
+                            <img src="{{ asset('public/images/icons/telefonia1.png') }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}" />
+                            <img src="{{ asset('public/images/icons/television1.png') }}" alt="" width="22" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
+                        {% elseif nombre.servicio.id in [2] %}
+                            <img src="{{ asset('public/images/icons/internet1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
+                        {% elseif nombre.servicio.id in [3,4] %}
+                            <img src="{{ asset('public/images/icons/telefonia1.png') }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}" />
+                        {% elseif nombre.servicio.id in [5, 6, 7, 8, 9, 10, 11, 12, 13, 14] %}
+                            <img src="{{ asset('public/images/icons/television1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
+                        {% elseif nombre.servicio.id in [15] %}
+                            <img src="{{ asset('public/images/icons/internet1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
+                            <img src="{{ asset('public/images/icons/television1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
+                        {% elseif nombre.servicio.id  %}
+                            {{ nombre.servicio.producto }}
+                        {% endif  %}
+                    </td>
+                    <td align="center">
+                        <img src="{{ asset('public/images/icons/file_exel_download.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="EXPORTAR .xlsx"  />
+                    </td>
                 </tr>
+
+            {% endfor %}
+
+
             </tbody>
 
         </table>
+
+        <!-- display Navigation KNP -->
+        <div class="pagination-container">
+            {{ knp_pagination_render(pagination) }}
+        </div>
 
     {% endblock %}
 

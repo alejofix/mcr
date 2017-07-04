@@ -37,11 +37,24 @@ class ListaformulariosController extends Controller
      * ListaformulariosController::indexAction
      *
      * @return
-     * @Route(path="/index", name="indexFormularios")
+     * @Route(path="/index/{page}", name="indexFormularios", requirements={"page" = "\d+"}, defaults={"page" = 1})
      * @Template("FixServicemeBundle:Formularios:Serviceme/index.html.twig")
+     * @Method({"GET"})
+     *
+     * @author alejo_fix@hotmail.com
      */
-    public function indexAction(){
+    public function indexAction(Request $request, $page = 1){
 
+        $em = $this->getDoctrine()->getManager();
+
+        $paginator = $this->get('knp_paginator');
+        $paginacion = $paginator->paginate(
+            $em->getRepository('Fix\ServicemeBundle\Entity\Formulariostipo')->findBy([]),
+            $page,
+            10
+        );
+
+        return array('pagination' => $paginacion);
 
     }
 
@@ -69,7 +82,7 @@ class ListaformulariosController extends Controller
     }
 
     /**
-     * test y pruebas para descargas .xls formularios
+     * pruebas para descargas .xls formularios
      *
      * @Route(path="/xls")
      */
