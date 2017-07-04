@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2017 a las 14:43:33
+-- Tiempo de generación: 04-07-2017 a las 07:52:42
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -494,7 +494,7 @@ ALTER TABLE `tbl_serviceco_select_referencia`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_pri_motivo`
 --
 ALTER TABLE `tbl_formularios_pri_motivo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=547;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --

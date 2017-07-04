@@ -1,0 +1,35 @@
+{% extends 'neon/base.html.twig' %}
+
+    {% block body %}
+        {{ parent() }}
+
+        <h3>
+            <span class="label label-warning">Mejoramiento</span>
+            Lista Formularios
+        </h3>
+        <hr />
+
+        <table class="table table-bordered datatable" id="table-formularios">
+
+            <thead>
+                <tr class="replace-inputs">
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="gradeU">
+                    <td></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    {% endblock %}
+
+
+{% block javascripts  %}
+    {{ parent() }}
+
+
+{% endblock %}
