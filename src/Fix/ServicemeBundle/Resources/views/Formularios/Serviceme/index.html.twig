@@ -6,7 +6,7 @@
         <h3>
             <span class="label label-warning">Mejoramiento</span>
             Lista Formularios
-            <span class="badge badge-success">{{ pagination.getTotalItemCount }}</span>
+            <span class="badge badge-info">{{ pagination.getTotalItemCount }}</span>
         </h3>
         <hr />
 
@@ -19,7 +19,7 @@
                     <th>{{ knp_pagination_sortable(pagination, 'Nombre Motivo', 'u.nombre') }}</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Responsable', 'u.usuario') }}</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Producto', 'u.servicio') }}</th>
-                    <th>Descargar</th>
+                    <th>Acción</th>
                 </tr>
 
             </thead>
@@ -50,8 +50,15 @@
                             {{ nombre.servicio.producto }}
                         {% endif  %}
                     </td>
-                    <td align="center">
-                        <img src="{{ asset('public/images/icons/file_exel_download.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="EXPORTAR .xlsx"  />
+                    <td class="center">
+                        <a href="{{ path('tipoFormulario', { id: nombre.id }) }}" class="btn btn-info btn-sm btn-icon icon-left">
+                            <i class="entypo-info"></i>
+                            Detalle
+                        </a>
+                        <a href="{{ path('xlsxFormulario', { id: nombre.id }) }}" class="btn btn-default btn-sm btn-icon icon-left" >
+                            <i class="entypo-download"></i>
+                            Descargar
+                        </a>
                     </td>
                 </tr>
 

@@ -60,33 +60,125 @@ class ListaformulariosController extends Controller
 
 
     /**
-     * ListaformulariosController::testAction
+     * ListaformulariosController::tipoAction
      *
-     * @Route(path="/test/{page}", name="testFormularios"), requirements={"page" = "\d+"}, defaults={"page" = 1}
-     * @Template("FixServicemeBundle:Formularios:Serviceme/test.html.twig")
+     * @param $id
+     * @return formulariostipo
+     * @Route(path="/tipo/{id}", name="tipoFormulario")
      */
-    public function testAction(Request $request, $page = 1) {
-       // $em = $this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup();
+    public function tipoAction($id){
+
+        $repository = $this->getDoctrine()->getRepository('FixServicemeBundle:Formulariostipo');
+        $formulariostipo = $repository->find($id);
+
+
+        if(!$formulariostipo){
+
+           // throw $this->createNotFoundException('Tipo Formulario Inexistente');
+            $this->addFlash('mensajeerror', 'Tipo Formulario Inexistente.');
+            return $this->redirectToRoute('mensajeError');
+        }
+            return $this->render('FixServicemeBundle:Formularios:Serviceme/tipo.html.twig', array('usuario' => $formulariostipo));
+    }
+
+
+    /**
+     * ListaformulariosController::xlsxAction
+     * Descarga el archivo excel por Tipo Formulario
+     *
+     * @param $id
+     * @Route(path="/xlsx/{id}", name="xlsxFormulario")
+     */
+    public function xlsxAction($id){
+
+        $fs = new Filesystem();
+
+        $finder = new Finder();
+        $buscar = $finder->in('C:\Users\Expertos\Downloads')->files()->name('*.xlsx');
+
+        foreach ($buscar AS $file) {
+            $fs->remove($file->getRealPath());
+        }
+
         $em = $this->getDoctrine()->getManager();
 
-        $paginator = $this->get('knp_paginator');
-        $paginacion = $paginator->paginate(
-            $em->getRepository('Fix\ServicemeBundle\Entity\Formularios')->findBy([], ['fecha' => 'DESC']),
-            $page,
-            20
-        );
+        $qb = $em->createQueryBuilder();
+        $query = $qb->select('f')
+            ->from('FixServicemeBundle:Formularios', 'f')
+            ->where($qb->expr()->eq('f.tipo', $id))
+            ->getQuery()->getResult();
+        //dump($query);
 
-        return array('pagination' => $paginacion);
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel
+            ->getProperties()->setCreator('Alejo_Fix')
+            ->setLastModifiedBy($this->getUser()->getFullName())
+            ->setTitle('developed by MCR')
+            ->setSubject("Office EXCEL_PHP")
+            ->setDescription('Reports - MCR')
+            ->setKeywords("office_open Symfony")
+            ->setCategory("Mejoramiento 2017");
+
+        $objPHPExcel->setActiveSheetIndex(0);
+
+        $index = 2;
+
+        foreach ($query AS $file) {
+
+            $objPHPExcel->setActiveSheetIndex(0)
+                ->setCellValue('A1', 'ID_TIPO')
+                ->setCellValue('A'.$index, $file->getId())
+                ->setCellValue('B1', 'CUENTA')
+                ->setCellValue('B'.$index, $file->getCuenta())
+                ->setCellValue('C1', 'FECHA')
+                ->setCellValue('C'.$index, $file->getFecha()->format("Y-m-d H:i:s"))
+                ->setCellValue('D1', 'REFERENCIA')
+                ->setCellValue('D'.$index, $file->getReferencia())
+                ->setCellValue('E1', 'DETALLE')
+                ->setCellValue('E'.$index, $file->getDetalle())
+                ->setCellValue('F1', 'INFORMACION 1')
+                ->setCellValue('F'.$index, $file->getInformacionuno())
+                ->setCellValue('G1', 'INFORMACION 2')
+                ->setCellValue('G'.$index, $file->getInformaciondos())
+                ->setCellValue('H1', 'INFORMACION 3')
+                ->setCellValue('H'.$index, $file->getInformaciontres())
+                ->setCellValue('I1', 'DATOS')
+                ->setCellValue('I'.$index, $file->getDatos())
+                ->setCellValue('L1', 'RAZON')
+                ->setCellValue('L'.$index, $file->getRazon()->getId())
+
+            ;
+            $index++;
+        }
+
+        $objPHPExcel->getActiveSheet()->setTitle('MOTIVO_' );
+        $objPHPExcel->setActiveSheetIndex(0);
+
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+        $objWriter->save(implode('/', ['D:\xampp\htdocs\mcr\var\cache\dev', ($this->getUser()->getFullName()).'_tmp.xlsx']));
+
+        $response = new BinaryFileResponse(implode('/', ['D:\xampp\htdocs\mcr\var\cache\dev', ($this->getUser()->getFullName()).'_tmp.xlsx']));
+        $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        $response->setContentDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            ('MOTIVO__RESPONSABLE_'.$file->getTipo($id)->getUsuario()->getUsername()).'.xlsx')
+        ;
+
+        return $response;
 
 
     }
 
+
+
+
+
     /**
      * pruebas para descargas .xls formularios
      *
-     * @Route(path="/xls")
+     * @Route(path="/prueba")
      */
-    public function xlsAction() {
+    public function pruebaAction() {
 
         $fs = new Filesystem();
 
@@ -167,6 +259,28 @@ class ListaformulariosController extends Controller
             ;
 
         return $response;
+    }
+
+
+    /**
+     * ListaformulariosController::testAction
+     *
+     * @Route(path="/test/{page}", name="testFormularios"), requirements={"page" = "\d+"}, defaults={"page" = 1}
+     * @Template("FixServicemeBundle:Formularios:Serviceme/test.html.twig")
+     */
+    public function testAction(Request $request, $page = 1) {
+        // $em = $this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup();
+        $em = $this->getDoctrine()->getManager();
+
+        $paginator = $this->get('knp_paginator');
+        $paginacion = $paginator->paginate(
+            $em->getRepository('Fix\ServicemeBundle\Entity\Formularios')->findBy([], ['fecha' => 'DESC']),
+            $page,
+            20
+        );
+
+        return array('pagination' => $paginacion);
+
     }
 
 }

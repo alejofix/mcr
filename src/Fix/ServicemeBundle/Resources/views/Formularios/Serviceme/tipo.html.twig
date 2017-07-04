@@ -1,0 +1,21 @@
+{% extends 'neon/base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+
+    <h3>
+        <span class="label label-warning">Mejoramiento</span>
+        Formulario Tipo  {{ usuario.id }}
+
+    </h3>
+    <hr />
+
+
+
+{% endblock %}
+
+
+{% block javascripts  %}
+    {{ parent() }}
+
+{% endblock %}
