@@ -19,7 +19,7 @@
                         <th>{{ knp_pagination_sortable(pagination, 'Nombres', 'u.nombres') }} </th>                               
                         <th>{{ knp_pagination_sortable(pagination, 'Apellidos', 'u.apellidos') }} </th> 
                         <th>{{ knp_pagination_sortable(pagination, 'Correo', 'u.correo') }} </th> 
-    			        <th>{{ knp_pagination_sortable(pagination, 'Fecha Creado', 'u.fechaCreado') }} </th>  
+    			        {# <th>{{ knp_pagination_sortable(pagination, 'Fecha Creado', 'u.fechaCreado') }} </th> #}
     			        <th>{{ knp_pagination_sortable(pagination, 'Cargo/Rol', 'u.cargo') }} </th>
                         <th>{{ knp_pagination_sortable(pagination, 'Empresa', 'u.empresa.id') }} </th>
     			        <th>Acción</th>                        
@@ -35,18 +35,18 @@
         					<td>{{ usuario.nombres }}</td>
         					<td>{{ usuario.apellidos }}</td>
         					<td>{{ usuario.correo }}</td>
-        					<td class="center">{{ usuario.fechaCreado|date('d-m-Y H:i') }}</td>
+        					{# <td class="center">{{ usuario.fechaCreado|date('d-m-Y H:i') }}</td> #}
                             <td class="center">{{ usuario.cargo }}
                                 {% if usuario.role == 'ROLE_ADMIN' %}
-                                    /Administrador
+                                   </br>Administrador
                                 {% elseif usuario.role == 'ROLE_MCR' %}
-                                    /Mejoramiento
+                                    </br>Mejoramiento
                                 {% elseif usuario.role == 'ROLE_SD' %}
-                                    /Service Desk
+                                    </br>Service Desk
                                 {% elseif usuario.role == 'ROLE_EXP' %}
-                                    /Experto
+                                    </br>Experto
                                 {% elseif usuario.role == 'ROLE_INV' %}
-                                    /Invitado
+                                    </br>Invitado
                                 {% endif  %}       
                             </td>
                            <td>{{ usuario.empresa.nombre }}</td>

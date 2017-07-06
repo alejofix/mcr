@@ -50,6 +50,11 @@ class UsuariosType extends AbstractType
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
+        $builder->get('nombres')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         $builder->add('apellidos', TextType::class, array(
             'label' => 'Apellidos',
@@ -57,6 +62,11 @@ class UsuariosType extends AbstractType
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
+        $builder->get('apellidos')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         $builder->add('genero', ChoiceType::class, array(
             'label' => 'Género',
@@ -83,6 +93,11 @@ class UsuariosType extends AbstractType
                 new Assert\Email(array('message' => '¡Caramba!  \'{{ value }}\' No es un dato Correo')),
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
+        $builder->get('correo')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         $builder->add('contrasena', PasswordType::class, array(
             'label' => 'Contraseña',
@@ -147,6 +162,11 @@ class UsuariosType extends AbstractType
             'constraints' => array(
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
+        $builder->get('cargo')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         $builder->add('role', ChoiceType::class, array(
             'label' => 'Role',
