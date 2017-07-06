@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-07-2017 a las 14:49:34
+-- Tiempo de generación: 06-07-2017 a las 16:56:43
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `service_mcr_2017`
+-- Base de datos: `mcr`
 --
 
 -- --------------------------------------------------------
@@ -879,7 +879,15 @@ INSERT INTO `tbl_formularios_pri_motivo` (`ID`, `CUENTA`, `FECHA`, `REFERENCIA`,
 (831, '8567885', '2017-07-06 14:17:59', '10 MEGAS', '4 DAYS, 1:52:40.21', NULL, NULL, NULL, NULL, 2, 4),
 (832, '16052821', '2017-07-06 14:25:33', '20 MEGAS', '363', NULL, NULL, NULL, NULL, 2, 3),
 (833, '96474770', '2017-07-06 14:30:50', 'SAMSUNG', 'NO SABE', NULL, NULL, NULL, NULL, 10, 45),
-(834, '88613997', '2017-07-06 14:34:31', 'SAMSUNG', 'NA', NULL, NULL, NULL, NULL, 10, 45);
+(834, '88613997', '2017-07-06 14:34:31', 'SAMSUNG', 'NA', NULL, NULL, NULL, NULL, 10, 45),
+(835, '94134673', '2017-07-06 14:53:03', '10 MEGAS', '35.0', NULL, NULL, NULL, NULL, 2, 8),
+(836, '71218614', '2017-07-06 14:58:47', 'SAMSUNG', 'SMART TV', NULL, NULL, NULL, NULL, 10, 44),
+(837, '79611737', '2017-07-06 15:18:26', 'LG', 'N/A', NULL, NULL, NULL, NULL, 10, 44),
+(838, '60163508', '2017-07-06 15:25:31', 'PAEZC03@HOTMAIL.COM', 'JOSE GUILL PAEZ GOMEZ', NULL, NULL, NULL, NULL, 9, 42),
+(839, '72029317', '2017-07-06 15:44:34', '10 MEGAS', '8:58:24.00', NULL, NULL, NULL, NULL, 2, 4),
+(840, '58526419', '2017-07-06 15:51:56', '5 MEGAS', '14 DAYS, 4:46:03.81', NULL, NULL, NULL, NULL, 2, 8),
+(841, '92770932', '2017-07-06 16:33:37', '5 MEGAS', '46.0', NULL, NULL, NULL, NULL, 2, 4),
+(842, '76241033', '2017-07-06 16:47:43', 'GONZALUCES@GMAIL.COM', 'JOSE GONZALO HOYOS', NULL, NULL, NULL, NULL, 9, 38);
 
 -- --------------------------------------------------------
 
@@ -1233,7 +1241,7 @@ INSERT INTO `tbl_serviceco_select_referencia` (`ID`, `NOMBRE`, `ESTADO`) VALUES
 (2, 'TELEVISIÓN', 1),
 (3, 'TELEFONÍA', 1),
 (4, 'INTERNET', 1),
-(5, 'INFORMATIVO', 1);
+(5, 'COMUNICADO', 1);
 
 --
 -- Índices para tablas volcadas
@@ -1337,7 +1345,7 @@ ALTER TABLE `tbl_serviceco_select_referencia`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_pri_motivo`
 --
 ALTER TABLE `tbl_formularios_pri_motivo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=835;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=843;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
