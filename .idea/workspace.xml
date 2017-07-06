@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="779dab9b-3d62-4869-91f8-e93a026d86c1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/ListaformulariosController.php" afterPath="$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/ListaformulariosController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/var/logs/dev.log" afterPath="$PROJECT_DIR$/var/logs/dev.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/var/logs/prod.log" afterPath="$PROJECT_DIR$/var/logs/prod.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/.htaccess" afterPath="$PROJECT_DIR$/web/.htaccess" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -370,12 +367,12 @@
       <workItem from="1498567921848" duration="3450000" />
       <workItem from="1498840950573" duration="852000" />
       <workItem from="1499172701829" duration="24822000" />
-      <workItem from="1499283826693" duration="7777000" />
+      <workItem from="1499283826693" duration="16184000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204828000" />
+    <option name="totallyTimeSpent" value="213235000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -634,20 +631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/UsuariosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2913">
-          <caret line="198" column="8" lean-forward="false" selection-start-line="198" selection-start-column="8" selection-end-line="198" selection-end-column="8" />
-          <folding>
-            <element signature="e#1108#1145#1#PHP" expanded="false" />
-            <element signature="e#3153#3182#1#PHP" expanded="false" />
-            <element signature="e#4536#4564#1#PHP" expanded="false" />
-            <element signature="e#5796#5825#1#PHP" expanded="false" />
-            <element signature="e#6370#6413#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Resources/views/Formularios/Serviceme/tipo.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -701,10 +684,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/UsuariosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#50#107#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Fix/ServicemeBundle/Controller/ListaformulariosController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="91" column="30" lean-forward="false" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="30" />
+        <state relative-caret-position="1167">
+          <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
           <folding>
             <element signature="e#50#63#0#PHP" expanded="true" />
           </folding>

@@ -107,7 +107,9 @@ class ListaformulariosController extends Controller
             ->from('FixServicemeBundle:Formularios', 'f')
             ->where($qb->expr()->eq('f.tipo', $id))
             ->getQuery()->getResult();
-        //dump($query);
+
+        // dump($query);
+        // die();
 
         $objPHPExcel = new PHPExcel();
         $objPHPExcel
@@ -160,7 +162,7 @@ class ListaformulariosController extends Controller
         $response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            ($this->getUser()->getUsuario()).'_Tipo_'.$file->getTipo()->getId().'.xlsx')
+            ($this->getUser()->getUsuario()).'_Tipo_('.$file->getTipo()->getId().')_'.date('Y-m-d H:i').'.xlsx')
             ;
 
         return $response;
