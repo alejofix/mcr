@@ -53,7 +53,6 @@ class ServicecoType extends AbstractType
                 new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
         ));
 
-
         $builder->add('sintoma', TextType::class, array(
             'label' => 'Síntoma',
             'attr' => array('placeholder' => "Autocompletar o 16 Caracteres máximo Incluidos espacios", 'name' => "typeahead_local", 'class' =>"form-control typeahead",
@@ -68,7 +67,6 @@ class ServicecoType extends AbstractType
                     'maxMessage' => 'Síntoma permitido - máximo {{ limit }} Caracteres'
                 )))
         ));
-
 
         $builder->add('afectacion', TextType::class, array(
             'label' => 'Afectación',
@@ -85,7 +83,20 @@ class ServicecoType extends AbstractType
                 )))
         ));
 
-
+        $builder->add('detalle', EntityType::class, array(
+            'label' => 'Detalle',
+            'attr' => array('class' => 'form-control'),
+            'class' => 'FixServicemeBundle:Servicecodetalle',
+            'query_builder' => function (EntityRepository $er){
+                return $er->createQueryBuilder('u')
+                    ->where('u.estado = :only')
+                    ->setParameter('only', '1');
+            },
+            'choice_label' => 'getNombre',
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'Dato Imprescindible')))
+        ));
 
 
     }

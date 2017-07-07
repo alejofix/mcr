@@ -3,6 +3,7 @@
     {% block body %}
         {{ parent() }}
 
+
         <h3>
             <span class="label label-warning">Service Desk</span>
             Comunicar Alto Impacto
@@ -22,6 +23,8 @@
             </section>
         </div>
         <div class="panel-body">
+
+        {{ include('FixServicemeBundle:Serviceco/mensajes:exito.html.twig') }}
 
             {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered', 'novalidate':'novalidate' } }) }}
 

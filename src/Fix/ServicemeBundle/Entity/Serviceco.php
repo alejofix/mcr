@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
     * @ORM\Index(name="IDX_TBL_SERVICECO_COLUMN_DETALLE", columns={"DETALLE"})
     })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\ServicecoRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Serviceco
 {
@@ -85,6 +86,13 @@ class Serviceco
      * @ORM\JoinColumn(name="DETALLE", referencedColumnName="ID")
      */
     private $detalle;
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setPrePersistData() {
+        $this->fecha = new \DateTime();
+    }
 
     /**
      * Get id

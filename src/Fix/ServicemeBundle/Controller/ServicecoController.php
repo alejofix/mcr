@@ -58,11 +58,13 @@ class ServicecoController extends Controller
         if($form->isSubmitted() AND $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
+            $serviceco->setEstado($em->getRepository('FixServicemeBundle:Estados')->findOneBy(array('id' => 1)));
+            $serviceco->setUsuario($this->getUser());
             $em->persist($serviceco);
             $em->flush();
 
       //    throw $this->createNotFoundException('error');
-            $this->addFlash('mensajesuccess', 'Información almacenada con éxito… ¡Gracias!.');
+            $this->addFlash('mensajecreado', 'Aviso Alto impacto Comunicado con éxito… ¡Gracias!.');
             return $this->redirectToRoute('comunicarServiceco');
         }
 

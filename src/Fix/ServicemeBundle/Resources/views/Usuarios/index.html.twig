@@ -49,7 +49,7 @@
                                     </br>Invitado
                                 {% endif  %}       
                             </td>
-                           <td>{{ usuario.empresa.nombre }}</td>
+                            <td>{{ usuario.empresa.nombre }}</td>
                             <td>
                                 {% if usuario.activo == '1' %}
                                     <a href="{{ path('verUsuario', { id: usuario.id }) }}" class="btn btn-info btn-sm btn-icon icon-left">
