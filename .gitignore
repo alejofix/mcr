@@ -1,0 +1,11 @@
+/.idea/
+/.idea/*
+/var/cache/dev
+/var/cache/dev/*
+/var/cache/prod
+/var/cache/prod/*
+/var/sessions
+/var/sessions/*
+/var/logs/
+/var/logs/dev.log
+/var/logs/*
