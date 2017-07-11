@@ -28,12 +28,22 @@ class ServicecoController extends Controller
      * ServicecoController::indexAction
      *
      * @return
-     * @Route(path="/index", name="indexServiceco")
+     * @Route(path="/index/{page}", name="indexServiceco", requirements={"page" = "\d+"}, defaults={"page" = 1})
      * @Template("FixServicemeBundle:Serviceco:index.html.twig")
+     * @Method({"GET"})
      *
      */
-    public function  indexAction(){
+    public function  indexAction(Request $request, $page = 1){
 
+        $em = $this->getDoctrine()->getManager();
+        $paginator = $this->get('knp_paginator');
+        $paginacion = $paginator->paginate(
+            $em->getRepository('Fix\ServicemeBundle\Entity\Serviceco')->findBy([]),
+            $page,
+            8
+        );
+
+        return array('pagination' => $paginacion);
 
     }
 

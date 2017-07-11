@@ -1,13 +1,12 @@
 {% extends 'neon/base.html.twig' %}
-    
-    
-    
+
     {% block body %}
     {{ parent() }}
 
         <h3>
             <span class="label label-warning">Service Desk</span>
             Administración ServiceCo <!-- <img src="{{ asset('public/neon/assets/images/fix/service_CO.png') }}" width="82"/> -->
+            <span class="badge badge-info">{{ pagination.getTotalItemCount }}</span>
         </h3>
         <hr />
         <div class="profile-env">
@@ -29,23 +28,41 @@
 
             <thead>
                 <tr class="replace-inputs">
-                  <th></th>
-                  <th></th>
-                  <th>Acción</th>
+                    <th>{{ knp_pagination_sortable(pagination, '# Aviso', 'u.aviso') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Sintoma', 'u.sintoma') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Afectación', 'u.afectacion') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Referencia', 'u.referencia') }}</th>
+                    <th>{{ knp_pagination_sortable(pagination, 'Detalle', 'u.detalle') }}</th>
+                    <th><a class="text-success">Acción</a></th>
                 </tr>
             </thead>
+
             <tbody>
-                <tr class="gradeU">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                {% for aviso in pagination  %}
+                    {% if aviso.estado.id == '1'  %}
+                    <tr class="gradeU">
+                        <td>{{ aviso.aviso }}</td>
+                        <td>{{ aviso.sintoma }}</td>
+                        <td>{{ aviso.afectacion }}</td>
+                        <td>{{ aviso.referencia.nombre }}</td>
+                        <td>{{ aviso.detalle.nombre }}</td>
+                        <td>
+                            <a href="javascript:;" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Finalizar">
+                                <i class="entypo-thumbs-up"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar">
+                                <i class="entypo-pencil"></i>
+                            </a>
+                            <a href="javascript:;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar">
+                                <i class="entypo-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
             </tbody>
 
         </table>
-
-
-
 
     {% endblock %}
     

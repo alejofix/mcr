@@ -10,64 +10,74 @@
         </h3>
         <hr />
 
-        <table class="table table-bordered datatable" id="table-formularios">
+        <div class="panel-body">
+            <table class="table table-bordered datatable" id="table-formularios">
 
-            <thead>
+                <thead>
 
-                <tr class="replace-inputs">
-                    <th>{{ knp_pagination_sortable(pagination, 'Tipo', 'u.id') }}</th>
-                    <th>{{ knp_pagination_sortable(pagination, 'Nombre Motivo', 'u.nombre') }}</th>
-                    <th>{{ knp_pagination_sortable(pagination, 'Responsable', 'u.usuario') }}</th>
-                    <th>{{ knp_pagination_sortable(pagination, 'Producto', 'u.servicio') }}</th>
-                    <th>Acción</th>
-                </tr>
+                    <tr class="replace-inputs">
+                        <th>{{ knp_pagination_sortable(pagination, 'Tipo', 'u.id') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Nombre Motivo', 'u.nombre') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Responsable', 'u.usuario') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Producto', 'u.servicio') }}</th>
+                        <th><a class="text-success">Acción</a></th>
+                    </tr>
 
-            </thead>
+                </thead>
 
-            <tbody>
+                <tbody>
 
-            {% for nombre in pagination  %}
+                {% for nombre in pagination  %}
 
-                <tr class="gradeU">
-                    <td>{{ nombre.id }}</td>
-                    <td>{{ nombre.nombre }}</td>
-                    <td><p data-toggle="tooltip" data-placement="left" title="" data-original-title="{{ nombre.usuario.nombres }} {{ nombre.usuario.apellidos }}">{{ nombre.usuario.usuario }}</p></td>
-                    <td align="center">
-                        {% if nombre.servicio.id in [1] %}
-                            <img src="{{ asset('public/images/icons/internet1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
-                            <img src="{{ asset('public/images/icons/telefonia1.png') }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}" />
-                            <img src="{{ asset('public/images/icons/television1.png') }}" alt="" width="22" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
-                        {% elseif nombre.servicio.id in [2] %}
-                            <img src="{{ asset('public/images/icons/internet1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
-                        {% elseif nombre.servicio.id in [3,4] %}
-                            <img src="{{ asset('public/images/icons/telefonia1.png') }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}" />
-                        {% elseif nombre.servicio.id in [5, 6, 7, 8, 9, 10, 11, 12, 13, 14] %}
-                            <img src="{{ asset('public/images/icons/television1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
-                        {% elseif nombre.servicio.id in [15] %}
-                            <img src="{{ asset('public/images/icons/internet1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
-                            <img src="{{ asset('public/images/icons/television1.png' ) }}" alt="" width="22"  data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}"  />
-                        {% elseif nombre.servicio.id  %}
-                            {{ nombre.servicio.producto }}
-                        {% endif  %}
-                    </td>
-                    <td class="center">
-                        <a href="{{ path('tipoFormulario', { id: nombre.id }) }}" class="btn btn-info btn-sm btn-icon icon-left">
-                            <i class="entypo-info"></i>
-                            Detalle
-                        </a>
-                        <a href="{{ path('xlsxFormulario', { id: nombre.id }) }}" class="btn btn-default btn-sm btn-icon icon-left" >
-                            <i class="entypo-download"></i>
-                            Descargar
-                        </a>
-                    </td>
-                </tr>
+                    <tr class="gradeU">
+                        <td>{{ nombre.id }}</td>
+                        <td>{{ nombre.nombre }}</td>
+                        <td><p data-toggle="tooltip" data-placement="left" title="" data-original-title="{{ nombre.usuario.usuario }}">{{ nombre.usuario.nombres }} {{ nombre.usuario.apellidos }}</p></td>
+                        <td align="center">
+                            {% if nombre.servicio.id in [1] %}
+                                <a class="text-danger btn-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}">
+                                    <i class="entypo-network"></i>
+                                    <i class="entypo-monitor"></i>
+                                    <i class="entypo-phone"></i>
+                                </a>
+                            {% elseif nombre.servicio.id in [2] %}
+                                <a class="text-danger btn-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}">
+                                    <i class="entypo-network"></i>
+                                </a>
+                            {% elseif nombre.servicio.id in [3,4] %}
+                                <a class="text-danger btn-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}">
+                                    <i class="entypo-phone"></i>
+                                </a>
+                            {% elseif nombre.servicio.id in [5, 6, 7, 8, 9, 10, 11, 12, 13, 14] %}
+                                <a class="text-danger btn-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}">
+                                    <i class="entypo-monitor"></i>
+                                </a>
+                            {% elseif nombre.servicio.id in [15] %}
+                                <a class="text-danger btn-lg" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ nombre.servicio.producto }}">
+                                    <i class="entypo-network"></i>
+                                    <i class="entypo-monitor"></i>
+                                </a>
+                            {% elseif nombre.servicio.id  %}
+                                {{ nombre.servicio.producto }}
+                            {% endif  %}
+                        </td>
+                        <td class="center">
+                            <a href="{{ path('tipoFormulario', { id: nombre.id }) }}" class="btn btn-info btn-xs"    data-toggle="tooltip" data-placement="top" title="" data-original-title="Información">
+                                <i class="entypo-info"></i>
+                            </a>
+                            <a href="{{ path('xlsxFormulario', { id: nombre.id }) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Descargar">
+                                <i class="entypo-download"></i>
+                            </a>
+                        </td>
+                    </tr>
 
-            {% endfor %}
+                {% endfor %}
 
 
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
+        </div>
 
         <!-- display Navigation KNP -->
         <div class="pagination-container">
