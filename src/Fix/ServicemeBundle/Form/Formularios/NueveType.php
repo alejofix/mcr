@@ -39,6 +39,19 @@ class NueveType extends AbstractType {
             )
         ));
 
+        $builder->add('informacionuno', TextType::class, array(
+            'label' => 'Uptime Módem',
+            'attr' => array('placeholder' => 'Ingresa el  Uptime que encuentras en Diagnosticador', 'class' => 'form-control'),
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')))
+        ));
+        $builder->get('informacionuno')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
+
+
         $builder->add('razon', EntityType::class, array(
             'label' => 'Infografía que desea Enviar',
             'attr' => array('class' => 'form-control'),

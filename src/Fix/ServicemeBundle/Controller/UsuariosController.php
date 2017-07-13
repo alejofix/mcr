@@ -69,8 +69,8 @@ class UsuariosController extends Controller
         	$em->persist($usuario);
         	$em->flush();
         	
-        	$this->addFlash('mensajecreado', 'Usuario Creado... No sabe lo que le Espera.');
-            return $this->redirectToRoute('indexUsuarios');
+        	$this->addFlash('mensajelogrado', 'Usuario Creado... No sabe lo que le Espera.');
+            return $this->redirectToRoute('agregarUsuario');
         }
         
         return array('form' => $form->createView());
@@ -162,7 +162,7 @@ class UsuariosController extends Controller
          {
             
             $em->flush();
-            $this->addFlash('mensajecreado', 'Usuario Actualizado... Información inyectada.');
+            $this->addFlash('mensajelogrado', 'Usuario Actualizado... Información inyectada.');
             
             return $this->redirectToRoute('editarUsuario', array('id' => $usuario->getId()));
             

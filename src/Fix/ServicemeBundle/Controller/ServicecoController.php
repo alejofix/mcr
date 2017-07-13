@@ -74,7 +74,7 @@ class ServicecoController extends Controller
             $em->flush();
 
       //    throw $this->createNotFoundException('error');
-            $this->addFlash('mensajecreado', 'Aviso Alto impacto Comunicado con éxito… ¡Gracias!.');
+            $this->addFlash('mensajelogrado', 'Aviso Alto impacto Comunicado con Éxito… «Gracias».');
             return $this->redirectToRoute('comunicarServiceco');
         }
 

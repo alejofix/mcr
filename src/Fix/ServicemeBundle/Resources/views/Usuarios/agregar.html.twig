@@ -2,6 +2,7 @@
 
     {% block body %}
     {{ parent() }}
+
     
     <div class="panel panel-primary" data-collapsed="0">
     
@@ -54,7 +55,8 @@
 
 {% block javascripts  %}
     {{ parent() }}
-    
+    {{ include('FixServicemeBundle:Serviceme:mensajes/logrado.html.twig') }}
+
     <script src="{{ asset('public/neon/assets/js/bootstrap-switch.min.js') }}"></script>
     <script src="{{ asset('public/neon/assets/js/typeahead.min.js') }}"></script>
 

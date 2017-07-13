@@ -83,7 +83,7 @@ class FormulariosController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->addFlash('mensajesuccess', 'Información almacenada con éxito… ¡Gracias!.');
+            $this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
             return $this->redirectToRoute('alertFormularios');
          // return $this->redirectToRoute('formularios_motivos', array('id' => $id));
 

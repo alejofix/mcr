@@ -1,0 +1,5 @@
+{% for flashMessage in app.session.flashbag.get('mensajelogrado') %}
+    <script type="text/javascript">
+        swal("Buen Trabajo!", "{{ flashMessage }}", "success")
+    </script>
+{% endfor %}

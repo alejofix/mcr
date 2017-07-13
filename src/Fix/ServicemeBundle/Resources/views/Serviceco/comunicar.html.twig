@@ -24,8 +24,6 @@
         </div>
         <div class="panel-body">
 
-        {{ include('FixServicemeBundle:Serviceco/mensajes:exito.html.twig') }}
-
             {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered', 'novalidate':'novalidate' } }) }}
 
                 {% for name, params in form if name != '_token' and name != 'submit' %}
@@ -58,6 +56,7 @@
 
 {% block javascripts  %}
     {{ parent() }}
+    {{ include('FixServicemeBundle:Serviceme:mensajes/logrado.html.twig') }}
 
     <script src="{{ asset('public/neon/assets/js/bootstrap-switch.min.js') }}"></script>
     <script src="{{ asset('public/neon/assets/js/typeahead.min.js') }}"></script>
