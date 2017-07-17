@@ -1,0 +1,50 @@
+{% extends 'neon/base.html.twig' %}
+
+    {% block body %}
+        {{ parent() }}
+
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h3>
+                    <span class="label label-warning">Administrador</span>
+                    Editar Aviso
+                </h3>
+            </div>
+            <div class="panel-options">
+                <a href="javascript:;" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                <a href="{{ url('editarAviso', { id: aviso.id }) }}"><i class="entypo-arrows-ccw"></i></a>
+            </div>
+        </div>
+
+        <div class="panel-body">
+
+            {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered' } }) }}
+
+            {% for name, params in form if name != '_token' and name != 'submit' %}
+                <div class="form-group">
+                    {{ form_label(params, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                    <div class="col-sm-5">
+                        {{ form_widget(params) }}
+                        <span class="text-danger">{{ form_errors(params) }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <br/>
+                <div class="col-sm-offset-3 col-sm-5">
+                    <button type="submit" class="btn btn-primary btn-icon icon-left">
+                        Editar Aviso<i class="entypo-check"></i>
+                    </button>
+                </div>
+
+            {{ form_end(form) }}
+
+        </div>
+
+
+
+    {% endblock %}
+    {% block javascripts  %}
+        {{ parent() }}
+
+    {% endblock %}

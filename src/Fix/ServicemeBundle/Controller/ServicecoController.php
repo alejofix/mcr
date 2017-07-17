@@ -47,6 +47,45 @@ class ServicecoController extends Controller
 
     }
 
+
+    /**
+     * ServicecoController::editarAction()
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route(path="/editar/{id}", name="editarAviso")
+     */
+    public function editar($id){
+
+        $em = $this->getDoctrine()->getManager();
+        $aviso = $em->getRepository('FixServicemeBundle:Serviceco')->find($id);
+            if(!$aviso)
+            {
+                $this->addFlash('mensajeerror', 'Aviso Inexistente o Exterminado.');
+                return $this->redirectToRoute('mensajeError');
+            }
+        $form = $this->createEditForm($aviso);
+
+        return $this->render('FixServicemeBundle:Serviceco:editar.html.twig', array('aviso' => $aviso, 'form' => $form->createView()));
+
+    }
+
+    /**
+     * ServicecoController::createEditForm()
+     *
+     * @param mixed $entity
+     * @return void
+     * @Route(path="/actualizar/{id}", name="actualizarAviso")
+     * @Method({"PUT", "POST"})
+     */
+    private function createEditForm(Serviceco $entity){
+
+        $form = $this->createForm(ServicecoType::class, $entity, array
+        ('action' => $this->generateUrl('actualizarAviso', array('id' => $entity->getId())), 'method' => 'PUT'));
+
+        return $form;
+    }
+
     /**
      * ServicecoController::comunicarAction
      *

@@ -26,6 +26,8 @@
 
         <table class="table table-bordered datatable" id="table-formularios">
 
+            {% if pagination|length>=1 %}
+
             <thead>
                 <tr class="replace-inputs">
                     <th>{{ knp_pagination_sortable(pagination, '# Aviso', 'u.aviso') }}</th>
@@ -38,28 +40,54 @@
             </thead>
 
             <tbody>
-                {% for aviso in pagination  %}
-                    {% if aviso.estado.id == '1'  %}
-                    <tr class="gradeU">
-                        <td>{{ aviso.aviso }}</td>
-                        <td>{{ aviso.sintoma }}</td>
-                        <td>{{ aviso.afectacion }}</td>
-                        <td>{{ aviso.referencia.nombre }}</td>
-                        <td>{{ aviso.detalle.nombre }}</td>
-                        <td>
-                            <a href="javascript:;" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Finalizar">
-                                <i class="entypo-thumbs-up"></i>
-                            </a>
-                            <a href="javascript:;" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar">
-                                <i class="entypo-pencil"></i>
-                            </a>
-                            <a href="javascript:;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar">
-                                <i class="entypo-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
+
+                    {% for aviso in pagination  %}
+                        {% if aviso.estado.id == '1'  %}
+                        <tr class="gradeU">
+                            <td>{{ aviso.aviso }}</td>
+                            <td>{{ aviso.sintoma }}</td>
+                            <td>{{ aviso.afectacion }}</td>
+                            <td>{{ aviso.referencia.nombre }}</td>
+                            <td>{{ aviso.detalle.nombre }}</td>
+                            <td>
+                                <a href="javascript:;" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Finalizar">
+                                    <i class="entypo-thumbs-up"></i>
+                                </a>
+                                <a href="{{ path('editarAviso', { id: aviso.id }) }}" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar">
+                                    <i class="entypo-pencil"></i>
+                                </a>
+                                <a href="javascript:;" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar">
+                                    <i class="entypo-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+
+            {% else %}
+
+                        <tr>
+
+                            <td colspan="6" >
+                                <div class="col-sm-3">
+                                    <div class="tile-block tile-aqua">
+                                        <div class="tile-header">
+                                            <i class="glyphicon glyphicon-bullhorn"></i>NO HAY AVISOS INGRESADOS !
+                                        </div>
+                                        <div class="tile-content">
+                                            <p align="center" >Sin reportes de Alto impacto.</p>
+                                            <a href="{{ url('comunicarServiceco') }}" class="btn btn-info btn-block" role="button">
+                                                <span class="title">Comunicar</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+
+            {% endif %}
+
             </tbody>
 
         </table>
@@ -69,8 +97,6 @@
         
 {% block javascripts  %}
     {{ parent() }}
-
-
 
 
 
