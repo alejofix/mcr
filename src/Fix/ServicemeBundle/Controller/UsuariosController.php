@@ -34,7 +34,7 @@ class UsuariosController extends Controller
 		
 		$paginator = $this->get('knp_paginator');
 		$paginacion = $paginator->paginate(
-			$em->getRepository('Fix\ServicemeBundle\Entity\Usuarios')->findBy([], ['fechaCreado' => 'DESC']),
+			$em->getRepository('Fix\ServicemeBundle\Entity\Usuarios')->findBy([], ['empresa' => 'ASC']),
 			$page,
 			8
 		);

@@ -59,11 +59,13 @@ class ServicecoController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $aviso = $em->getRepository('FixServicemeBundle:Serviceco')->find($id);
-            if(!$aviso)
-            {
-                $this->addFlash('mensajeerror', 'Aviso Inexistente o Exterminado.');
-                return $this->redirectToRoute('mensajeError');
-            }
+
+        if(!$aviso){
+
+            $this->addFlash('mensajeerror', 'Aviso Inexistente o Exterminado.');
+            return $this->redirectToRoute('mensajeError');
+        }
+
         $form = $this->createEditForm($aviso);
 
         return $this->render('FixServicemeBundle:Serviceco:editar.html.twig', array('aviso' => $aviso, 'form' => $form->createView()));
@@ -85,6 +87,42 @@ class ServicecoController extends Controller
 
         return $form;
     }
+
+
+
+    /**
+     * ServicecoController::actualizarAction()
+     *
+     * @return void
+     * @Route(path="/actualizar/{id}", name="redireccioneditar")
+     */
+    public function actualizarAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $aviso = $em->getRepository('FixServicemeBundle:Serviceco')->find($id);
+
+        if(!$aviso)
+        {
+            $this->addFlash('mensajeerror', 'Usuario Inexistente o Exterminado.');
+            return $this->redirectToRoute('mensajeError');
+        }
+
+        $form = $this->createEditForm(FixServicemeBundleServiceco::class, $em);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em->flush();
+            $this->addFlash('mensajelogrado', 'Aviso Actualizado... Información inyectada.');
+
+            return $this->redirectToRoute('editarAviso', array('id' => $aviso->getId()));
+        }
+
+        return $this->render('FixServicemeBundle:Serviceco:editar.html.twig',
+            array('aviso' => $aviso, 'form' => $form->createView()));
+    }
+
+
 
     /**
      * ServicecoController::comunicarAction
