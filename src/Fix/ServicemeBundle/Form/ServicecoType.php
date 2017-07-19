@@ -8,6 +8,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\CallbackTransformer;
+
 use \Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -67,6 +69,11 @@ class ServicecoType extends AbstractType
                     'maxMessage' => 'Síntoma permitido - máximo {{ limit }} Caracteres'
                 )))
         ));
+        $builder->get('sintoma')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         $builder->add('afectacion', TextType::class, array(
             'label' => 'Afectación',
@@ -82,6 +89,11 @@ class ServicecoType extends AbstractType
                     'maxMessage' => 'Afectación permitida - máximo {{ limit }} Caracteres'
                 )))
         ));
+        $builder->get('afectacion')->addModelTransformer(new CallbackTransformer(function($data) {
+            return mb_strtoupper($data);
+        }, function($data) {
+            return mb_strtoupper($data);
+        }));
 
         $builder->add('detalle', EntityType::class, array(
             'label' => 'Detalle',

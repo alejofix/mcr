@@ -45,10 +45,10 @@
                         {% if aviso.estado.id == '1'  %}
                         <tr class="gradeU">
                             <td>{{ aviso.aviso }}</td>
-                            <td>{{ aviso.sintoma }}</td>
-                            <td>{{ aviso.afectacion }}</td>
+                            <td>{{ aviso.sintoma|title }}</td>
+                            <td>{{ aviso.afectacion|title }}</td>
                             <td>{{ aviso.referencia.nombre }}</td>
-                            <td>{{ aviso.detalle.nombre }}</td>
+                            <td>{{ aviso.detalle.nombre|title }}</td>
                             <td>
                                 <a href="javascript:;" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Finalizar">
                                     <i class="entypo-thumbs-up"></i>
