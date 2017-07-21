@@ -79,11 +79,6 @@
                     </div>
 
 
-                {% else %}
-
-                    <div class="col-sm-3 col-xs-6">
-                    </div>
-
                 {% endif %}
 
 
@@ -106,36 +101,14 @@
     </div>
     <!-- row avisos FIN -->
 
-
-    <!-- row INFORMATIVOS - NOTAS  -->
     <div class="row">
 
         <!-- DIV INFORMATIVOS -->
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-title"><strong><y class="fa fa-comments"></y> I n f o r m a t i v o s</strong></div>
-                </div>
-                <div class="panel-body">
-
-
-                </div>
-            </div>
-        </div>
+        {{ include('FixServicemeBundle:Comunicacion/informativos:informativos.html.twig') }}
 
         <!-- DIV NOTAS  -->
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-title"><strong><y class="fa fa-file"></y> N o t a s</strong></div>
+        {{ include('FixServicemeBundle:Comunicacion/notas:notas.html.twig') }}
 
-                </div>
-                <div class="panel-body">
-
-
-                </div>
-            </div>
-        </div>
 
     </div>
 
