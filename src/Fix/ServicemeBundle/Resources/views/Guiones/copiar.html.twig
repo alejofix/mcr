@@ -1,0 +1,21 @@
+    {% extends 'neon/base.html.twig' %}
+
+    {% block body %}
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown">
+                Crear Guion  <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-blue" role="menu">
+                <li>
+                    <a href="javascript:;">Copiar</a>
+                </li>
+            </ul>
+        </div>
+
+    {% endblock %}
+
+    {% block javascripts  %}
+        {{ parent() }}
+
+    {% endblock %}
