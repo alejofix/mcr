@@ -1,28 +1,27 @@
 {% extends 'neon/base.html.twig' %}
     
     {% block body %}
-    {{ parent() }}
+        {{ parent() }}
 
-	<div class="page-error-404">
-		
-        <div class="error-symbol">
-			<i class="glyphicon glyphicon-thumbs-down"></i>
-		</div>
-		
-        {% for flashMessage in app.session.flashbag.get('mensajeerror') %}
-  		
-        <div class="error-text">
-    		<h2>Error 404</h2>
-    		<p>{{ flashMessage }}</p>
-   		</div>
-		
-        {% endfor %}
-      
-        <a href="javascript:window.history.back();">&laquo; Intentar Otra Acción </a>
-                
-	</div>
+        <div class="page-error-404">
 
-        
+            <div class="error-symbol">
+                <img src="{{ asset('public/images/otros/dinoerror.png') }}" />
+                <h1><b>Error 404</b></h1>
+            </div>
+
+            {% for flashMessage in app.session.flashbag.get('mensajeerror') %}
+
+                <div class="error-text">
+                    <p>{{ flashMessage }}</p>
+                </div>
+
+            {% endfor %}
+
+            <a href="javascript:window.history.back();">&laquo; Intentar Otra Acción </a>
+
+        </div>
+
     {% endblock %}
        
 {% block javascripts  %}
