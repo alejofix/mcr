@@ -2,20 +2,14 @@
 
     {% block body %}
 
-        <div class="btn-group">
-            <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown">
-                Crear Guion  <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-blue" role="menu">
-                <li>
-                    <a href="javascript:;">Copiar</a>
-                </li>
-            </ul>
-        </div>
 
     {% endblock %}
 
     {% block javascripts  %}
         {{ parent() }}
+
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/js/copiar/frameworks-3feb69765ff8622100383e65551b7f058814a7512d9d07bf747c1d0a427a4292.js') }}"/>
+        <link rel="stylesheet" href="{{ asset('public/neon/assets/js/copiar/github-bbcbec65710b47b8168b7b6c1071a8d682334e8c4c04e3b815a9528437cd7dd0.js') }}"/>
+
 
     {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'neon/base.html.twig' %}
+
+    {% block body %}
+
+        <div class="col-sm-12">
+
+            <h3>
+               <span class="label label-warning">Service Desk</span>
+                Guiones Plataforma
+            </h3>
+            <hr />
+            <div class="profile-env">
+                <section class="profile-info-tabs">
+                    <div class="row">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" class="active"><a href="{{ url('plataformaDiagnosticador') }}">Diagnosticador</a></li>
+                                <li role="presentation" class=""><a href="{{ url('plataformaGenerales') }}">Generales</a></li>
+                                <li role="presentation" class=""><a href="{{ url('plataformaInternet') }}">Internet</a></li>
+                                <li role="presentation" class=""><a href="{{ url('plataformaTelevision') }}">Televisión</a></li>
+                                <li role="presentation" class=""><a href="{{ url('plataformaTelefonia') }}">Telefonía</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="panel-body">
+
+            </div>
+
+        </div>
+
+
+    {% endblock %}
+
+    {% block javascripts  %}
+    {{ parent() }}
+
+
+    {% endblock %}

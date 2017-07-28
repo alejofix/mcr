@@ -1,8 +1,9 @@
 {% extends 'neon/base.html.twig' %}
 
     {% block body %}
-        {{ parent() }}
+    {{ parent() }}
 
+    <div class="col-sm-12">
 
         <h3>
             <span class="label label-warning">Service Desk</span>
@@ -50,6 +51,8 @@
             {{ form_end(form) }}
 
         </div>
+
+    </div>
 
     {% endblock %}
 
