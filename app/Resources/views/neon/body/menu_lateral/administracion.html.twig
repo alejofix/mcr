@@ -1,0 +1,30 @@
+<li {{ route ==  'indexUsuarios' or route == 'agregarUsuario' ? 'class="active root-level has-sub opened"' }} >
+    <a href="javascript:;">
+        <i class="entypo-database"></i>
+        <span class="title">Administración</span>
+    </a>
+    <ul {{ route ==  'indexUsuarios' or route == 'agregarUsuario' ? 'class="visible"' }}>
+        <!-- Administración Usuarios -->
+        <li {{ route ==  'indexUsuarios' or route == 'agregarUsuario' ? 'class="root-level has-sub opened"' }} >
+            <a href="javascript:;">
+                <i class="entypo-user"></i>
+                <span class="title">Usuarios</span>
+            </a>
+            <ul>
+                <li {{ route ==  'indexUsuarios' ? 'class="active"' }}>
+                    <a href="{{ url('indexUsuarios') }}">
+                        <i class="entypo-users"></i>
+                        <span class="title">Lista Usuarios</span>
+                    </a>
+                </li>
+                <li {{ route ==  'agregarUsuario' ? 'class="active"' }}>
+                    <a href="{{ url('agregarUsuario') }}">
+                        <i class="entypo-user-add"></i>
+                        <span class="title">Nuevo Usuario</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</li>

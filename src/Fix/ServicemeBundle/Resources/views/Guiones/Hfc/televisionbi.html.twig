@@ -1,0 +1,43 @@
+{% extends 'neon/base.html.twig' %}
+
+    {% block body %}
+
+        <div class="col-sm-12">
+
+            <h3>
+                <span class="label label-warning">Service Desk</span>
+                Guiones HFC
+            </h3>
+            <hr />
+            <div class="profile-env">
+                <section class="profile-info-tabs">
+                    <div class="row">
+                        <div class="col-sm-offset-2 col-sm-10">
+
+                            {% set route = app.request.attributes.get('_route') %}
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" {{ route ==  'hfcTripleplay' ? 'class="active"' }}><a href="{{ url('hfcTripleplay') }}">Triple Play</a></li>
+                                <li role="presentation" {{ route ==  'hfcTelevisionbi' ? 'class="active"' }}><a href="{{ url('hfcTelevisionbi') }}">Televisión Bi</a></li>
+                                <li role="presentation" {{ route ==  'hfcTelevisionuni' ? 'class="active"' }}><a href="{{ url('hfcTelevisionuni') }}">Televisión Uni</a></li>
+                                <li role="presentation" {{ route ==  'hfcInternetytelefonia' ? 'class="active"' }}><a href="{{ url('hfcInternetytelefonia') }}">Internet y Telefonía</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="panel-body">
+
+            </div>
+
+        </div>
+
+
+    {% endblock %}
+
+    {% block javascripts  %}
+        {{ parent() }}
+
+
+    {% endblock %}

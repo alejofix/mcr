@@ -13,12 +13,14 @@
                 <section class="profile-info-tabs">
                     <div class="row">
                         <div class="col-sm-offset-2 col-sm-10">
+
+                            {% set route = app.request.attributes.get('_route') %}
                             <ul class="nav nav-tabs">
-                                <li role="presentation" class="active"><a href="{{ url('plataformaDiagnosticador') }}">Diagnosticador</a></li>
-                                <li role="presentation" class=""><a href="{{ url('plataformaGenerales') }}">Generales</a></li>
-                                <li role="presentation" class=""><a href="{{ url('plataformaInternet') }}">Internet</a></li>
-                                <li role="presentation" class=""><a href="{{ url('plataformaTelevision') }}">Televisión</a></li>
-                                <li role="presentation" class=""><a href="{{ url('plataformaTelefonia') }}">Telefonía</a></li>
+                                <li role="presentation" {{ route ==  'plataformaDiagnosticador' ? 'class="active"' }}><a href="{{ url('plataformaDiagnosticador') }}">Diagnosticador</a></li>
+                                <li role="presentation" {{ route ==  'plataformaGenerales' ? 'class="active"' }}><a href="{{ url('plataformaGenerales') }}">Generales</a></li>
+                                <li role="presentation" {{ route ==  'plataformaInternet' ? 'class="active"' }}><a href="{{ url('plataformaInternet') }}">Internet</a></li>
+                                <li role="presentation" {{ route ==  'plataformaTelevision' ? 'class="active"' }}><a href="{{ url('plataformaTelevision') }}">Televisión</a></li>
+                                <li role="presentation" {{ route ==  'plataformaTelefonia' ? 'class="active"' }}><a href="{{ url('plataformaTelefonia') }}">Telefonía</a></li>
                             </ul>
                         </div>
                     </div>

@@ -1,0 +1,123 @@
+<li {{ 	route ==  'plataformaDiagnosticador' or route == 'plataformaGenerales' or route == 'plataformaInternet' or route == 'plataformaTelevision' or route == 'plataformaTelefonia'
+        or route == 'matrizTripleplay' or route == 'matrizTelevision' or route == 'matrizInternetytelefonia'
+        or route == 'hfcTripleplay' or route == 'hfcTelevisionbi' or route == 'hfcTelevisionuni' or route == 'hfcInternetytelefonia'
+        ? 'class="active root-level has-sub opened"' }}>
+
+    <a href="javascript:;">
+        <i class="glyphicon glyphicon-share"></i>
+        <span class="title">&nbsp;&nbsp;Guiones</span>
+    </a>
+
+    <ul {{ 	route ==  'plataformaDiagnosticador' or route == 'plataformaGenerales' or route == 'plataformaInternet' or route == 'plataformaTelevision' or route == 'plataformaTelefonia'
+            or route == 'matrizTripleplay' or route == 'matrizTelevision' or route == 'matrizInternetytelefonia'
+            or route == 'hfcTripleplay' or route == 'hfcTelevisionbi' or route == 'hfcTelevisionuni' or route == 'hfcInternetytelefonia'
+            ? 'class="visible"' }}>
+
+        <li {{ 	route ==  'plataformaDiagnosticador' or route == 'plataformaGenerales' or route == 'plataformaInternet' or route == 'plataformaTelevision' or route == 'plataformaTelefonia'
+                ? 'class="root-level has-sub opened"' }}>
+
+            <a href="javascript:;">
+                <i class="glyphicon glyphicon-edit"></i>
+                <span class="title">Plataforma</span>
+            </a>
+            <ul>
+                <li {{ route ==  'plataformaDiagnosticador' ? 'class="active"' }}>
+                    <a href="{{ url('plataformaDiagnosticador') }}">
+                        <i class="entypo-traffic-cone"></i>
+                        <span class="title">Diagnosticador</span>
+                    </a>
+                </li>
+                <li {{ route ==  'plataformaGenerales' ? 'class="active"' }}>
+                    <a href="{{ url('plataformaGenerales') }}">
+                        <i class="entypo-traffic-cone"></i>
+                        <span class="title">Generales</span>
+                    </a>
+                </li>
+                <li {{ route ==  'plataformaInternet' ? 'class="active"' }}>
+                    <a href="{{ url('plataformaInternet') }}">
+                        <i class="entypo-network"></i>
+                        <span class="title">Internet</span>
+                    </a>
+                </li>
+                <li {{ route ==  'plataformaTelevision' ? 'class="active"' }}>
+                    <a href="{{ url('plataformaTelevision') }}">
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Televisión</span>
+                    </a>
+                </li>
+                <li {{ route ==  'plataformaTelefonia' ? 'class="active"' }}>
+                    <a href="{{ url('plataformaTelefonia') }}">
+                        <i class="entypo-phone"></i>
+                        <span class="title">Telefonía</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li {{  route == 'matrizTripleplay' or route == 'matrizTelevision' or route == 'matrizInternetytelefonia'
+                ? 'class="root-level has-sub opened"'}}>
+
+            <a href="javascript:;">
+                <i class="glyphicon glyphicon-edit"></i>
+                <span class="title">Matriz</span>
+            </a>
+            <ul>
+                <li {{ route ==  'matrizTripleplay' ? 'class="active"' }}>
+                    <a href="{{ url('matrizTripleplay') }}">
+                        <i class="entypo-traffic-cone"></i>
+                        <span class="title">Triple Play</span>
+                    </a>
+                </li>
+                <li {{ route ==  'matrizTelevision' ? 'class="active"' }}>
+                    <a href="{{ url('matrizTelevision') }}">
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Televisión</span>
+                    </a>
+                </li>
+                <li {{ route ==  'matrizInternetytelefonia' ? 'class="active"' }}>
+                    <a href="{{ url('matrizInternetytelefonia') }}">
+                        <i class="entypo-network"></i>
+                        <span class="title">Internet y Telefonía</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li {{  route == 'hfcTripleplay' or route == 'hfcTelevisionbi' or route == 'hfcTelevisionuni' or route == 'hfcInternetytelefonia'
+                ? 'class="root-level has-sub opened"'}}>
+
+            <a href="javascript:;">
+                <i class="glyphicon glyphicon-edit"></i>
+                <span class="title">HFC</span>
+            </a>
+            <ul>
+                <li {{ route ==  'hfcTripleplay' ? 'class="active"' }}>
+                    <a href="{{ url('hfcTripleplay') }}">
+                        <i class="entypo-traffic-cone"></i>
+                        <span class="title">Triple Play</span>
+                    </a>
+                </li>
+                <li {{ route ==  'hfcTelevisionbi' ? 'class="active"' }}>
+                    <a href="{{ url('hfcTelevisionbi') }}">
+                        <i class="entypo-monitor"></i>
+                        <span class="title">TV Bidireccional</span>
+                    </a>
+                </li>
+                <li {{ route ==  'hfcTelevisionuni' ? 'class="active"' }}>
+                    <a href="{{ url('hfcTelevisionuni') }}">
+                        <i class="entypo-monitor"></i>
+                        <span class="title">TV Unidireccional</span>
+                    </a>
+                </li>
+                <li {{ route ==  'hfcInternetytelefonia' ? 'class="active"' }}>
+                    <a href="{{ url('hfcInternetytelefonia') }}">
+                        <i class="entypo-network"></i>
+                        <span class="title">Internet y Telefonía</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</li>

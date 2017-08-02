@@ -1,0 +1,41 @@
+{% extends 'neon/base.html.twig' %}
+
+    {% block body %}
+
+        <div class="col-sm-12">
+
+            <h3>
+                <span class="label label-warning">Service Desk</span>
+                Guiones Matriz
+            </h3>
+            <hr />
+            <div class="profile-env">
+                <section class="profile-info-tabs">
+                    <div class="row">
+                        <div class="col-sm-offset-2 col-sm-10">
+
+                            {% set route = app.request.attributes.get('_route') %}
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" {{ route ==  'matrizTripleplay' ? 'class="active"' }}><a href="{{ url('matrizTripleplay') }}">Triple Play</a></li>
+                                <li role="presentation" {{ route ==  'matrizTelevision' ? 'class="active"' }}><a href="{{ url('matrizTelevision') }}">Televisión</a></li>
+                                <li role="presentation" {{ route ==  'matrizInternetytelefonia' ? 'class="active"' }}><a href="{{ url('matrizInternetytelefonia') }}">Internet y Telefonía</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="panel-body">
+
+            </div>
+
+        </div>
+
+
+    {% endblock %}
+
+    {% block javascripts  %}
+        {{ parent() }}
+
+
+    {% endblock %}

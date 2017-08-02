@@ -1,0 +1,20 @@
+<li {{ route ==  'comunicarServiceco' or route == 'indexServiceco' ? 'class="active root-level has-sub opened"' }}>
+    <a href="javascript:;">
+        <i class="entypo-megaphone"></i>
+        <span class="title">ServiceCo</span>
+    </a>
+    <ul>
+        <li {{ route ==  'comunicarServiceco' ? 'class="active"' }}>
+            <a href="{{ url('comunicarServiceco') }}">
+                <i class="entypo-share"></i>
+                <span class="title">Comunicar</span>
+            </a>
+        </li>
+        <li {{ route ==  'indexServiceco' ? 'class="active"' }}>
+            <a href="{{ url('indexServiceco') }}">
+                <i class="fa fa-cogs"></i>
+                <span class="title">Administrar</span>
+            </a>
+        </li>
+    </ul>
+</li>

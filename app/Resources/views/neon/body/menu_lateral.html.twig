@@ -1,192 +1,18 @@
-<!-- Inicio -->
-<li class="active">
-	<a href="{{ url('inicio') }}">
-		<i class="entypo-home"></i>
-		<span class="title">Inicio</span>
-	</a>
-</li>
+{% set route = app.request.attributes.get('_route') %}
+<!-- Inicio  -->
+{{ include('neon/body/menu_lateral/inicio.html.twig') }}
 
 <!-- Administración -->
-<li>
-	<a href="javascript:;">
-		<i class="entypo-database"></i>
-		<span class="title">Administración</span>
-	</a>
-	<ul>
-		<!-- Administración Usuarios -->
-		<li>
-			<a href="javascript:;">
-				<i class="entypo-user"></i>
-				<span class="title">Usuarios</span>
-			</a>
-			<ul>
-				<li>
-					<a href="{{ url('indexUsuarios') }}">
-						<i class="entypo-users"></i>
-						<span class="title">Lista Usuarios</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('agregarUsuario') }}">
-						<i class="entypo-user-add"></i>
-						<span class="title">Nuevo Usuario</span>
-					</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</li>
-
-<!-- ServiceCo -->
-<li>
-	<a href="javascript:;">
-		<i class="entypo-megaphone"></i>
-		<span class="title">ServiceCo</span>
-	</a>
-	<ul>
-		<li>
-			<a href="{{ url('comunicarServiceco') }}">
-				<i class="entypo-share"></i>
-				<span class="title">Comunicar</span>
-			</a>
-		</li>
-		<li>
-			<a href="{{ url('indexServiceco') }}">
-				<i class="fa fa-cogs"></i>
-				<span class="title">Administrar</span>
-			</a>
-		</li>
-	</ul>
-</li>
+{{ include('neon/body/menu_lateral/administracion.html.twig') }}
 
 <!-- Guiones -->
-<li>
-	<a href="javascript:;">
-		<i class="glyphicon glyphicon-share"></i>
-		<span class="title">&nbsp;&nbsp;Guiones</span>
-	</a>
-	<ul>
-		<li>
-			<a href="javascript:;">
-				<i class="glyphicon glyphicon-edit"></i>
-				<span class="title">Plataforma</span>
-			</a>
-			<ul>
-				<li>
-					<a href="{{ url('plataformaDiagnosticador') }}">
-						<i class="entypo-traffic-cone"></i>
-						<span class="title">Diagnosticador</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('plataformaGenerales') }}">
-						<i class="entypo-traffic-cone"></i>
-						<span class="title">Generales</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('plataformaInternet') }}">
-						<i class="entypo-network"></i>
-						<span class="title">Internet</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('plataformaTelevision') }}">
-						<i class="entypo-monitor"></i>
-						<span class="title">Televisión</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('plataformaTelefonia') }}">
-						<i class="entypo-phone"></i>
-						<span class="title">Telefonía</span>
-					</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a href="javascript:;">
-				<i class="glyphicon glyphicon-edit"></i>
-				<span class="title">Matriz</span>
-			</a>
-			<ul>
-				<li>
-					<a href="{{ url('mensajeError') }}">
-						<i class="entypo-traffic-cone"></i>
-						<span class="title">Triple Play</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('mensajeError') }}">
-						<i class="entypo-monitor"></i>
-						<span class="title">Televisión</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('mensajeError') }}">
-						<i class="entypo-network"></i>
-						<span class="title">Internet y Telefonía</span>
-					</a>
-				</li>
+{{ include('neon/body/menu_lateral/guiones.html.twig') }}
 
-			</ul>
-		</li>
-		<li>
-			<a href="javascript:;">
-				<i class="glyphicon glyphicon-edit"></i>
-				<span class="title">HFC</span>
-			</a>
-			<ul>
-				<li>
-					<a href="{{ url('mensajeError') }}">
-						<i class="entypo-traffic-cone"></i>
-						<span class="title">Triple Play</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('mensajeError') }}">
-						<i class="entypo-monitor"></i>
-						<span class="title">TV Bidireccional</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('mensajeError') }}">
-						<i class="entypo-monitor"></i>
-						<span class="title">TV Unidireccional</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url('mensajeError') }}">
-						<i class="entypo-network"></i>
-						<span class="title">Internet y Telefonía</span>
-					</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</li>
+<!-- ServiceCo -->
+{{ include('neon/body/menu_lateral/serviceco.html.twig') }}
 
 <!-- reportes Formularios -->
-<li>
-	<a href="javascript:;">
-		<i class="entypo-sweden"></i>
-		<span class="title">Formularios</span>
-	</a>
-	<ul>
-		<li>
-			<a href="{{ url('indexFormularios') }}">
-				<i class="entypo-list"></i>
-				<span class="title">Lista Formularios</span>
-			</a>
-		</li>
-		<li>
-			<a href="{{ url('mensajeError') }}">
-				<i class="entypo-list-add"></i>
-				<span class="title">Solcitar Formulario</span>
-			</a>
-		</li>
-	</ul>
-</li>
+{{ include('neon/body/menu_lateral/formularios.html.twig') }}
 
 <!-- Chat -->
 <li>
@@ -204,4 +30,3 @@
 		<span class="title">Cerrar Sesión</span>
 	</a>
 </li>
-
