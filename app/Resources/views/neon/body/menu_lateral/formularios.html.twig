@@ -1,16 +1,16 @@
-<li>
+<li {{ route ==  'indexFormularios' ? 'class="active root-level has-sub opened"' }}>
     <a href="javascript:;">
         <i class="entypo-sweden"></i>
         <span class="title">Formularios</span>
     </a>
-    <ul>
-        <li>
+    <ul {{ route ==  'indexFormularios' ? 'class="visible"' }}>
+        <li {{ route ==  'indexFormularios' ? 'class="active"' }}>
             <a href="{{ url('indexFormularios') }}">
                 <i class="entypo-list"></i>
                 <span class="title">Lista Formularios</span>
             </a>
         </li>
-        <li>
+        <li {{ route ==  'mensajeError' ? 'class="active"' }}>
             <a href="{{ url('mensajeError') }}">
                 <i class="entypo-list-add"></i>
                 <span class="title">Solcitar Formulario</span>
