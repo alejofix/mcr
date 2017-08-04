@@ -84,9 +84,9 @@ class ListaformulariosController extends Controller
 
     /**
      * ListaformulariosController::xlsxAction
-     * Descarga el archivo excel por Tipo Formulario
      *
      * @param $id
+     * @return array xlsx
      * @Route(path="/xlsx/{id}", name="xlsxFormulario")
      */
     public function xlsxAction($id){
@@ -150,6 +150,14 @@ class ListaformulariosController extends Controller
                 ->setCellValue('L'.$index, $file->getRazon()->getNombre())
             ;
             $index++;
+        }
+
+
+        if(!$query){
+
+            $this->addFlash('mensajeerror', '¡Paranoico! No existen Registros - Informe al Administrador');
+            return $this->redirectToRoute('mensajeError');
+
         }
 
         $objPHPExcel->getActiveSheet()->setTitle('TIPO_'.$file->getTipo()->getId());
