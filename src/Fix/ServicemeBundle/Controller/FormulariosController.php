@@ -100,18 +100,23 @@ class FormulariosController extends Controller
     public function cargarAjaxFieldsAction(Request $request) {
 
         if($request->request->has('detalle') AND $request->request->has('id')) {
-
             $request->request->set('formulario', array('detalle' => $request->request->get('detalle')));
             $entity = new \Fix\ServicemeBundle\Entity\Formularios();
             $form = $this->createNewFormularioForm($entity, $request->request->get('id'));
             $form->handleRequest($request);
+            return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
 
             if($form->isSubmitted() == true AND $form->isValid() == true):
-                //Proceso para guardar los datos y la plantilla
+
+                $this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
+                return $this->redirectToRoute('alertFormularios');
+
             endif;
 
-            //aqui la plantilla diciendo que hay errores en el formulario
-            //return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
+                throw $this->createNotFoundException('Error en Formulario');
+                //return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
+
+
         }
         else {
             //Aqui coloca un error
