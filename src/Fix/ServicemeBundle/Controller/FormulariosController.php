@@ -106,7 +106,12 @@ class FormulariosController extends Controller
             $form = $this->createNewFormularioForm($entity, $request->request->get('id'));
             $form->handleRequest($request);
 
-            return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
+            if($form->isSubmitted() == true AND $form->isValid() == true):
+                //Proceso para guardar los datos y la plantilla
+            endif;
+
+            //aqui la plantilla diciendo que hay errores en el formulario
+            //return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
         }
         else {
             //Aqui coloca un error
