@@ -41,4 +41,15 @@
         </script>
     {% endfor %}
 
+    {% for flashMessage in app.session.flashbag.get('errorevidente') %}
+        <script type="text/javascript">
+            swal("¡Validación identidad No aprobada!", "{{ flashMessage }}", "error")
+        </script>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('successevidente') %}
+        <script type="text/javascript">
+            swal("¡Validación identidad Aprobada!", "{{ flashMessage }}", "success")
+        </script>
+    {% endfor %}
+
 {% endblock %}

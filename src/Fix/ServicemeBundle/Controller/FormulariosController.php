@@ -83,6 +83,12 @@ class FormulariosController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            if($id == '13'){
+                //$this->addFlash('successevidente', 'El cliente ha respondido correctamente, continua con el Proceso.');
+                $this->addFlash('errorevidente', 'Informa al cliente que no es posible continuar con el proceso ya que alguna respuesta no es correcta.');
+                return $this->redirectToRoute('alertFormularios');
+            }
+
             $this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
             return $this->redirectToRoute('alertFormularios');
          // return $this->redirectToRoute('formularios_motivos', array('id' => $id));
@@ -169,6 +175,9 @@ class FormulariosController extends Controller
                 break;
             case 12:
                 $clase = \Fix\ServicemeBundle\Form\Formularios\DoceType::class;
+                break;
+            case 13:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\TreceType::class;
                 break;
         }
 
