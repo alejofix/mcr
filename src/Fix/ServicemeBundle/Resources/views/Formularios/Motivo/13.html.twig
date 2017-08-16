@@ -18,7 +18,8 @@
                                 {% for name, params in form if name != '_token' and name != 'submit' %}
 
                                     <div class="form-group">
-                                        {{ form_label(params, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                        {{ form_label(params, null, {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
                                         <div class="col-sm-5">
                                             {{ form_widget(params) }}
                                             <span class="text-danger">{{ form_errors(params) }}</span>
@@ -28,8 +29,8 @@
                                 {% endfor %}
 
                                 <br/>
-                                <div class="col-sm-offset-3 col-sm-5">
-                                    <button type="submit" class="btn btn-default">Guardar</button>
+                                <div class="col-sm-offset-4 col-sm-5">
+                                    <button type="submit" class="btn btn-default">Validar</button>
                                 </div>
 
                                 {{ form_end(form) }}

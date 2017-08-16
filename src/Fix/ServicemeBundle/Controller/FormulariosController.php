@@ -84,8 +84,22 @@ class FormulariosController extends Controller
             $em->flush();
 
             if($id == '13'){
-                //$this->addFlash('successevidente', 'El cliente ha respondido correctamente, continua con el Proceso.');
-                $this->addFlash('errorevidente', 'Informa al cliente que no es posible continuar con el proceso ya que alguna respuesta no es correcta.');
+
+                $error = array();
+                $lista = array('informacionuno', 'informaciondos', 'informaciontres');
+
+                foreach ($lista AS $value) {
+                    if($form->get($value)->getData() == 'NO') {
+                        $error[] = 'NO';
+                    }
+                }
+                if(count($error)>0) {
+                    $this->addFlash('errorevidente', 'Informa al cliente que no es posible continuar con el proceso ya que alguna respuesta no es correcta.');
+                }
+                else {
+                    $this->addFlash('successevidente', 'El cliente ha respondido correctamente, continua con el Proceso.');
+                }
+
                 return $this->redirectToRoute('alertFormularios');
             }
 
