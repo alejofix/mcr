@@ -65,7 +65,9 @@
                                 alert("Se ha presentado un error al enviar la informacion");
                             },
                             beforeSend: function() {
-                                jQuery("#cargar_ajax").html('<img src="url de un loader.gif">');
+                                jQuery("#cargar_ajax").html(
+                                    '<div class="col-sm-5"></div><div class="col-sm-5"><img src="{{ asset('public/neon/assets/images/fix/load.gif') }}" alt="" width="111"></div>'
+                                );
                             },
                             success : function(result) {
                                 jQuery("#cargar_ajax").html(result);

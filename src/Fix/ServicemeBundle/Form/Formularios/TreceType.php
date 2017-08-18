@@ -60,7 +60,7 @@ class TreceType extends AbstractType {
 
 
         $builder->add('informacionuno', ChoiceType::class, array(
-            'label' => '¿ Cuál es la dirección inicial donde se contrató el Servicio ?',
+            'label' => '¿ Cuáles son los servicios principales que tiene Contratados ?',
             'attr' => array('class' => 'col-sm-4 control-label'),
             'choices' => array(
                 'SI' => 'SI',
