@@ -51,8 +51,9 @@
 
     {% block javascripts  %}
         {{ parent() }}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js" integrity="sha256-F6h55Qw6sweK+t7SiOJX+2bpSAa3b/fnlrVCJvmEj1A=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js" integrity="sha256-0IXY0aA9BMZHp1azQSgmyQTG4+8NwTeDlKmjpQYrcXs=" crossorigin="anonymous"></script>
+
+        <script src="{{ asset('public/neon/assets/js/validate/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/validate/additional-methods.js') }}"></script>
 
         <script>
             jQuery(document).ready(function() {
@@ -79,15 +80,26 @@
                     });
                 });
 
-
                 jQuery("#form_validate").validate({
                     rules : {
                         "formulario[cuenta]" : {required : true},
-                        "formulario[datos]" : {required : true}
+                        "formulario[datos]" : {required : true},
+                        "formulario[razon]" : {required : true},
+                        "formulario[referencia]" : {required: true},
+                        "formulario[detalle]" : {required : true},
+                        "formulario[informacionuno]" : {required : true},
+                        "formulario[informaciondos]" : {required : true},
+                        "formulario[informaciontres]" : {required : true}
                     },
                     messages : {
-                        "formulario[cuenta]" : {required : "Campo requerido"},
-                        "formulario[datos]" : {required : "Campo requerido"}
+                        "formulario[cuenta]" : {required : "información Requerida"},
+                        "formulario[datos]" : {required : "información Requerida"},
+                        "formulario[razon]" : {required : "información Requerida"},
+                        "formulario[referencia]" : {required : "información Requerida"},
+                        "formulario[detalle]" : {required : "información Requerida"},
+                        "formulario[informacionuno]" : {required : "información Requerida"},
+                        "formulario[informaciondos]" : {required : "información Requerida"},
+                        "formulario[informaciontres]" : {required : "información Requerida"}
                     }
                 });
             });
