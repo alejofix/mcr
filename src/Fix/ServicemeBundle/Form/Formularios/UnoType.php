@@ -112,7 +112,6 @@ class UnoType extends AbstractType {
                         new Assert\NotBlank(array('message' => 'información Requerida')))
                 ));
             }
-
             elseif ($product->getDetalle() == 'ALGUNOS CANALES'){
 
                 $form->add('informacionuno', TextType::class, array(

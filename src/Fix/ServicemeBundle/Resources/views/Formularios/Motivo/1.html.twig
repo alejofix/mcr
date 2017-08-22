@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-lg-12">
 
-                                {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered', 'novalidate':'novalidate' } }) }}
+                                {{ form_start(form, { 'attr' : {'id':'form_validate', 'role' : 'form', 'class' : 'form-horizontal form-groups-bordered', 'novalidate':'novalidate' } }) }}
 
                                 {% for name, params in form if name != '_token' and name != 'submit' %}
 
@@ -51,6 +51,9 @@
 
     {% block javascripts  %}
         {{ parent() }}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js" integrity="sha256-F6h55Qw6sweK+t7SiOJX+2bpSAa3b/fnlrVCJvmEj1A=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js" integrity="sha256-0IXY0aA9BMZHp1azQSgmyQTG4+8NwTeDlKmjpQYrcXs=" crossorigin="anonymous"></script>
+
         <script>
             jQuery(document).ready(function() {
                 jQuery("#formulario_detalle").change(function() {
@@ -74,6 +77,18 @@
                             }
                         });
                     });
+                });
+
+
+                jQuery("#form_validate").validate({
+                    rules : {
+                        "formulario[cuenta]" : {required : true},
+                        "formulario[datos]" : {required : true}
+                    },
+                    messages : {
+                        "formulario[cuenta]" : {required : "Campo requerido"},
+                        "formulario[datos]" : {required : "Campo requerido"}
+                    }
                 });
             });
         </script>
