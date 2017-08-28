@@ -96,7 +96,7 @@ class UnoType extends AbstractType {
             $product = $event->getData();
             $form = $event->getForm();
 
-            if($product->getDetalle() == 'TODOS LOS CANALES') {
+            if($product['detallle'] == 'TODOS LOS CANALES') {
 
                 $form->add('informaciontres', ChoiceType::class, array(
                     'label' => '¿Cuando se evidencia la falla?',
@@ -112,7 +112,7 @@ class UnoType extends AbstractType {
                         new Assert\NotBlank(array('message' => 'información Requerida')))
                 ));
             }
-            elseif ($product->getDetalle() == 'ALGUNOS CANALES'){
+            elseif ($product['detallle'] == 'ALGUNOS CANALES'){
 
                 $form->add('informacionuno', TextType::class, array(
                     'label' => 'Canales',
