@@ -94,9 +94,10 @@ class UnoType extends AbstractType {
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             $product = $event->getData();
+            $data = (is_array($product)) ? $product['detalle'] : $product->getDetalle();
             $form = $event->getForm();
 
-            if($product['detallle'] == 'TODOS LOS CANALES') {
+            if($data == 'TODOS LOS CANALES') {
 
                 $form->add('informaciontres', ChoiceType::class, array(
                     'label' => '¿Cuando se evidencia la falla?',
@@ -112,7 +113,7 @@ class UnoType extends AbstractType {
                         new Assert\NotBlank(array('message' => 'información Requerida')))
                 ));
             }
-            elseif ($product['detallle'] == 'ALGUNOS CANALES'){
+            elseif ($data == 'ALGUNOS CANALES'){
 
                 $form->add('informacionuno', TextType::class, array(
                     'label' => 'Canales',
