@@ -36,4 +36,20 @@
 
     {% endif %}
 
+{% elseif id == 14 %}
+
+    {% if seleccion == 'SI INGRESA A CLARO VIDEO' %}
+
+        <div class="form-group">
+            {{ form_label(form.informacionuno, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-5">
+                {{ form_widget(form.informaciontres) }}
+                <span class="text-danger">{{ form_errors(form.detalle) }}</span>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% elseif id == 15 %}
+
 {% endif %}

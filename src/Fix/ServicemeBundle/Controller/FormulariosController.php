@@ -193,6 +193,13 @@ class FormulariosController extends Controller
             case 13:
                 $clase = \Fix\ServicemeBundle\Form\Formularios\TreceType::class;
                 break;
+            case 14:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\CatorceType::class;
+                break;
+            case 15:
+                $clase = \Fix\ServicemeBundle\Form\Formularios\QuinceType::class;
+                break;
+
         }
 
 
