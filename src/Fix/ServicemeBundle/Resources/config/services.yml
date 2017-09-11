@@ -6,4 +6,4 @@ services:
         class: Fix\ServicemeBundle\Services\Textos
     serviceme.formularios.gestion:
         class: Fix\ServicemeBundle\Services\Formularios\GestionFormularios
-        arguments: ["@doctrine.orm.entity_manager", "@form.factory"]
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@router", "@filesystem"]

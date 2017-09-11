@@ -37,7 +37,7 @@ class FormulariosController extends Controller
      * 
      * mensaje de confirmación <div class="alert alert-?">
      * 
-     * @return 
+     * @return null
      * @Route(path="/motivo/alert", name="alertFormularios")
      * @Template("FixServicemeBundle:Formularios:mensajes/alert.html.twig")
      */
@@ -45,7 +45,7 @@ class FormulariosController extends Controller
     {
     
     }
-    
+
 
     /**
      * Redirecciona a la plantilla correspondiente
@@ -53,6 +53,7 @@ class FormulariosController extends Controller
      * @Route(path="/motivo/{id}", name="formularios_motivos", requirements={"id" = "\d+"})
      * @Method({"GET", "POST"})
      *
+     * @param Request $request
      * @param $id
      * @return Response
      */
@@ -60,65 +61,29 @@ class FormulariosController extends Controller
 
         $servicio = $this->get('serviceme.formularios.gestion');
 
-        $fs = new Filesystem();
-
-        if($fs->exists($servicio->getPathTemplate($id)) == false) {
-            // throw $this->createNotFoundException('No existe el formularios solicitado');
+        if($servicio->hasTemplate($id) == false) {
             $this->addFlash('mensajedanger', 'No existe el formulario solicitado.');
             return $this->redirectToRoute('alertFormularios');
         }
 
-        $entity = new \Fix\ServicemeBundle\Entity\Formularios();
-        $form = $this->createNewFormularioForm($entity, $id);
+        $form = $servicio->createFormAction($id);
         $form->handleRequest($request);
 
-        dump($request->request->all(), $form->getData());
-        die;
+        if($form->isSubmitted() AND $form->isValid()):
 
-        if($form->isSubmitted() AND $form->isValid()) {
+            dump($request->request->all(), $form->getData());
 
-            if($id == '3' or $id == '6' or $id == '7' or $id == '8'){
-                $entity->setReferencia($form->get('referencia')->getData()->getReferencia());
-            }
+        endif;
 
-            $em = $this->getDoctrine()->getManager();
-            $entity->setTipo($em->getRepository('FixServicemeBundle:Formulariostipo')->findOneBy(array('id' => $id)));
-            $em->persist($entity);
-            $em->flush();
-
-            if($id == '13'){
-
-                $error = array();
-                $lista = array('informacionuno', 'informaciondos', 'informaciontres');
-
-                foreach ($lista AS $value) {
-                    if($form->get($value)->getData() == 'NO') {
-                        $error[] = 'NO';
-                    }
-                }
-                if(count($error)>0) {
-                    $this->addFlash('errorevidente', 'Informa al cliente que no es posible continuar con el proceso ya que alguna respuesta no es correcta.');
-                }
-                else {
-                    $this->addFlash('successevidente', 'El cliente ha respondido correctamente, continua con el Proceso.');
-                }
-
-                return $this->redirectToRoute('alertFormularios');
-            }
-
-            $this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
-            return $this->redirectToRoute('alertFormularios');
-         // return $this->redirectToRoute('formularios_motivos', array('id' => $id));
-
-        }
-
-        return $this->render(sprintf('FixServicemeBundle:Formularios/Motivo:%s.html.twig', $id), array('form' => $form->createView(), 'id' => $id));
+        return $this->render($servicio->getTemplate($id), array('form' => $form->createView(), 'id' => $id));
     }
 
     /**
      * @Route(path="/ajax/form", name="formularios_ajax_field", condition="request.isXmlHttpRequest()")
      * @Method({"POST"})
      * @Template("FixServicemeBundle:Formularios:cargar_ajax_field.html.twig")
+     * @param Request $request
+     * @return array
      */
     public function cargarAjaxFieldsAction(Request $request) {
 
