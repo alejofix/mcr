@@ -72,16 +72,19 @@ class FormulariosController extends Controller
         if($form->isSubmitted() AND $form->isValid()):
 
             dump($request->request->all(), $form->getData());
-
+            die;
         endif;
 
         return $this->render($servicio->getTemplate($id), array('form' => $form->createView(), 'id' => $id));
     }
 
     /**
+     * Genera la carga de los campos solicitados por ajax
+     *
      * @Route(path="/ajax/form", name="formularios_ajax_field", condition="request.isXmlHttpRequest()")
-     * @Method({"POST"})
      * @Template("FixServicemeBundle:Formularios:cargar_ajax_field.html.twig")
+     * @Method({"POST"})
+     *
      * @param Request $request
      * @return array
      */
@@ -90,25 +93,13 @@ class FormulariosController extends Controller
         if($request->request->has('detalle') AND $request->request->has('id')) {
             $request->request->set('formulario', array('detalle' => $request->request->get('detalle')));
 
-            $entity = new \Fix\ServicemeBundle\Entity\Formularios();
-            $form = $this->createNewFormularioForm($entity, $request->request->get('id'));
+            $servicio = $this->get('serviceme.formularios.gestion');
+            $form = $servicio->createFormAction($request->request->get('id'));
             $form->handleRequest($request);
 
-            if($form->isSubmitted() == true AND $form->isValid() == true):
-
-                //$this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
-                //return $this->redirectToRoute('alertFormularios');
-
-            endif;
-
-                //throw $this->createNotFoundException('Error en Formulario');
-                //return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
             return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
-
-
         }
         else {
-            //Aqui coloca un error
             throw $this->createNotFoundException('No es posible cargar su peticion');
         }
     }

@@ -11,6 +11,7 @@
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\Form\FormEvent;
     use Symfony\Component\Form\FormEvents;
+    use Symfony\Component\Form\FormInterface;
     use Symfony\Component\OptionsResolver\OptionsResolver;
     use Symfony\Component\Validator\Constraints\Ip;
     use Symfony\Component\Validator\Constraints\Length;
@@ -89,15 +90,86 @@
             ));
 
             if($options['_motivo'] == 1):
-
-                $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-
-                    dump($event->getData());
-                });
-
+                $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit']);
+                $builder->addEventListener(FormEvents::SUBMIT, [$this, 'onSubmit']);
             endif;
 
 
+        }
+
+        /**
+         * Agrega los elementos correspondientes para el campo
+         *
+         * @param FormInterface $builder
+         * @param $option
+         */
+        protected function addElement(FormInterface $builder, $option) {
+
+            if($option == 'TODOS LOS CANALES'):
+
+                $builder->add('informaciontres', ChoiceType::class, array(
+                    'label' => '¿Cuando se evidencia la falla?',
+                    'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
+                    'mapped' => false,
+                    'choices' => array(
+                        'TODO EL DÍA' => 'TODO EL DÍA',
+                        'EN HORAS DE LA TARDE DESPUÉS DE LAS 13:00' => 'EN HORAS DE LA TARDE',
+                        'EN HORAS DE LA NOCHE DESPUÉS DE LAS 18:00' => 'EN HORAS DE LA NOCHE',
+                        'EN LA MADRUGADA' => 'EN LA MADRUGADA'
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+            elseif($option == 'ALGUNOS CANALES'):
+
+                $builder->add('informacionuno', TextType::class, array(
+                    'label' => 'Canales',
+                    'mapped' => false,
+                    'attr' => array('placeholder' => 'Ej.  106,108,606 ...', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('informaciondos', TextType::class, array(
+                    'label' => 'Programas',
+                    'mapped' => false,
+                    'attr' => array('placeholder' => 'Ej. Día a Día, Muy buenos Días, The Simpsons ...', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('informaciontres', TextType::class, array(
+                    'label' => 'Hora de Inicio de Programa',
+                    'mapped' => false,
+                    'attr' => array('placeholder' => 'Ej. 8:00, 10:00 ...', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+            endif;
+        }
+
+        /**
+         * Se genera la populacion correspondiente cuando se genera el evento submit
+         *
+         * @param FormEvent $event
+         */
+        public function onSubmit(FormEvent $event) {
+
+            $form = $event->getForm();
+            $data = $event->getData();
+
+            $this->addElement($form, $data->getDetalle());
+        }
+
+        public function onPreSubmit(FormEvent $event) {
+
+            $form = $event->getForm();
+            $data = $event->getData();
+
+            $this->addElement($form, $data['detalle']);
         }
 
         /**
