@@ -82,7 +82,7 @@ class Formularios
     private $datos;
     
     /**
-     * @var Fix\ServicemeBundle\Entity\Formulariostipo
+     * @var \Fix\ServicemeBundle\Entity\Formulariostipo
      * 
      * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Formulariostipo")
      * @ORM\JoinColumn(name="TIPO", referencedColumnName="ID")
@@ -90,7 +90,7 @@ class Formularios
      private $tipo;
      
     /**
-     * @var Fix\ServicemeBundle\Entity\Formulariosrazon
+     * @var \Fix\ServicemeBundle\Entity\Formulariosrazon
      * 
      * @ORM\ManyToOne(targetEntity="Fix\ServicemeBundle\Entity\Formulariosrazon")
      * @ORM\JoinColumn(name="RAZON", referencedColumnName="ID")

@@ -58,11 +58,11 @@ class FormulariosController extends Controller
      */
     public function motivoAction(Request $request, $id) {
 
-        $fs = new Filesystem();
-        $archivo = sprintf('%s.html.twig', $id);
-        $ruta = implode(DIRECTORY_SEPARATOR, array(dirname(__DIR__), 'Resources', 'views', 'Formularios', 'Motivo', $archivo));
+        $servicio = $this->get('serviceme.formularios.gestion');
 
-        if($fs->exists($ruta) == false) {
+        $fs = new Filesystem();
+
+        if($fs->exists($servicio->getPathTemplate($id)) == false) {
             // throw $this->createNotFoundException('No existe el formularios solicitado');
             $this->addFlash('mensajedanger', 'No existe el formulario solicitado.');
             return $this->redirectToRoute('alertFormularios');
@@ -71,6 +71,9 @@ class FormulariosController extends Controller
         $entity = new \Fix\ServicemeBundle\Entity\Formularios();
         $form = $this->createNewFormularioForm($entity, $id);
         $form->handleRequest($request);
+
+        dump($request->request->all(), $form->getData());
+        die;
 
         if($form->isSubmitted() AND $form->isValid()) {
 
@@ -121,20 +124,21 @@ class FormulariosController extends Controller
 
         if($request->request->has('detalle') AND $request->request->has('id')) {
             $request->request->set('formulario', array('detalle' => $request->request->get('detalle')));
+
             $entity = new \Fix\ServicemeBundle\Entity\Formularios();
             $form = $this->createNewFormularioForm($entity, $request->request->get('id'));
             $form->handleRequest($request);
-            return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
 
             if($form->isSubmitted() == true AND $form->isValid() == true):
 
-                $this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
-                return $this->redirectToRoute('alertFormularios');
+                //$this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
+                //return $this->redirectToRoute('alertFormularios');
 
             endif;
 
-                throw $this->createNotFoundException('Error en Formulario');
+                //throw $this->createNotFoundException('Error en Formulario');
                 //return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
+            return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
 
 
         }

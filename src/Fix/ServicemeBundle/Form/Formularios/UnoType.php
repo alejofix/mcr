@@ -92,7 +92,7 @@ class UnoType extends AbstractType {
                 new Assert\NotBlank(array('message' => 'información Requerida')))
         ));
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $product = $event->getData();
             $data = (is_array($product)) ? $product['detalle'] : $product->getDetalle();
             $form = $event->getForm();
@@ -102,6 +102,7 @@ class UnoType extends AbstractType {
                 $form->add('informaciontres', ChoiceType::class, array(
                     'label' => '¿Cuando se evidencia la falla?',
                     'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
+                    'mapped' => false,
                     'choices' => array(
                         'TODO EL DÍA' => 'TODO EL DÍA',
                         'EN HORAS DE LA TARDE DESPUÉS DE LAS 13:00' => 'EN HORAS DE LA TARDE',

@@ -4,3 +4,6 @@ services:
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
     compadre.texto:
         class: Fix\ServicemeBundle\Services\Textos
+    serviceme.formularios.gestion:
+        class: Fix\ServicemeBundle\Services\Formularios\GestionFormularios
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory"]
