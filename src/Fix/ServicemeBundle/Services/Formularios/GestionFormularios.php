@@ -67,8 +67,10 @@
          */
         public function execute($form = null) {
 
+            $this->entity->setTipo($this->entityManager->getRepository('FixServicemeBundle:Formulariostipo')->findOneBy(array('id' => $this->motivo)));
             $this->entityManager->persist($this->entity);
             $this->entityManager->flush();
+
         }
 
         /**

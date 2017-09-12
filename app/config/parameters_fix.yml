@@ -2,9 +2,9 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: test_mcr
+    database_name: mcr
     database_user: root
-    database_password: 1234567890
+    database_password: secret
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
