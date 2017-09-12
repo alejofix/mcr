@@ -18,6 +18,7 @@
         private $router;
         private $entity;
         private $filesystem;
+        private $motivo;
 
         /**
          * GestionFormularios constructor.
@@ -37,11 +38,34 @@
         }
 
         /**
+         * Genera el proceso de asignacion del motivo para los procesos internos de
+         * la gestion de formularios
+         *
+         * @param null $motivo
+         * @return $this
+         */
+        public function setMotivo($motivo = null) {
+
+            $this->motivo = $motivo;
+            return $this;
+        }
+
+        /**
+         * Retorna el motivo
+         *
+         * @return mixed
+         */
+        public function getMotivo() {
+
+            return $this->motivo;
+        }
+
+        /**
          * Ejecuta el proceso solicitado
          *
-         * @param $form
+         * @param null $form
          */
-        public function execute($form) {
+        public function execute($form = null) {
 
             $this->entityManager->persist($this->entity);
             $this->entityManager->flush();
@@ -50,47 +74,43 @@
         /**
          * Retorna la ruta de la plantilla de formulario
          *
-         * @param null $motivo
          * @return string
          */
-        private function getPathTemplate($motivo = null) {
+        private function getPathTemplate() {
 
-            return sprintf('%s/%s.html.twig', $this->pathTemplate, $motivo);
+            return sprintf('%s/%s.html.twig', $this->pathTemplate, $this->motivo);
         }
 
         /**
          * Crea el formulario correspondiente
          *
-         * @param null $motivo
          * @return \Symfony\Component\Form\FormInterface
          */
-        public function createFormAction($motivo = null) {
+        public function createFormAction() {
 
             return $this->formFactory->create(Form1Type::class, $this->entity, [
-                'action' => $this->router->generate('formularios_motivos', ['id' => $motivo], UrlGeneratorInterface::ABSOLUTE_PATH),
+                'action' => $this->router->generate('formularios_motivos', ['id' => $this->motivo], UrlGeneratorInterface::ABSOLUTE_PATH),
                 'method' => 'POST',
-                '_motivo' => $motivo
+                '_motivo' => $this->motivo
             ]);
         }
 
         /**
          * Valida existencia de plantilla
          *
-         * @param null $motivo
          * @return bool
          */
-        public function hasTemplate($motivo = null) {
+        public function hasTemplate() {
 
-            return $this->filesystem->exists($this->getPathTemplate($motivo));
+            return $this->filesystem->exists($this->getPathTemplate());
         }
 
         /**
          * Retorna el cdn de la plantilla
          *
-         * @param null $motivo
          * @return string
          */
-        public function getTemplate($motivo = null) {
-            return sprintf('FixServicemeBundle:Formularios/Motivo:%s.html.twig', $motivo);
+        public function getTemplate() {
+            return sprintf('FixServicemeBundle:Formularios/Motivo:%s.html.twig', $this->motivo);
         }
     }

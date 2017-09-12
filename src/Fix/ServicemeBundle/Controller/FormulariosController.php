@@ -59,23 +59,44 @@ class FormulariosController extends Controller
      */
     public function motivoAction(Request $request, $id) {
 
-        $servicio = $this->get('serviceme.formularios.gestion');
+        $servicio = $this->get('serviceme.formularios.gestion')->setMotivo($id);
 
-        if($servicio->hasTemplate($id) == false) {
+        if($servicio->hasTemplate() == false) {
             $this->addFlash('mensajedanger', 'No existe el formulario solicitado.');
             return $this->redirectToRoute('alertFormularios');
         }
 
-        $form = $servicio->createFormAction($id);
+        $form = $servicio->createFormAction();
         $form->handleRequest($request);
 
         if($form->isSubmitted() AND $form->isValid()):
 
-            dump($request->request->all(), $form->getData());
-            die;
+            $servicio->execute();
+
+            if($id == '13'){
+                $error = array();
+                $lista = array('informacionuno', 'informaciondos', 'informaciontres');
+
+                foreach ($lista AS $value) {
+                    if($form->get($value)->getData() == 'NO') {
+                        $error[] = 'NO';
+                    }
+                }
+                if(count($error)>0) {
+                    $this->addFlash('errorevidente', 'Informa al cliente que no es posible continuar con el proceso ya que alguna respuesta no es correcta.');
+                }
+                else {
+                    $this->addFlash('successevidente', 'El cliente ha respondido correctamente, continua con el Proceso.');
+                }
+
+                return $this->redirectToRoute('alertFormularios');
+            }
+
+            $this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
+            return $this->redirectToRoute('alertFormularios');
         endif;
 
-        return $this->render($servicio->getTemplate($id), array('form' => $form->createView(), 'id' => $id));
+        return $this->render($servicio->getTemplate(), array('form' => $form->createView(), 'id' => $id));
     }
 
     /**
@@ -93,11 +114,11 @@ class FormulariosController extends Controller
         if($request->request->has('detalle') AND $request->request->has('id')) {
             $request->request->set('formulario', array('detalle' => $request->request->get('detalle')));
 
-            $servicio = $this->get('serviceme.formularios.gestion');
-            $form = $servicio->createFormAction($request->request->get('id'));
+            $servicio = $this->get('serviceme.formularios.gestion')->setMotivo($request->request->get('id'));
+            $form = $servicio->createFormAction();
             $form->handleRequest($request);
 
-            return array('form' => $form->createView(), 'id' => $request->request->get('id'), 'seleccion' => $request->request->get('detalle'));
+            return array('form' => $form->createView(), 'id' => $servicio->getMotivo(), 'seleccion' => $request->request->get('detalle'));
         }
         else {
             throw $this->createNotFoundException('No es posible cargar su peticion');

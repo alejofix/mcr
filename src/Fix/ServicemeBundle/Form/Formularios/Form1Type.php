@@ -110,7 +110,6 @@
                 $builder->add('informaciontres', ChoiceType::class, array(
                     'label' => '¿Cuando se evidencia la falla?',
                     'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
-                    'mapped' => false,
                     'choices' => array(
                         'TODO EL DÍA' => 'TODO EL DÍA',
                         'EN HORAS DE LA TARDE DESPUÉS DE LAS 13:00' => 'EN HORAS DE LA TARDE',
@@ -126,7 +125,6 @@
 
                 $builder->add('informacionuno', TextType::class, array(
                     'label' => 'Canales',
-                    'mapped' => false,
                     'attr' => array('placeholder' => 'Ej.  106,108,606 ...', 'class' => 'form-control'),
                     'constraints' => array(
                         new NotBlank(array('message' => 'información Requerida')))
@@ -134,7 +132,6 @@
 
                 $builder->add('informaciondos', TextType::class, array(
                     'label' => 'Programas',
-                    'mapped' => false,
                     'attr' => array('placeholder' => 'Ej. Día a Día, Muy buenos Días, The Simpsons ...', 'class' => 'form-control'),
                     'constraints' => array(
                         new NotBlank(array('message' => 'información Requerida')))
@@ -142,7 +139,6 @@
 
                 $builder->add('informaciontres', TextType::class, array(
                     'label' => 'Hora de Inicio de Programa',
-                    'mapped' => false,
                     'attr' => array('placeholder' => 'Ej. 8:00, 10:00 ...', 'class' => 'form-control'),
                     'constraints' => array(
                         new NotBlank(array('message' => 'información Requerida')))
