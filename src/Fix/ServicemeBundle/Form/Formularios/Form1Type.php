@@ -4,15 +4,19 @@
 
     use Doctrine\ORM\EntityRepository;
     use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-    use Symfony\Component\Form\AbstractType;
+
     use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\IntegerType;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormBuilderInterface;
+    use Symfony\Component\Form\CallbackTransformer;
+    use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\FormEvent;
     use Symfony\Component\Form\FormEvents;
     use Symfony\Component\Form\FormInterface;
+
     use Symfony\Component\OptionsResolver\OptionsResolver;
+
     use Symfony\Component\Validator\Constraints\Ip;
     use Symfony\Component\Validator\Constraints\Length;
     use Symfony\Component\Validator\Constraints\NotBlank;
@@ -38,71 +42,187 @@
                 )
             ));
 
-            $builder->add('datos', TextType::class, array(
-                'label' => 'IP Nagra',
-                'attr' => array('placeholder' => 'Informar Dirección IP Nagra', 'class' => 'form-control'),
-                'constraints' => array(
-                    new NotBlank(array('message' => 'información Requerida')),
-                    new Ip(array('message' => 'Esta no es una Dirección IP Valida'))
-                )
-            ));
+            /*
+             *  formulario id/1
+             *  NAGRA VALIDACIÓN ICONOS DE FUNCIONALIDADES
+             */
+            if($options['_motivo'] == 1){
 
-            $builder->add('razon', EntityType::class, array(
-                'label' => '¿Muestra icono Funcionalidad Grabaciones?',
-                'attr' => array('class' => 'form-control'),
-                'class' => 'FixServicemeBundle:Formulariosrazon',
-                'query_builder' => function(EntityRepository $er) {
-                    $qb = $er->createQueryBuilder('t');
-                    return $qb->where($qb->expr()->eq('t.estado', ':estado'))
-                        ->andWhere('t.tipo = 1')
-                        ->setParameter('estado', 1)
-                        ;
-                },
-                'choice_label' => 'nombre',
-                'placeholder' => 'Seleccione una Opción',
-                'constraints' => array(
-                    new NotBlank(array('message' => 'información Requerida')),
-                )
-            ));
+                $builder->add('datos', TextType::class, array(
+                    'label' => 'IP Nagra',
+                    'attr' => array('placeholder' => 'Informar Dirección IP Nagra', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                        new Ip(array('message' => 'Esta no es una Dirección IP Valida'))
+                    )
+                ));
 
-            $builder->add('referencia', ChoiceType::class, array(
-                'label' => '¿Muestra icono Funcionalidad TimeShift?',
-                'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
-                'choices' => array(
-                    'SI MUESTRA ÍCONO TIMESHIFT' => 'SI MUESTRA ÍCONO TIMESHIFT',
-                    'NO MUESTRA ÍCONO TIMESHIFT' => 'NO MUESTRA ÍCONO TIMESHIFT',
-                ),
-                'placeholder' => 'Seleccione una Opción',
-                'constraints' => array(
-                    new NotBlank(array('message' => 'información Requerida')))
-            ));
+                $builder->add('razon', EntityType::class, array(
+                    'label' => '¿Muestra icono Funcionalidad Grabaciones?',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 1')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
 
-            $builder->add('detalle', ChoiceType::class, array(
-                'label' => 'Canales en los que se evidencia el Problema',
-                'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
-                'choices' => array(
-                    'TODOS LOS CANALES' => 'TODOS LOS CANALES',
-                    'ALGUNOS CANALES' => 'ALGUNOS CANALES',
-                ),
-                'placeholder' => 'Seleccione una Opción',
-                'constraints' => array(
-                    new NotBlank(array('message' => 'información Requerida')))
-            ));
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => '¿Muestra icono Funcionalidad TimeShift?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI MUESTRA ÍCONO TIMESHIFT' => 'SI MUESTRA ÍCONO TIMESHIFT',
+                        'NO MUESTRA ÍCONO TIMESHIFT' => 'NO MUESTRA ÍCONO TIMESHIFT',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
 
-            if($options['_motivo'] == 1):
-                $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit']);
-                $builder->addEventListener(FormEvents::SUBMIT, [$this, 'onSubmit']);
-            endif;
+                $builder->add('detalle', ChoiceType::class, array(
+                    'label' => 'Canales en los que se evidencia el Problema',
+                    'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
+                    'choices' => array(
+                        'TODOS LOS CANALES' => 'TODOS LOS CANALES',
+                        'ALGUNOS CANALES' => 'ALGUNOS CANALES',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+            }
+
+            /*
+             *  formulario id/2
+             *  RENDIMIENTO CABLE MÓDEM
+             */
+            elseif ($options['_motivo'] == 2){
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Tipo de Uso',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 2')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+                $builder->add('detalle', TextType::class, array(
+                    'label' => 'Uptime',
+                    'attr' => array('placeholder' => 'Ingresa el  Uptime que encuentras en Diagnosticador', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+                $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => 'Plan',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        '1 MEGA' => '1 MEGA',
+                        '5 MEGAS' => '5 MEGAS',
+                        '10 MEGAS' => '10 MEGAS',
+                        '20 MEGAS' => '20 MEGAS',
+                        '50 MEGAS' => '50 MEGAS'
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+            }
+            /*
+             *  formulario id/3
+             *  RESET FÍSICO TELEVISIÓN
+             */
+            elseif ($options['_motivo'] == 3){
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Opción Reset Físico',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 3')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+                $builder->add('referencia', EntityType::class, array(
+                    'label' => 'Modelo Decodificador RR',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Decodificadores',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb
+                            ->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'referencia',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+
+
+            }
+
+
+
+
+                    /*
+                     * formularios Ajax
+                     *  FormEvents::
+                     */
+                    if($options['_motivo'] == 1):
+                        $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit']);
+                        $builder->addEventListener(FormEvents::SUBMIT, [$this, 'onSubmit']);
+                    endif;
 
 
         }
 
+
+
         /**
-         * Agrega los elementos correspondientes para el campo
+         * Agrega los elementos correspondientes para el campo Ajax
          *
          * @param FormInterface $builder
          * @param $option
          */
+
         protected function addElement(FormInterface $builder, $option) {
 
             if($option == 'TODOS LOS CANALES'):
@@ -146,6 +266,7 @@
 
             endif;
         }
+
 
         /**
          * Se genera la populacion correspondiente cuando se genera el evento submit
