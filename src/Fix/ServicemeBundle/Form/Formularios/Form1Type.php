@@ -2,9 +2,9 @@
 
     namespace Fix\ServicemeBundle\Form\Formularios;
 
+    use Doctrine\ORM\EntityManager;
     use Doctrine\ORM\EntityRepository;
     use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
     use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\IntegerType;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,14 +14,26 @@
     use Symfony\Component\Form\FormEvent;
     use Symfony\Component\Form\FormEvents;
     use Symfony\Component\Form\FormInterface;
-
     use Symfony\Component\OptionsResolver\OptionsResolver;
-
     use Symfony\Component\Validator\Constraints\Ip;
     use Symfony\Component\Validator\Constraints\Length;
     use Symfony\Component\Validator\Constraints\NotBlank;
 
     class Form1Type extends AbstractType {
+
+        /**
+         * Contenedor de la conexion a la base de datos
+         */
+        private $entityManager;
+
+        /**
+         * inyeccion por servicio de la conexion a la base de datos
+         * @param EntityManager $entityManager
+         */
+        function __construct(EntityManager $entityManager) {
+
+            $this->entityManager = $entityManager;
+        }
 
         /**
          * {@inheritdoc}
@@ -287,6 +299,47 @@
             $data = $event->getData();
 
             $this->addElement($form, $data['detalle']);
+        }
+
+
+        /**
+         * Genera la consulta de los datos para retornarlos
+         * al campo respectivo
+         * 
+         * @param null $motivo
+         * @return array
+         */
+        private function getOptionsQuery($motivo = null) {
+
+            $qb = $this->entityManager->createQueryBuilder();
+            $query = $this->entityManager->getRepository('FixServicemeBundle:SelectFields')
+                ->createQueryBuilder('s')
+                ->where($qb->expr()->eq('s.isActive', 1))
+                ->andWhere($qb->expr()->eq('s.type', $motivo))
+                ->orderBy('s.name', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+
+            return $this->setFormatOptionsQuery($query);
+        }
+
+        /**
+         * Genera el formato de los datos para ser retornados para la implementacion
+         *
+         * @param array $array
+         * @return array
+         */
+        private function setFormatOptionsQuery($array = array()) {
+
+            if(is_array($array) AND count($array) > 1):
+                $list = array();
+                foreach ($array AS $object):
+                    $list[$object->getName()] = $object->getName();
+                endforeach;
+                return $list;
+            endif;
+            return array();
         }
 
         /**
