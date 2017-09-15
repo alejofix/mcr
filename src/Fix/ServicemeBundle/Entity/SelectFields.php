@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SelectFields
  *
- * @ORM\Table(name="TBL_FIELDS_SELECT", indexes={
- *     @ORM\Index(name="IDX_TBL_FIELDS_SELECT_COLUMN_TYPE", columns={"TYPE"})
+ * @ORM\Table(name="TBL_GENERAL_SELECT", indexes={
+ *     @ORM\Index(name="IDX_TBL_FIELDS_GENERAL_COLUMN_TYPE", columns={"TYPE"})
  * })
  * @ORM\Entity(repositoryClass="Fix\ServicemeBundle\Repository\SelectFieldsRepository")
  * @ORM\HasLifecycleCallbacks()

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2017 a las 15:12:18
+-- Tiempo de generación: 15-09-2017 a las 13:15:56
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `mcr`
+-- Base de datos: `service_mcr_2017`
 --
 
 -- --------------------------------------------------------
@@ -39,8 +39,6 @@ CREATE TABLE `tbl_formularios_pri_motivo` (
   `TIPO` int(11) DEFAULT NULL,
   `RAZON` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tbl_formularios_sec_tipo`
@@ -71,7 +69,9 @@ INSERT INTO `tbl_formularios_sec_tipo` (`ID`, `NOMBRE`, `ESTADO`, `SERVICIO`, `U
 (10, 'MÉTODO DE SEGURIDAD', 1, 2, 3),
 (11, 'CLIENTE NO ESTA EN CASA', 1, 2, 3),
 (12, 'UPTIME', 1, 2, 3),
-(13, 'EVIDENTE', 1, 1, 5);
+(13, 'EVIDENTE', 1, 1, 5),
+(14, 'GRABACIONES DESHABILITADAS', 1, 11, 6),
+(15, 'PREPARANDO VÍDEO', 1, 12, 6);
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,11 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (50, '2 PLAY', 1, 11),
 (51, 'PORTAL', 1, 11),
 (52, 'TIEMPO UPTIME DESDE DIAGNOSTICADOR', 1, 12),
-(53, 'TITULARIDAD CLIENTE', 1, 13);
+(53, 'TITULARIDAD CLIENTE', 1, 13),
+(54, 'CONECTADO', 1, 14),
+(55, 'CONECTANDO', 1, 14),
+(56, 'CONECTADO', 1, 15),
+(57, 'CONECTANDO', 1, 15);
 
 -- --------------------------------------------------------
 
@@ -306,11 +310,13 @@ CREATE TABLE `tbl_general_usuarios` (
 --
 
 INSERT INTO `tbl_general_usuarios` (`ID`, `USUARIO`, `NOMBRES`, `APELLIDOS`, `GENERO`, `FECHA_NACIMIENTO`, `CORREO`, `CONTRASENA`, `DOCUMENTO_TIPO`, `DOCUMENTO_NUMERO`, `TELEFONO_FIJO`, `TELEFONO_MOVIL`, `CARGO`, `ROLE`, `ACTIVO`, `FECHA_CREADO`, `FECHA_ACTUALIZADO`, `EMPRESA`) VALUES
-(1, 'FIX', 'SUPER', 'ROOT+', '1', NULL, 'JORGE.MONTENEGRO.T@CLARO.COM.CO', '$2y$12$D/U8yNtr0gBUcAmhaAVY/OskrtZvPKHhfyaK2.feDVrELeL/vCPFm', 'CC', '79696444', NULL, NULL, 'ANALISTA', 'ROLE_ROOT', 1, '2017-06-20 07:39:43', '2017-06-20 07:39:43', 1),
+(1, 'FIX', 'SUPER', 'ROOT', '1', NULL, 'JORGE.MONTENEGRO.T@CLARO.COM.CO', '$2y$12$D/U8yNtr0gBUcAmhaAVY/OskrtZvPKHhfyaK2.feDVrELeL/vCPFm', 'CC', '79696444', NULL, NULL, 'ANALISTA', 'ROLE_ROOT', 1, '2017-06-20 07:39:43', '2017-06-20 07:39:43', 1),
 (2, 'XIMLOZANO', 'XIMENA', 'LOZANO', '0', '1902-01-01 00:00:00', 'XIMENA.LOZANO@CLARO.COM.CO', '$2y$12$n.gBO3YOp2YkVg8OiFdOTOlsuTiPnW2kgKVuBODMTRLixmamkpKw.', 'CC', '1015417037', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-06-21 08:47:30', '2017-06-21 08:47:30', 1),
-(3, 'HVECINO', 'HECTOR MAURICIO', 'VECINO', '1', '1902-01-01 00:00:00', 'HECTOR.VECINO@CLARO.COM.CO', '$2y$12$rznyBFJNd4yUW8/qnyzNBei34jXtzMlcFSYCDYD85vDzk0xETFMyC', 'CC', '80156062', NULL, NULL, 'ANALISTA', 'ROLE_ADMIN', 1, '2017-06-21 09:17:02', '2017-06-21 09:17:02', 1),
+(3, 'HVECINO', 'HECTOR', 'VECINO', '1', '1902-01-01 00:00:00', 'HECTOR.VECINO@CLARO.COM.CO', '$2y$12$rznyBFJNd4yUW8/qnyzNBei34jXtzMlcFSYCDYD85vDzk0xETFMyC', 'CC', '80156062', NULL, NULL, 'ANALISTA', 'ROLE_ADMIN', 1, '2017-06-21 09:17:02', '2017-06-21 09:17:02', 1),
 (4, 'EKZ0287A', 'JORGE MAURICIO', 'PERDOMO', '1', '1902-01-01 00:00:00', 'JORGE.PERDOMO.EXT@CLARO.COM.CO', '$2y$12$/3wxm9WMCFSIKxuHSy2UNuIfF41Rs77Xd3JN77bKqvE1oVR4cITtW', 'CC', '7700287', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-07-06 14:34:14', '2017-07-06 14:34:14', 5),
-(5, 'COTALVAROV', 'CARLOS', 'OTALVARO', '1', '1902-01-01 00:00:00', 'CARLOS.OTALVARO@CLARO.COM.CO', '$2y$12$H/ToAZd8mrX/xIpHy9z3XeQpHRVZ6YMiG.VnGDG7T15HZ1e8e2O36', 'CC', '80863565', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-08-15 09:17:14', '2017-08-15 09:17:14', 1);
+(5, 'COTALVAROV', 'CARLOS', 'OTALVARO', '1', '1902-01-01 00:00:00', 'CARLOS.OTALVARO@CLARO.COM.CO', '$2y$12$SFH3evXivaeOgR59MTCNbOWeXyLDnS/BntpF8m4LYmA3fDUU7xxuK', 'CC', '80863565', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-08-16 14:54:11', '2017-08-16 14:54:11', 1),
+(6, 'CSUAREZ1', 'CAROL', 'SUAREZ', '0', '1902-01-01 00:00:00', 'CAROL.SUAREZ@CLARO.COM.CO', '$2y$12$cNthuS2rWsl5FvJQeuCkU..Z.r92iNV6BL7E5QlDXGLAKiKIvB9FK', 'CC', '52857334', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-09-11 07:00:12', '2017-09-11 07:00:12', 1),
+(7, 'JAGUILAR1', 'ANDRES', 'AGUILAR', '1', '1902-01-01 00:00:00', 'JAIMEA.AGUILAR.EXT@CLARO.COM.CO', '$2y$12$j5cNjGxWTxDpZ9yKR8L5ZezffG/xWAwPirl5j3ByW.kx36rvRWd1q', 'CC', '1013585985', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-09-11 08:35:11', '2017-09-11 08:35:11', 5);
 
 -- --------------------------------------------------------
 
@@ -501,17 +507,17 @@ ALTER TABLE `tbl_serviceco_select_referencia`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_pri_motivo`
 --
 ALTER TABLE `tbl_formularios_pri_motivo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56930;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
 ALTER TABLE `tbl_formularios_sec_tipo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_select_razon`
 --
 ALTER TABLE `tbl_formularios_select_razon`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_decodificadores`
 --
@@ -536,7 +542,7 @@ ALTER TABLE `tbl_general_servicios`
 -- AUTO_INCREMENT de la tabla `tbl_general_usuarios`
 --
 ALTER TABLE `tbl_general_usuarios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tbl_serviceco_log_altoimpacto`
 --
