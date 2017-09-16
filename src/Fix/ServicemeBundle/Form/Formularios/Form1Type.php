@@ -490,20 +490,7 @@
 
             if($option == 'TODOS LOS CANALES'):
 
-                /*$builder->add('informaciontres', ChoiceType::class, array(
-                    'label' => '¿Cuando se evidencia la falla?',
-                    'attr' => array('placeholder' => 'Agregar Datos', 'class' => 'form-control'),
-                    'choices' => array(
-                        'TODO EL DÍA' => 'TODO EL DÍA',
-                        'EN HORAS DE LA TARDE DESPUÉS DE LAS 13:00' => 'EN HORAS DE LA TARDE',
-                        'EN HORAS DE LA NOCHE DESPUÉS DE LAS 18:00' => 'EN HORAS DE LA NOCHE',
-                        'EN LA MADRUGADA' => 'EN LA MADRUGADA'
-                    ),
-                    'placeholder' => 'Seleccione una Opción',
-                    'constraints' => array(
-                        new NotBlank(array('message' => 'información Requerida')))
-                ));*/
-                $builder = $this->getSelectField($builder, 'informaciontres', '¿Cuando se evidencia la falla?');
+                $this->getSelectField($builder, 'informaciontres', '¿Cuando se evidencia la falla?');
 
             elseif($option == 'ALGUNOS CANALES'):
 
