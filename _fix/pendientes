@@ -1,0 +1,5 @@
+- mb_strtoupper ajax
+- copiar guiones
+- $builder con getSelectField a  tbl_general_select
+-  catch (\PDOException $exception) guardar en $qb
+-

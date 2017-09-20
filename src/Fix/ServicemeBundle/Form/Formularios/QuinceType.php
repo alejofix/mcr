@@ -38,6 +38,45 @@ class QuinceType extends AbstractType {
                 ))
             )
         ));
+
+        $builder->add('detalle', ChoiceType::class, array(
+            'label' => '¿Al oprimir la tecla Guía se muestran los iconos de Funcionalidades y Grabación?',
+            'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+            'choices' => array(
+                'SI' => 'SI MUESTRA ICONOS FUNCIONALIDADES Y GRABACIÓN',
+                'NO' => 'NO MUESTRA ICONOS FUNCIONALIDADES Y GRABACIÓN',
+            ),
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')))
+        ));
+
+
+        $builder->add('referencia', ChoiceType::class, array(
+            'label' => '¿Al oprimir la tecla Guía se muestra el logo de los canales (RCN y CARACOL)?',
+            'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+            'choices' => array(
+                'SI' => 'SI MUESTRA LOGO DE CANALES',
+                'NO' => 'NO MUESTRA LOGO DE CANALES',
+            ),
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')))
+        ));
+
+        $builder->add('datos', ChoiceType::class, array(
+            'label' => '¿El error ‘Preparando Vídeo’ se muestra al reproducir todos los Eventos?',
+            'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+            'choices' => array(
+                'SI' => 'SI MUESTRA ERROR EN TODOS LOS EVENTOS',
+                'NO' => 'NO MUESTRA ERROR EN TODOS LOS EVENTOS',
+            ),
+            'placeholder' => 'Seleccione una Opción',
+            'constraints' => array(
+                new Assert\NotBlank(array('message' => 'información Requerida')))
+        ));
+
+
         // Imprescindible:razon
         $builder->add('razon', EntityType::class, array(
             'label' => 'Indique el estado de la Conexión TSTV',

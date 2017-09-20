@@ -4,25 +4,27 @@
 
     use Doctrine\ORM\EntityManager;
     use Doctrine\ORM\EntityRepository;
+
     use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-    use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+    use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\Form\CallbackTransformer;
-    use Symfony\Component\Form\AbstractType;
-    use Symfony\Component\Form\FormEvent;
-    use Symfony\Component\Form\FormEvents;
     use Symfony\Component\Form\FormInterface;
+    use Symfony\Component\Form\AbstractType;
+    use Symfony\Component\Form\FormEvents;
+    use Symfony\Component\Form\FormEvent;
 
     use Symfony\Component\OptionsResolver\OptionsResolver;
-
     use Symfony\Component\Validator\Constraints\Ip;
+    use Symfony\Component\Validator\Constraints\Email;
     use Symfony\Component\Validator\Constraints\Length;
     use Symfony\Component\Validator\Constraints\NotBlank;
 
     use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+    use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
     class Form1Type extends AbstractType {
 
@@ -317,7 +319,7 @@
                     return mb_strtoupper($data);
                 }));
 
-                $builder->add('razon', EntityType::class, array(
+                 $builder->add('razon', EntityType::class, array(
                     'label' => ' ',
                     'attr' => array('class' => 'hidden'),
                     'class' => 'FixServicemeBundle:Formulariosrazon',
@@ -459,11 +461,291 @@
                         new NotBlank(array('message' => 'información Requerida')),
                     )
                 ));
+            }
+
+            /*
+             *  formulario id/8
+             *  AUSENCIA DE CANALES
+             */
+            elseif ($options['_motivo'] == 8){
+
+                $builder->add('detalle', TextType::class, array(
+                    'label' => 'Canales Afectados',
+                    'attr' => array('placeholder' => 'Máximo tres frecuencias Separadas por (,)', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                        new Length(array(
+                            'min' => 3,
+                            'max' => 14,
+                            'minMessage' => 'Ingrese mínimo una Frecuencia ',
+                            'maxMessage' => 'Ingrese máximo tres Frecuencias '
+                        ))
+                    )
+                ));
+                $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Razón Ausencia de Canal',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 8')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+                $builder->add('referencia', EntityType::class, array(
+                    'label' => 'Modelo Decodificador RR',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Decodificadores',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb
+                            ->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'referencia',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+            }
+
+            /*
+             *  formulario id/9
+             *  INFOGRAFÍA CLIENTES
+             */
+            elseif ($options['_motivo'] == 9){
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Infografía que desea Enviar',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 9')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida'))
+                    )
+                ));
+
+                $builder->add('referencia', EmailType::class, array(
+                    'label' => 'Correo electrónico Cliente',
+                    'attr' => array('placeholder' => 'Correo electrónico Completo', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                        new Email(array('message' => 'Dato \'{{ value }}\' No es un Correo.'))
+                    )
+                ));
+                $builder->get('referencia')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
+                $builder->add('detalle', TextType::class, array(
+                    'label' => 'Nombres y Apellidos Cliente',
+                    'attr' => array('placeholder' => 'Nombre Completo ', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                        new Length(array(
+                            'min' => 11,
+                            'max' => 45,
+                            'minMessage' => 'Por favor ingresar Nombre completo',
+                            'maxMessage' => 'Nombre no válido'
+                        ))
+                    )
+                ));
+                $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
+            }
+
+            /*
+             *  formulario id/10
+             * MÉTODO DE SEGURIDAD
+             */
+            elseif ($options['_motivo'] == 10){
+
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => 'Marca TV',
+                    'attr' => array('placeholder' => 'Agregar marca TV', 'class' => 'form-control'),
+                    'choices' => array(
+                        'HYUNDAI' => 'HYUNDAI',
+                        'LG' => 'LG',
+                        'PANASONIC' => 'PANASONIC',
+                        'PHILIPS' => 'PHILIPS',
+                        'SAMSUNG' => 'SAMSUNG',
+                        'SONY' => 'SONY',
+                        'TOSHIBA' => 'TOSHIBA',
+                        'OTRO' => 'OTRO'
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('detalle', TextType::class, array(
+                    'label' => 'Modelo TV',
+                    'attr' => array('placeholder' => 'Agregar modelo TV', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                        new Length(array(
+                            'min' => 2,
+                            'max' => 20,
+                            'minMessage' => 'Por favor ingresar una Referencia válida',
+                            'maxMessage' => 'Por favor ingresar una Referencia válida'
+                        ))
+                    )
+                ));
+                $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Síntoma',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 10')
+                            ->orderBy('t.nombre', 'ASC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+            }
+
+            /*
+             * formulario id/11
+             * CLIENTE NO ESTA EN CASA
+             */
+            elseif ($options['_motivo'] == 11){
+
+
+            }
+
+
+            /*
+             *  formulario id/16
+             *  ERROR INTERNO FLUJO DE DATOS
+             */
+            elseif ($options['_motivo'] == 16){
+
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => '¿Al oprimir la tecla Guía se muestra el logo de los canales (RCN y CARACOL)?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI' => 'SI MUESTRA LOGO DE CANALES',
+                        'NO' => 'NO MUESTRA LOGO DE CANALES',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('datos', ChoiceType::class, array(
+                    'label' => 'La Falla se presenta cuando',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'EL CLIENTE  REPRODUCE UN EVENTO EN CLARO VÍDEO' => 'EL CLIENTE  REPRODUCE UN EVENTO EN CLARO VÍDEO ',
+                        'AL HACER TIME SHIFT (RETROCEDER EN LA GUÍA)' => 'AL HACER TIME SHIFT',
+                        'EN GRABACIONES (ADELANTAR O RETROCEDER UN EVENTO)' => 'EN GRABACIONES',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Indique el estado de la Conexión TSTV',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 16')
+                            ->orderBy('t.nombre', 'ASC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+                $builder->add('informacionuno', TextType::class, array(
+                    'label' => 'Versión del FirmWare',
+                    'attr' => array('placeholder' => 'Ingrese número de Versión | Ej. 2.0 18.0', 'class' => 'form-control', 'rows' => 2),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                        new Length(array(
+                            'min' => 7,
+                            'max' => 9,
+                            'minMessage' => 'Información Versión - mínimo {{ limit }} Caracteres',
+                            'maxMessage' => 'Información Versión - máximo {{ limit }} Caracteres'
+                        ))
+                    )
+
+                ));
+                $builder->get('informacionuno')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
+                $builder->add('detalle', ChoiceType::class, array(
+                    'label' => 'Reinicie el decodificador de corriente y Verifique:',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'CONTINÚA LA FALLA' => 'CONTINÚA LA FALLA',
+                        'SE SOLUCIONÓ' => 'SE SOLUCIONÓ',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
 
             }
 
 
 
+/**/
 
                     /*
                      * formularios Ajax
@@ -476,7 +758,6 @@
 
 
         }
-
 
 
         /**

@@ -52,7 +52,6 @@ class OchoType extends AbstractType {
                     'maxMessage' => 'Ingrese máximo tres Frecuencias '
                 ))
             )
-
         ));
         $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
             return mb_strtoupper($data);
@@ -95,7 +94,6 @@ class OchoType extends AbstractType {
                 new Assert\NotBlank(array('message' => 'información Requerida')),
             )
         ));
-
 
     }
 
