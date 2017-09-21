@@ -655,9 +655,259 @@
              */
             elseif ($options['_motivo'] == 11){
 
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Servicio Afectado',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 11')
+                            ->orderBy('t.nombre', 'DESC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => 'Razón',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'CLIENTE NO ESTA EN CASA' => 'CLIENTE NO ESTA EN CASA',
+                        'CLIENTE NO DESEA O NO PUEDE REALIZAR SOPORTE' => 'CLIENTE NO DESEA O NO PUEDE REALIZAR SOPORTE',
+                        'SIN SOPORTE SE SOLUCIONA' => 'SIN SOPORTE SE SOLUCIONA'
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+            }
+
+            /*
+             * formulario id/12
+             * UPTIME
+             */
+            elseif ($options['_motivo'] == 12){
+
+                $builder->add('detalle', TextType::class, array(
+                    'label' => 'Uptime',
+                    'attr' => array('placeholder' => 'Ingresa el  Uptime que encuentras en Diagnosticador', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+                $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => ' ',
+                    'attr' => array('class' => 'hidden'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 12')
+                            ->orderBy('t.nombre', 'ASC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                ));
 
             }
 
+            /*
+             * formulario id/13
+             * EVIDENTE
+             */
+            elseif ($options['_motivo'] == 13){
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Confirme Si la respuesta es Correcta',
+                    'attr' => array('class' => 'hidden'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function (EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 13')
+                            ->orderBy('t.nombre', 'ASC')
+                            ->setParameter('estado', 1);
+                    },
+                    'choice_label' => 'nombre',
+                ));
+
+                $builder->add('informacionuno', ChoiceType::class, array(
+                    'label' => '¿ Cuáles son los servicios principales que tiene Contratados ?',
+                    'attr' => array('class' => 'col-sm-4 control-label'),
+                    'choices' => array(
+                        'SI' => 'SI',
+                        'NO' => 'NO',
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+                $builder->add('informaciondos', ChoiceType::class, array(
+                    'label' => '¿ En qué mes realizó su último Traslado ?',
+                    'attr' => array('class' => 'col-sm-4 control-label'),
+                    'choices' => array(
+                        'SI' => 'SI',
+                        'NO' => 'NO',
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+                $builder->add('informaciontres', ChoiceType::class, array(
+                    'label' => '¿ Cuál fue el valor de su última factura ?',
+                    'attr' => array('class' => 'col-sm-4 control-label'),
+                    'choices' => array(
+                        'SI' => 'SI',
+                        'NO' => 'NO',
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+            }
+
+            /*
+             * formulario id/14
+             * GRABACIONES DESHABILITADAS
+             */
+            elseif ($options['_motivo'] == 14){
+
+                $builder->add('detalle', ChoiceType::class, array(
+                    'label' => '¿Puede ingresar a Claro Vídeo?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI' => 'SI INGRESA A CLARO VIDEO',
+                        'NO' => 'NO INGRESA A CLARO VIDEO',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('datos', ChoiceType::class, array(
+                    'label' => '¿La falla se presenta desde la instalación?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI' => 'SI FALLA DESDE LA INSTALACIÓN',
+                        'NO' => 'NO FALLA DESDE LA INSTALACIÓN',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => '¿Al oprimir la tecla Guía se muestra el logo de los canales (RCN y CARACOL)?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI' => 'SI MUESTRA LOGO DE CANALES',
+                        'NO' => 'NO MUESTRA LOGO DE CANALES',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Indique el estado de la Conexión TSTV',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 14')
+                            ->orderBy('t.nombre', 'ASC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+
+            }
+
+            /*
+             * formulario id/15
+             * PREPARANDO VÍDEO
+             */
+            elseif ($options['_motivo'] == 15){
+
+                $builder->add('detalle', ChoiceType::class, array(
+                    'label' => '¿Al oprimir la tecla Guía se muestran los iconos de Funcionalidades y Grabación?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI' => 'SI MUESTRA ICONOS FUNCIONALIDADES Y GRABACIÓN',
+                        'NO' => 'NO MUESTRA ICONOS FUNCIONALIDADES Y GRABACIÓN',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => '¿Al oprimir la tecla Guía se muestra el logo de los canales (RCN y CARACOL)?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI' => 'SI MUESTRA LOGO DE CANALES',
+                        'NO' => 'NO MUESTRA LOGO DE CANALES',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('datos', ChoiceType::class, array(
+                    'label' => '¿El error ‘Preparando Vídeo’ se muestra al reproducir todos los Eventos?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI' => 'SI MUESTRA ERROR EN TODOS LOS EVENTOS',
+                        'NO' => 'NO MUESTRA ERROR EN TODOS LOS EVENTOS',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => 'Indique el estado de la Conexión TSTV',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 15')
+                            ->orderBy('t.nombre', 'ASC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+            }
 
             /*
              *  formulario id/16
@@ -743,10 +993,7 @@
 
             }
 
-
-
 /**/
-
                     /*
                      * formularios Ajax
                      *  FormEvents::

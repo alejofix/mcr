@@ -51,41 +51,7 @@
         <script src="{{ asset('public/neon/assets/js/validate/additional-methods.js') }}"></script>
 
         <script>
-            jQuery(document).ready(function() {
-                jQuery("#formulario_detalle").change(function() {
-                    jQuery("#formulario_detalle option:selected").each(function() {
-                        var valor = jQuery(this).val();
-                        jQuery.ajax({
-                            url : "{{ path('formularios_ajax_field') }}",
-                            type: "POST",
-                            dataType: "html",
-                            data : {detalle : valor, id : "{{ id }}"},
-                            error: function(errorObj) {
-                                alert("Se ha presentado un error al enviar la informacion");
-                            },
-                            beforeSend: function() {
-                                jQuery("#cargar_ajax").html(
-                                    '<div class="col-sm-5"></div><div class="col-sm-5"><img src="{{ asset('public/neon/assets/images/fix/load.gif') }}" alt="" width="111"></div>'
-                                );
-                            },
-                            success : function(result) {
-                                jQuery("#cargar_ajax").html(result);
-                            }
-                        });
-                    });
-                });
 
-                jQuery("#form_validate").validate({
-                    rules : {
-                        "formulario[cuenta]" : {required : true}
-
-                    },
-                    messages : {
-                        "formulario[cuenta]" : {required : "información Requerida"}
-
-                    }
-                });
-            });
 
         </script>
 
