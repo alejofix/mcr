@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-09-2017 a las 11:06:55
+-- Tiempo de generación: 02-10-2017 a las 11:17:01
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `service_mcr_2017`
+-- Base de datos: `mcr`
 --
 
 -- --------------------------------------------------------
@@ -169,18 +169,18 @@ CREATE TABLE `tbl_general_decodificadores` (
 --
 
 INSERT INTO `tbl_general_decodificadores` (`ID`, `PLATAFORMA`, `MARCA`, `MODELO`, `REFERENCIA`, `ESTADO`) VALUES
-(1, 'DVB', 'SKYWORTH', 'C7000NX', 'DBV - SKY', 1),
-(2, 'DVB', 'COSHIP', 'N5266C', 'DBV - CSH', 1),
-(3, 'DVB', 'COSHIP', 'N5266C - L', 'DBV - CSH', 1),
-(4, 'DVB', 'COSHIP', 'N8760C', 'DBV - CHD', 1),
-(6, 'DVB', 'HUAWEI', 'DC211', 'DBV - WHI', 1),
-(7, 'DVB', 'HUAWEI', 'DC217', 'DBV - HLC', 1),
-(8, 'DVB', 'HUAWEI', 'DC352', 'DBV - HHD', 1),
-(9, 'DVB', 'HUAWEI', 'DC562', 'DBV - HPV', 1),
-(10, 'DVB', 'TECHNICOLOR', 'DCI420CLC', 'DBV - TCN', 1),
-(11, 'DVB', 'JIUZHOU', 'DTC1736', 'DBV - JZU', 1),
-(12, 'DVB', 'COSHIP', 'N8776C', 'DBV - CH3', 1),
-(13, 'DVB', 'COSHIP', 'N8771C', 'DBV - CH2', 1),
+(1, 'DVB', 'SKYWORTH', 'C7000NX', 'DVB- SKY', 1),
+(2, 'DVB', 'COSHIP', 'N5266C', 'DVB - CSH', 1),
+(3, 'DVB', 'COSHIP', 'N5266C - L', 'DVB - CSH', 1),
+(4, 'DVB', 'COSHIP', 'N8760C', 'DVB - CHD', 1),
+(6, 'DVB', 'HUAWEI', 'DC211', 'DVB - WHI', 1),
+(7, 'DVB', 'HUAWEI', 'DC217', 'DVB- HLC', 1),
+(8, 'DVB', 'HUAWEI', 'DC352', 'DVB - HHD', 1),
+(9, 'DVB', 'HUAWEI', 'DC562', 'DVB - HPV', 1),
+(10, 'DVB', 'TECHNICOLOR', 'DCI420CLC', 'DVB - TCN', 1),
+(11, 'DVB', 'JIUZHOU', 'DTC1736', 'DVB - JZU', 1),
+(12, 'DVB', 'COSHIP', 'N8776C', 'DVB - CH3', 1),
+(13, 'DVB', 'COSHIP', 'N8771C', 'DVB - CH2', 1),
 (14, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DC7', 1),
 (15, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DCV', 1),
 (16, 'ATSC', 'MOTOROLA', 'DCT700', 'DDG - DC1', 1),
@@ -193,7 +193,13 @@ INSERT INTO `tbl_general_decodificadores` (`ID`, `PLATAFORMA`, `MARCA`, `MODELO`
 (23, 'ATSC', 'MOTOROLA', 'DCX525', 'DDG - X25', 1),
 (24, 'ATSC', 'MOTOROLA', 'DCT1800', 'DDG - DC8', 1),
 (25, 'CLARO VIDEO', 'COSHIP', 'N9085I', 'DLA - OTT', 1),
-(26, 'DTH', 'ARION', 'AF-5012S', 'DTH - ARI', 1);
+(26, 'DTH', 'ARION', 'AF-5012S', 'DTH - ARI', 1),
+(27, 'DTH', 'ARION - HD', 'AF-5210', 'DTH-AHD', 1),
+(28, 'DTH', 'ARION - HD', 'AF-8013H', 'DTH-AHH', 1),
+(29, 'DTH', 'KAON -HD', 'CO1600', 'DTH-KHD', 1),
+(30, 'DTH', 'JIUZHOU - HD', 'DTS8720CL', 'DTH-JHD', 1),
+(31, 'DVB', 'NEWLAND', '5101E', 'DVB-NEW', 1),
+(32, 'DVB', 'TECHNICOLOR', 'DCI738CLC', 'DVN-TCH', 1);
 
 -- --------------------------------------------------------
 
@@ -529,7 +535,7 @@ ALTER TABLE `tbl_serviceco_select_referencia`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_pri_motivo`
 --
 ALTER TABLE `tbl_formularios_pri_motivo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57579;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71137;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
@@ -544,7 +550,7 @@ ALTER TABLE `tbl_formularios_select_razon`
 -- AUTO_INCREMENT de la tabla `tbl_general_decodificadores`
 --
 ALTER TABLE `tbl_general_decodificadores`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_empresas`
 --
