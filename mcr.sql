@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2017 a las 11:17:01
+-- Tiempo de generación: 04-10-2017 a las 10:39:00
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -265,6 +265,16 @@ CREATE TABLE `tbl_general_select` (
   `IS_ACTIVE` tinyint(1) NOT NULL,
   `TYPE` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_general_select`
+--
+
+INSERT INTO `tbl_general_select` (`ID`, `RESOURCE`, `FIELD`, `NAME`, `IS_ACTIVE`, `TYPE`) VALUES
+(1, '', 'informaciontres', 'TODO EL DÍA', 1, 1),
+(2, '', 'informaciontres', 'EN HORAS DE LA TARDE DESPUÉS DE LAS 13:00', 1, 1),
+(3, '', 'informaciontres', 'EN HORAS DE LA NOCHE DESPUÉS DE LAS 18:00', 1, 1),
+(4, '', 'informaciontres', 'EN LA MADRUGADA', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -535,7 +545,7 @@ ALTER TABLE `tbl_serviceco_select_referencia`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_pri_motivo`
 --
 ALTER TABLE `tbl_formularios_pri_motivo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71137;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72700;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
@@ -565,7 +575,7 @@ ALTER TABLE `tbl_general_estados`
 -- AUTO_INCREMENT de la tabla `tbl_general_select`
 --
 ALTER TABLE `tbl_general_select`
-  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_servicios`
 --

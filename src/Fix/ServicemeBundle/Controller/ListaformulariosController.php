@@ -155,7 +155,7 @@ class ListaformulariosController extends Controller
 
         if(!$query){
 
-            $this->addFlash('mensajeerror', '¡Paranoico! No existen Registros - Informe al Administrador');
+            $this->addFlash('mensajeerror', 'No existen Registros - Informe al Administrador');
             return $this->redirectToRoute('mensajeError');
 
         }
