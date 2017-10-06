@@ -911,29 +911,40 @@
 
             /*
              *  formulario id/16
-             *  ERROR INTERNO FLUJO DE DATOS
+             *  VISITAS DTH
              */
             elseif ($options['_motivo'] == 16){
 
-                $builder->add('referencia', ChoiceType::class, array(
-                    'label' => '¿Al oprimir la tecla Guía se muestra el logo de los canales (RCN y CARACOL)?',
+                $builder->add('informacionuno', ChoiceType::class, array(
+                    'label' => '¿El usuario genero Manipulación de la instalación o Antena?',
                     'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
                     'choices' => array(
-                        'SI' => 'SI MUESTRA LOGO DE CANALES',
-                        'NO' => 'NO MUESTRA LOGO DE CANALES',
+                        'SI GENERO MANIPULACIÓN' => 'SI GENERO MANIPULACIÓN',
+                        'NO GENERO MANIPULACIÓN' => 'NO GENERO MANIPULACIÓN',
                     ),
                     'placeholder' => 'Seleccione una Opción',
                     'constraints' => array(
                         new NotBlank(array('message' => 'información Requerida')))
                 ));
 
-                $builder->add('datos', ChoiceType::class, array(
-                    'label' => 'La Falla se presenta cuando',
+                $builder->add('informaciondos', ChoiceType::class, array(
+                    'label' => '¿Aparece placa de afectación Climática?',
                     'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
                     'choices' => array(
-                        'EL CLIENTE  REPRODUCE UN EVENTO EN CLARO VÍDEO' => 'EL CLIENTE  REPRODUCE UN EVENTO EN CLARO VÍDEO ',
-                        'AL HACER TIME SHIFT (RETROCEDER EN LA GUÍA)' => 'AL HACER TIME SHIFT',
-                        'EN GRABACIONES (ADELANTAR O RETROCEDER UN EVENTO)' => 'EN GRABACIONES',
+                        'SI APARECE PLACA' => 'SI APARECE PLACA',
+                        'NO APARECE PLACA' => 'NO APARECE PLACA',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => 'Modelo Decodificador RR',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'DECO 1' => 'DECO 1',
+                        'DECO 2' => 'DECO 2',
                     ),
                     'placeholder' => 'Seleccione una Opción',
                     'constraints' => array(
@@ -941,14 +952,14 @@
                 ));
 
                 $builder->add('razon', EntityType::class, array(
-                    'label' => 'Indique el estado de la Conexión TSTV',
+                    'label' => '¿En el momento que se presentó la falla existía afectación Climática?',
                     'attr' => array('class' => 'form-control'),
                     'class' => 'FixServicemeBundle:Formulariosrazon',
                     'query_builder' => function(EntityRepository $er) {
                         $qb = $er->createQueryBuilder('t');
                         return $qb->where($qb->expr()->eq('t.estado', ':estado'))
                             ->andWhere('t.tipo = 16')
-                            ->orderBy('t.nombre', 'ASC')
+                            ->orderBy('t.nombre', 'DESC')
                             ->setParameter('estado', 1)
                             ;
                     },
@@ -959,32 +970,14 @@
                     )
                 ));
 
-                $builder->add('informacionuno', TextType::class, array(
-                    'label' => 'Versión del FirmWare',
-                    'attr' => array('placeholder' => 'Ingrese número de Versión | Ej. 2.0 18.0', 'class' => 'form-control', 'rows' => 2),
-                    'constraints' => array(
-                        new NotBlank(array('message' => 'información Requerida')),
-                        new Length(array(
-                            'min' => 7,
-                            'max' => 9,
-                            'minMessage' => 'Información Versión - mínimo {{ limit }} Caracteres',
-                            'maxMessage' => 'Información Versión - máximo {{ limit }} Caracteres'
-                        ))
-                    )
-
-                ));
-                $builder->get('informacionuno')->addModelTransformer(new CallbackTransformer(function($data) {
-                    return mb_strtoupper($data);
-                }, function($data) {
-                    return mb_strtoupper($data);
-                }));
-
-                $builder->add('detalle', ChoiceType::class, array(
-                    'label' => 'Reinicie el decodificador de corriente y Verifique:',
+                $builder->add('datos', ChoiceType::class, array(
+                    'label' => 'Desde hace cuantos días No tiene Servicio ',
                     'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
                     'choices' => array(
-                        'CONTINÚA LA FALLA' => 'CONTINÚA LA FALLA',
-                        'SE SOLUCIONÓ' => 'SE SOLUCIONÓ',
+                        'DE 1 A 5 DÍAS' => 'DE 1 A 5 DÍAS',
+                        'DE 6 A 10 DÍAS' => 'DE 6 A 10 DÍAS',
+                        'DE 11 A 15 DÍAS' => 'DE 11 A 15 DÍAS',
+                        'MÁS DE 16 DÍAS' => 'MÁS DE 16 DÍAS'
                     ),
                     'placeholder' => 'Seleccione una Opción',
                     'constraints' => array(
@@ -993,7 +986,7 @@
 
             }
 
-/**/
+        /**/
                     /*
                      * formularios Ajax
                      *  FormEvents::

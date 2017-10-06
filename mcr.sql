@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2017 a las 10:39:00
+-- Tiempo de generación: 06-10-2017 a las 16:46:29
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `mcr`
+-- Base de datos: `service_mcr_2017`
 --
 
 -- --------------------------------------------------------
@@ -71,7 +71,8 @@ INSERT INTO `tbl_formularios_sec_tipo` (`ID`, `NOMBRE`, `ESTADO`, `SERVICIO`, `U
 (12, 'UPTIME', 1, 2, 3),
 (13, 'EVIDENTE', 1, 1, 5),
 (14, 'GRABACIONES DESHABILITADAS', 1, 11, 6),
-(15, 'PREPARANDO VÍDEO', 1, 12, 6);
+(15, 'PREPARANDO VÍDEO', 1, 12, 6),
+(16, 'VISITAS DTH', 1, 10, 2);
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,7 @@ CREATE TABLE `tbl_formularios_select_razon` (
   `NOMBRE` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `ESTADO` int(11) DEFAULT NULL,
   `TIPO` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 --
 -- Volcado de datos para la tabla `tbl_formularios_select_razon`
@@ -147,7 +148,9 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (54, 'CONECTADO', 1, 14),
 (55, 'CONECTANDO', 1, 14),
 (56, 'CONECTADO', 1, 15),
-(57, 'CONECTANDO', 1, 15);
+(57, 'CONECTANDO', 1, 15),
+(58, 'SI EXISTÍA AFECTACIÓN CLIMÁTICA', 1, 16),
+(59, 'NO EXISTÍA AFECTACIÓN CLIMÁTICA', 1, 16);
 
 -- --------------------------------------------------------
 
@@ -545,17 +548,17 @@ ALTER TABLE `tbl_serviceco_select_referencia`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_pri_motivo`
 --
 ALTER TABLE `tbl_formularios_pri_motivo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72700;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74757;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
 ALTER TABLE `tbl_formularios_sec_tipo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_select_razon`
 --
 ALTER TABLE `tbl_formularios_select_razon`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_decodificadores`
 --
