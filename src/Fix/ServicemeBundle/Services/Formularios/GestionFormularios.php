@@ -68,6 +68,11 @@
         public function execute($form = null) {
 
             $this->entity->setTipo($this->entityManager->getRepository('FixServicemeBundle:Formulariostipo')->findOneBy(array('id' => $this->motivo)));
+
+            if($this->motivo == 3):
+                $this->entity->setReferencia($form->get('referencia')->getData()->getReferencia());
+            endif;
+
             $this->entityManager->persist($this->entity);
             $this->entityManager->flush();
 

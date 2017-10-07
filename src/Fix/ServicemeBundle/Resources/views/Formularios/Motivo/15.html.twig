@@ -13,11 +13,11 @@
                         <div class="row">
                             <div class="col-lg-12">
 
-                                {{ form_start(form, { 'attr' : {'role' : 'form', 'class' : 'form-horizontal form-groups-bordered', 'novalidate':'novalidate' } }) }}
+                                {{ form_start(form, { 'attr' : {'id':'form_validate', 'role' : 'form', 'class' : 'form-horizontal form-groups-bordered', 'novalidate':'novalidate' } }) }}
 
                                 {% for name, params in form if name != '_token' and name != 'submit' %}
 
-                                    <div class="form-group">
+                                    <div class="form-group" id="id_{{ name }}">
                                         {{ form_label(params, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                                         <div class="col-sm-5">
                                             {{ form_widget(params) }}
@@ -26,6 +26,10 @@
                                     </div>
 
                                 {% endfor %}
+
+                                <div class="form-group" id="id_ajax_add">
+
+                                </div>
 
                                 <br/>
                                 <div class="col-sm-offset-3 col-sm-5">
@@ -47,5 +51,32 @@
 
     {% block javascripts  %}
         {{ parent() }}
-
+        <script>
+            jQuery(document).ready(function() {
+                jQuery("#formulario_datos").change(function() {
+                    jQuery("#formulario_datos option:selected").each(function() {
+                        var valor = jQuery(this).val();
+                        if(valor == 'NO MUESTRA ERROR EN TODOS LOS EVENTOS') {
+                            jQuery.ajax({
+                                url : "{{ path('formularios_ajax_field') }}",
+                                type: "POST",
+                                dataType: "html",
+                                data : {detalle : valor, id : "{{ id }}"},
+                                error: function(errorObj) {
+                                    alert("Se ha presentado un error al enviar la informacion");
+                                },
+                                beforeSend: function() {
+                                    jQuery("#id_ajax_add").html(
+                                        '<div class="col-sm-5"></div><div class="col-sm-5"><img src="{{ asset('public/neon/assets/images/fix/load.gif') }}" alt="" width="111"></div>'
+                                    );
+                                },
+                                success : function(result) {
+                                    jQuery("#id_ajax_add").html(result);
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
     {% endblock %}

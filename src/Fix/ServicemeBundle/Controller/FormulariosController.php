@@ -21,18 +21,6 @@ class FormulariosController extends Controller
 {
 
     /**
-     * FormulariosController::indexAction()
-     * 
-     * @return
-     * @Route(path="/index", name="inicioFormularios")
-     * @Template("FixServicemeBundle:Formularios:index.html.twig")
-     */
-    public function indexAction()
-    {
-    
-    }
-
-    /**
      * FormulariosController::alertAction()
      * 
      * mensaje de confirmación <div class="alert alert-?">
@@ -45,7 +33,6 @@ class FormulariosController extends Controller
     {
     
     }
-
 
     /**
      * Redirecciona a la plantilla correspondiente
@@ -71,7 +58,7 @@ class FormulariosController extends Controller
 
         if($form->isSubmitted() AND $form->isValid()):
 
-            $servicio->execute();
+            $servicio->execute($form);
 
             if($id == '13'){
                 $error = array();
@@ -124,78 +111,4 @@ class FormulariosController extends Controller
             throw $this->createNotFoundException('No es posible cargar su peticion');
         }
     }
-
-    /**
-     * Genera el formulario solicitado
-     *
-     * @param $entity
-     * @param $id
-     * @return \Symfony\Component\Form\Form
-     */
-    private function createNewFormularioForm($entity, $id) {
-
-        switch ($id) {
-            case 1:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\UnoType::class;
-                break;
-            case 2:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\DosType::class;
-                break;
-            case 3:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\TresType::class;
-                break;
-            case 4:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\CuatroType::class;
-                break;
-            case 5:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\CincoType::class;
-                break;
-            case 6:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\SeisType::class;
-                break;
-            case 7:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\SieteType::class;
-                break;
-            case 8:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\OchoType::class;
-                break;
-            case 9:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\NueveType::class;
-                break;
-            case 10:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\DiezType::class;
-                break;
-            case 11:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\OnceType::class;
-                break;
-            case 12:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\DoceType::class;
-                break;
-            case 13:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\TreceType::class;
-                break;
-            case 14:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\CatorceType::class;
-                break;
-            case 15:
-                $clase = \Fix\ServicemeBundle\Form\Formularios\QuinceType::class;
-                break;
-
-        }
-
-
-        return $this->createForm($clase, $entity, array(
-            'action' => $this->generateUrl('formularios_motivos', array('id' => $id)),
-            'method' => 'POST'
-        ));
-    }
-
-    /**
-     * @Route(path="/fix")
-     */
-    public function fixAction() {
-        dump($this->getDoctrine()->getRepository('FixServicemeBundle:Formularios')->findByMotivoGroup());
-        die;
-    }
-
 }

@@ -986,8 +986,8 @@
 
             }
 
-        /**/
-                    /*
+
+                    /**
                      * formularios Ajax
                      *  FormEvents::
                      */
