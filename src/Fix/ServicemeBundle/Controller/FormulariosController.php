@@ -1,7 +1,5 @@
 <?php
-
 namespace Fix\ServicemeBundle\Controller;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -16,22 +14,32 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @Route(path="/formularios")
  */
-
 class FormulariosController extends Controller
 {
-
     /**
      * FormulariosController::alertAction()
-     * 
+     *
      * mensaje de confirmación <div class="alert alert-?">
-     * 
+     *
      * @return null
      * @Route(path="/motivo/alert", name="alertFormularios")
      * @Template("FixServicemeBundle:Formularios:mensajes/alert.html.twig")
      */
     public function alertAction()
     {
-    
+
+    }
+
+    /**
+     * FormulariosController::indexAction()
+     *
+     * @return
+     * @Route(path="/index", name="inicioFormularios")
+     * @Template("FixServicemeBundle:Formularios:index.html.twig")
+     */
+    public function indexAction()
+    {
+
     }
 
     /**
@@ -45,25 +53,18 @@ class FormulariosController extends Controller
      * @return Response
      */
     public function motivoAction(Request $request, $id) {
-
         $servicio = $this->get('serviceme.formularios.gestion')->setMotivo($id);
-
         if($servicio->hasTemplate() == false) {
             $this->addFlash('mensajedanger', 'No existe el formulario solicitado.');
             return $this->redirectToRoute('alertFormularios');
         }
-
         $form = $servicio->createFormAction();
         $form->handleRequest($request);
-
         if($form->isSubmitted() AND $form->isValid()):
-
             $servicio->execute($form);
-
             if($id == '13'){
                 $error = array();
                 $lista = array('informacionuno', 'informaciondos', 'informaciontres');
-
                 foreach ($lista AS $value) {
                     if($form->get($value)->getData() == 'NO') {
                         $error[] = 'NO';
@@ -75,17 +76,13 @@ class FormulariosController extends Controller
                 else {
                     $this->addFlash('successevidente', 'El cliente ha respondido correctamente, continua con el Proceso.');
                 }
-
                 return $this->redirectToRoute('alertFormularios');
             }
-
             $this->addFlash('mensajesuccess', 'Información almacenada con éxito… «Gracias»..');
             return $this->redirectToRoute('alertFormularios');
         endif;
-
         return $this->render($servicio->getTemplate(), array('form' => $form->createView(), 'id' => $id));
     }
-
     /**
      * Genera la carga de los campos solicitados por ajax
      *
@@ -97,18 +94,15 @@ class FormulariosController extends Controller
      * @return array
      */
     public function cargarAjaxFieldsAction(Request $request) {
-
         if($request->request->has('detalle') AND $request->request->has('id')) {
             $request->request->set('formulario', array('detalle' => $request->request->get('detalle')));
-
             $servicio = $this->get('serviceme.formularios.gestion')->setMotivo($request->request->get('id'));
             $form = $servicio->createFormAction();
             $form->handleRequest($request);
-
             return array('form' => $form->createView(), 'id' => $servicio->getMotivo(), 'seleccion' => $request->request->get('detalle'));
         }
         else {
-            throw $this->createNotFoundException('No es posible cargar su peticion');
+           // throw $this->createNotFoundException('No es posible cargar su peticion');
         }
     }
 }

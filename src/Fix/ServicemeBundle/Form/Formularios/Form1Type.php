@@ -984,6 +984,25 @@
                         new NotBlank(array('message' => 'información Requerida')))
                 ));
 
+                $builder->add('detalle', TextType::class, array(
+                    'label' => '¿En qué lugar se encuentra ubicada la Antena?',
+                    'attr' => array('placeholder' => 'Ej:. En el techo, en un árbol… ', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                        new Length(array(
+                            'min' => 4,
+                            'max' => 30,
+                            'minMessage' => 'Especifique el Lugar',
+                            'maxMessage' => 'Excedió el límite de caracteres, solo informe el Lugar '
+                        ))
+                    )
+                ));
+                $builder->get('detalle')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
             }
 
 
