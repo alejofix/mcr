@@ -986,7 +986,7 @@
 
                 $builder->add('detalle', TextType::class, array(
                     'label' => '¿En qué lugar se encuentra ubicada la Antena?',
-                    'attr' => array('placeholder' => 'Ej:. En el techo, en un árbol… ', 'class' => 'form-control'),
+                    'attr' => array('placeholder' => 'Ej. En el techo, en un árbol… ', 'class' => 'form-control'),
                     'constraints' => array(
                         new NotBlank(array('message' => 'información Requerida')),
                         new Length(array(
@@ -1005,7 +1005,6 @@
 
             }
 
-
                     /**
                      * formularios Ajax
                      *  FormEvents::
@@ -1013,9 +1012,33 @@
                     if($options['_motivo'] == 1):
                         $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit']);
                         $builder->addEventListener(FormEvents::SUBMIT, [$this, 'onSubmit']);
+                    elseif($options['_motivo'] == 15):
+                        $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit']);
+                        $builder->addEventListener(FormEvents::SUBMIT, [$this, 'onPreSubmit']);
                     endif;
 
+        }
 
+        public function onPreSubmit15(FormEvent $event) {
+
+            $form = $event->getForm();
+            $data = $event->getData();
+
+            if(array_key_exists('datos', $data) == true AND $data['datos'] == 'NO MUESTRA ERROR EN TODOS LOS EVENTOS') {
+                $form->add('informacionuno', TextType::class, array(
+                    'label' => 'Indique el Evento',
+                    'attr' => array('placeholder' => 'Ej. the walking dead, limitless...', 'class' => 'form-control'),
+                    'constraints' => array(
+                        //    new NotBlank(array('message' => 'información Requerida')),
+                        new Length(array(
+                            'min' => 4,
+                            'max' => 30,
+                            'minMessage' => 'Especifique el Lugar',
+                            'maxMessage' => 'Excedió el límite de caracteres, solo informe el Lugar '
+                        ))
+                    )
+                ));
+            }
         }
 
 
@@ -1053,6 +1076,22 @@
                     'attr' => array('placeholder' => 'Ej. 8:00, 10:00 ...', 'class' => 'form-control'),
                     'constraints' => array(
                         new NotBlank(array('message' => 'información Requerida')))
+                ));
+
+            elseif($option == 'NO MUESTRA ERROR EN TODOS LOS EVENTOS'):
+
+                $builder->add('informacionuno', TextType::class, array(
+                    'label' => 'Indique el Evento',
+                    'attr' => array('placeholder' => 'Ej. the walking dead, limitless...', 'class' => 'form-control'),
+                    'constraints' => array(
+                  //    new NotBlank(array('message' => 'información Requerida')),
+                        new Length(array(
+                            'min' => 4,
+                            'max' => 30,
+                            'minMessage' => 'Especifique el Lugar',
+                            'maxMessage' => 'Excedió el límite de caracteres, solo informe el Lugar '
+                        ))
+                    )
                 ));
 
             endif;

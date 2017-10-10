@@ -36,20 +36,19 @@
 
     {% endif %}
 
-{% elseif id == 14 %}
+{% elseif id == 15 %}
 
-    {% if seleccion == 'SI INGRESA A CLARO VIDEO' %}
+    {% if seleccion == 'NO MUESTRA ERROR EN TODOS LOS EVENTOS' %}
 
         <div class="form-group">
             {{ form_label(form.informacionuno, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
             <div class="col-sm-5">
-                {{ form_widget(form.informaciontres) }}
-                <span class="text-danger">{{ form_errors(form.detalle) }}</span>
+                {{ form_widget(form.informacionuno) }}
+                <span class="text-danger">{{ form_errors(form.informacionuno) }}</span>
             </div>
         </div>
 
     {% endif %}
 
-{% elseif id == 15 %}
 
 {% endif %}

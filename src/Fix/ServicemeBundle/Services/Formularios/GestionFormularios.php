@@ -65,7 +65,7 @@
          *
          * @param null $form
          */
-        public function execute($form = null) {
+        public function execute($form = null, $request) {
 
             $this->entity->setTipo($this->entityManager->getRepository('FixServicemeBundle:Formulariostipo')->findOneBy(array('id' => $this->motivo)));
 

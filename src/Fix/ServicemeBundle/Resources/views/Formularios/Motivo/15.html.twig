@@ -27,7 +27,7 @@
 
                                 {% endfor %}
 
-                                <div class="form-group" id="id_ajax_add">
+                                <div id="id_ajax_add">
 
                                 </div>
 
@@ -51,12 +51,15 @@
 
     {% block javascripts  %}
         {{ parent() }}
+
+        <script src="{{ asset('public/neon/assets/js/validate/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/validate/additional-methods.js') }}"></script>
         <script>
             jQuery(document).ready(function() {
                 jQuery("#formulario_datos").change(function() {
                     jQuery("#formulario_datos option:selected").each(function() {
                         var valor = jQuery(this).val();
-                        if(valor == 'NO MUESTRA ERROR EN TODOS LOS EVENTOS') {
+                //        if(valor == 'NO MUESTRA ERROR EN TODOS LOS EVENTOS') {
                             jQuery.ajax({
                                 url : "{{ path('formularios_ajax_field') }}",
                                 type: "POST",
@@ -71,12 +74,34 @@
                                     );
                                 },
                                 success : function(result) {
-                                    jQuery("#id_ajax_add").html(result);
+                                    jQuery("#id_datos").after(result);
+                                    jQuery("#id_ajax_add").html(' ');
                                 }
                             });
-                        }
+                //        }
                     });
                 });
+
             });
+
+            jQuery("#form_validate").validate({
+                rules : {
+                    "formulario[cuenta]" : {required : true},
+                    "formulario[detalle]" : {required : true},
+                    "formulario[referencia]" : {required : true},
+                    "formulario[datos]" : {required : true},
+                    "formulario[razon]" : {required : true},
+                    "formulario[informacionuno]" : {required : true}
+                },
+                messages : {
+                    "formulario[cuenta]" : {required : "información Requerida"},
+                    "formulario[detalle]" : {required : "información Requerida"},
+                    "formulario[referencia]" : {required : "información Requerida"},
+                    "formulario[datos]" : {required : "información Requerida"},
+                    "formulario[razon]" : {required : "información Requerida"},
+                    "formulario[informacionuno]" : {required : "información Requerida"}
+                }
+            });
+
         </script>
     {% endblock %}

@@ -61,7 +61,10 @@ class FormulariosController extends Controller
         $form = $servicio->createFormAction();
         $form->handleRequest($request);
         if($form->isSubmitted() AND $form->isValid()):
-            $servicio->execute($form);
+           // dump($request, $form->getData());
+           // die;
+
+            $servicio->execute($form, $request);
             if($id == '13'){
                 $error = array();
                 $lista = array('informacionuno', 'informaciondos', 'informaciontres');
