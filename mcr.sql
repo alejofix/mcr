@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2017 a las 16:46:29
+-- Tiempo de generación: 12-10-2017 a las 09:38:15
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `service_mcr_2017`
+-- Base de datos: `mcr`
 --
 
 -- --------------------------------------------------------
@@ -39,6 +39,8 @@ CREATE TABLE `tbl_formularios_pri_motivo` (
   `TIPO` int(11) DEFAULT NULL,
   `RAZON` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `tbl_formularios_sec_tipo`
@@ -197,12 +199,12 @@ INSERT INTO `tbl_general_decodificadores` (`ID`, `PLATAFORMA`, `MARCA`, `MODELO`
 (24, 'ATSC', 'MOTOROLA', 'DCT1800', 'DDG - DC8', 1),
 (25, 'CLARO VIDEO', 'COSHIP', 'N9085I', 'DLA - OTT', 1),
 (26, 'DTH', 'ARION', 'AF-5012S', 'DTH - ARI', 1),
-(27, 'DTH', 'ARION - HD', 'AF-5210', 'DTH-AHD', 1),
-(28, 'DTH', 'ARION - HD', 'AF-8013H', 'DTH-AHH', 1),
-(29, 'DTH', 'KAON -HD', 'CO1600', 'DTH-KHD', 1),
-(30, 'DTH', 'JIUZHOU - HD', 'DTS8720CL', 'DTH-JHD', 1),
-(31, 'DVB', 'NEWLAND', '5101E', 'DVB-NEW', 1),
-(32, 'DVB', 'TECHNICOLOR', 'DCI738CLC', 'DVN-TCH', 1);
+(27, 'DTH', 'ARION - HD', 'AF-5210', 'DTH - AHD', 1),
+(28, 'DTH', 'ARION - HD', 'AF-8013H', 'DTH - AHH', 1),
+(29, 'DTH', 'KAON -HD', 'CO1600', 'DTH - KHD', 1),
+(30, 'DTH', 'JIUZHOU - HD', 'DTS8720CL', 'DTH - JHD', 1),
+(31, 'DVB', 'NEWLAND', '5101E', 'DVB - NEW', 1),
+(32, 'DVB', 'TECHNICOLOR', 'DCI738CLC', 'DVN - TCH', 1);
 
 -- --------------------------------------------------------
 
@@ -548,7 +550,7 @@ ALTER TABLE `tbl_serviceco_select_referencia`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_pri_motivo`
 --
 ALTER TABLE `tbl_formularios_pri_motivo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74757;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79105;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --

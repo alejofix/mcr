@@ -943,8 +943,11 @@
                     'label' => 'Modelo Decodificador RR',
                     'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
                     'choices' => array(
-                        'DECO 1' => 'DECO 1',
-                        'DECO 2' => 'DECO 2',
+                        'DTH - ARI' => 'DTH - ARI',
+                        'DTH - AHD' => 'DTH - AHD',
+                        'DTH - AHH' => 'DTH - AHH',
+                        'DTH - KHD' => 'DTH - KHD',
+                        'DTH - JHD' => 'DTH - JHD',
                     ),
                     'placeholder' => 'Seleccione una Opción',
                     'constraints' => array(
