@@ -1,0 +1,83 @@
+{% extends 'formularios/base.html.twig' %}
+
+    {% block body %}
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Formulario Mejoramiento Telefonía
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                {{ form_start(form, {'action' : 'javascript:;' ,'attr' : {'id':'form-17', 'role' : 'form', 'class' : 'form-horizontal form-groups-bordered', 'novalidate':'novalidate' } }) }}
+
+                                {% for name, params in form if name != '_token' and name != 'submit' %}
+
+                                    <div class="form-group">
+                                        {{ form_label(params, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                        <div class="col-sm-5">
+                                            {{ form_widget(params) }}
+                                            <span class="text-danger">{{ form_errors(params) }}</span>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+
+                                <br/>
+                                <div class="col-sm-offset-3 col-sm-5">
+                                    <button type="submit" class="btn btn-default">Guardar</button>
+                                </div>
+
+                                {{ form_end(form) }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    {% endblock %}
+
+
+    {% block javascripts  %}
+        {{ parent() }}
+        <script src="{{ asset('public/neon/assets/js/validate/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('public/neon/assets/js/validate/additional-methods.js') }}"></script>
+        <script>
+            jQuery(document).ready(function() {
+                jQuery("#form-17").validate({
+                    rules : {
+                        "formulario[cuenta]" : { required : true }
+                    },
+                    messages : {
+                        "formulario[cuenta]" : { required : "Campo Requerido" }
+                    },
+                    submitHandler : function(form) {
+                        jQuery.ajax({
+                            url : "{{ path('formularios_ajax_tel_virtual', {'id':id}) }}",
+                            type : "POST",
+                            dataType : "json",
+                            data : jQuery(form).serialize(),
+                            error : function(error) {
+                                swal("Error", "Se ha presentado un error en la petición", "error");
+                            },
+                            success : function(resultado) {
+                                if(resultado.status) {
+                                    swal("Cuenta Registrada", "El numero de cuenta se encuentra asociado a linea(s) virtual(es): " + resultado.phone.join(", "), "success");
+                                }
+                                else {
+                                    swal("Cuenta No Registrada", "El numero de cuenta no tiene asociada una linea virtual", "error");
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+    {% endblock %}

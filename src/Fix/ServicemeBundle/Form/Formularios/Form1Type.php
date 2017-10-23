@@ -1008,6 +1008,18 @@
 
             }
 
+
+
+            /*
+             *  formulario id/17
+             *  BASE TELEFONÍA VIRTUAL
+             */
+            elseif ($options['_motivo'] == 17){
+
+
+
+
+            }
                     /**
                      * formularios Ajax
                      *  FormEvents::

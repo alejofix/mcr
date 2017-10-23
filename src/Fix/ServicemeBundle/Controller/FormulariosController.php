@@ -5,6 +5,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -107,5 +108,29 @@ class FormulariosController extends Controller
         else {
            // throw $this->createNotFoundException('No es posible cargar su peticion');
         }
+    }
+
+    /**
+     * @Route(path="/ajax/telvirtual/{id}", name="formularios_ajax_tel_virtual", condition="request.isXmlHttpRequest() and request.request.has('formulario')", requirements={"id" = "\d+"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function ajaxConsultarTelefoniaVirtualAction(Request $request, $id) {
+
+        $servicio = $this->get('serviceme.formularios.gestion')->setMotivo($id);
+        $form = $servicio->createFormAction();
+        $form->handleRequest($request);
+        $servicio->execute($form, $request);
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('FixServicemeBundle:MiscTelVirtual')->findBy(array('account' => $form->get('cuenta')->getData(), 'isActive' => 1));
+        $result = ($repository != null) ? true : false;
+        $list = array();
+        if($repository != null) {
+            foreach ($repository AS $object) {
+                $list[] = $object->getPhone();
+            }
+        }
+        return new JsonResponse(array('status' => $result, 'phone' => $list));
     }
 }
