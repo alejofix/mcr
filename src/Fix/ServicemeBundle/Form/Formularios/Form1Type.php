@@ -1016,7 +1016,20 @@
              */
             elseif ($options['_motivo'] == 17){
 
-
+                $builder->add('razon', EntityType::class, array(
+                    'label' => ' ',
+                    'attr' => array('class' => 'hidden'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 17')
+                            ->orderBy('t.nombre', 'ASC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                ));
 
 
             }

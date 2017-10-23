@@ -1,0 +1,96 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 23-10-2017 a las 10:01:20
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `mcr`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_general_usuarios`
+--
+
+CREATE TABLE `tbl_general_usuarios` (
+  `ID` int(11) NOT NULL,
+  `USUARIO` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `NOMBRES` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `APELLIDOS` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `GENERO` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `FECHA_NACIMIENTO` datetime DEFAULT NULL,
+  `CORREO` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `CONTRASENA` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `DOCUMENTO_TIPO` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `DOCUMENTO_NUMERO` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `TELEFONO_FIJO` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `TELEFONO_MOVIL` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `CARGO` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ROLE` enum('ROLE_ROOT','ROLE_ADMIN','ROLE_MCR','ROLE_SD','ROLE_EXP','ROLE_INV') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ACTIVO` tinyint(1) NOT NULL,
+  `FECHA_CREADO` datetime NOT NULL,
+  `FECHA_ACTUALIZADO` datetime NOT NULL,
+  `EMPRESA` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_general_usuarios`
+--
+
+INSERT INTO `tbl_general_usuarios` (`ID`, `USUARIO`, `NOMBRES`, `APELLIDOS`, `GENERO`, `FECHA_NACIMIENTO`, `CORREO`, `CONTRASENA`, `DOCUMENTO_TIPO`, `DOCUMENTO_NUMERO`, `TELEFONO_FIJO`, `TELEFONO_MOVIL`, `CARGO`, `ROLE`, `ACTIVO`, `FECHA_CREADO`, `FECHA_ACTUALIZADO`, `EMPRESA`) VALUES
+(1, 'FIX', 'SUPER', 'ROOT+', '1', NULL, 'JORGE.MONTENEGRO.T@CLARO.COM.CO', '$2y$12$D/U8yNtr0gBUcAmhaAVY/OskrtZvPKHhfyaK2.feDVrELeL/vCPFm', 'CC', '79696444', NULL, NULL, 'ANALISTA', 'ROLE_ROOT', 1, '2017-06-20 07:39:43', '2017-06-20 07:39:43', 1),
+(2, 'XIMLOZANO', 'XIMENA', 'LOZANO', '0', '1902-01-01 00:00:00', 'XIMENA.LOZANO@CLARO.COM.CO', '$2y$12$n.gBO3YOp2YkVg8OiFdOTOlsuTiPnW2kgKVuBODMTRLixmamkpKw.', 'CC', '1015417037', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-06-21 08:47:30', '2017-06-21 08:47:30', 1),
+(3, 'HVECINO', 'HECTOR', 'VECINO', '1', '1902-01-01 00:00:00', 'HECTOR.VECINO@CLARO.COM.CO', '$2y$12$rznyBFJNd4yUW8/qnyzNBei34jXtzMlcFSYCDYD85vDzk0xETFMyC', 'CC', '80156062', NULL, NULL, 'ANALISTA', 'ROLE_ADMIN', 1, '2017-06-21 09:17:02', '2017-06-21 09:17:02', 1),
+(4, 'EKZ0287A', 'JORGE MAURICIO', 'PERDOMO', '1', '1902-01-01 00:00:00', 'JORGE.PERDOMO.EXT@CLARO.COM.CO', '$2y$12$/3wxm9WMCFSIKxuHSy2UNuIfF41Rs77Xd3JN77bKqvE1oVR4cITtW', 'CC', '7700287', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-07-06 14:34:14', '2017-07-06 14:34:14', 5),
+(5, 'COTALVAROV', 'CARLOS', 'OTALVARO', '1', '1902-01-01 00:00:00', 'CARLOS.OTALVARO@CLARO.COM.CO', '$2y$12$SFH3evXivaeOgR59MTCNbOWeXyLDnS/BntpF8m4LYmA3fDUU7xxuK', 'CC', '80863565', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-08-16 14:54:11', '2017-08-16 14:54:11', 1),
+(6, 'CSUAREZ1', 'CAROL', 'SUAREZ', '0', '1902-01-01 00:00:00', 'CAROL.SUAREZ@CLARO.COM.CO', '$2y$12$cNthuS2rWsl5FvJQeuCkU..Z.r92iNV6BL7E5QlDXGLAKiKIvB9FK', 'CC', '52857334', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-09-11 07:00:12', '2017-09-11 07:00:12', 1),
+(7, 'JAGUILAR1', 'ANDRES', 'AGUILAR', '1', '1902-01-01 00:00:00', 'JAIMEA.AGUILAR.EXT@CLARO.COM.CO', '$2y$12$j5cNjGxWTxDpZ9yKR8L5ZezffG/xWAwPirl5j3ByW.kx36rvRWd1q', 'CC', '1013585985', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-09-11 08:35:11', '2017-09-11 08:35:11', 5),
+(8, 'SMVARGAS', 'SANDRA', 'VARGAS', '0', '1902-01-01 00:00:00', 'SANDRA.VARGAS.P@CLARO.COM.CO', '$2y$12$gDsd6QvBieRZFWsJYDxvy.2ZhInlnZlR.cND.aJZW4awqNU.n4Ga6', 'CC', '1072639923', NULL, NULL, 'ANALISTA', 'ROLE_MCR', 1, '2017-10-23 09:16:18', '2017-10-23 09:16:18', 1);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `tbl_general_usuarios`
+--
+ALTER TABLE `tbl_general_usuarios`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `IDX_TBL_GENERAL_COLUMN_EMPRESA` (`EMPRESA`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_general_usuarios`
+--
+ALTER TABLE `tbl_general_usuarios`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `tbl_general_usuarios`
+--
+ALTER TABLE `tbl_general_usuarios`
+  ADD CONSTRAINT `FK_C42CB35A8792A44A` FOREIGN KEY (`EMPRESA`) REFERENCES `tbl_general_empresas` (`ID`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
