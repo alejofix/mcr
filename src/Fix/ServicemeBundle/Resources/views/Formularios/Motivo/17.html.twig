@@ -69,10 +69,10 @@
                             },
                             success : function(resultado) {
                                 if(resultado.status) {
-                                    swal("Cuenta Registrada", "El numero de cuenta se encuentra asociado a linea(s) virtual(es): " + resultado.phone.join(", "), "success");
+                                    swal("Cuenta Registrada", "El número de cuenta se encuentra asociado a línea(s) virtual(es): " + resultado.phone.join(", "), "success");
                                 }
                                 else {
-                                    swal("Cuenta No Registrada", "El numero de cuenta no tiene asociada una linea virtual", "error");
+                                    swal("Cuenta No Registrada", "El número de cuenta no tiene asociada una línea virtual", "error");
                                 }
                             }
                         });
