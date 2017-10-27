@@ -1008,8 +1008,6 @@
 
             }
 
-
-
             /*
              *  formulario id/17
              *  BASE TELEFONÍA VIRTUAL
@@ -1031,8 +1029,29 @@
                     'choice_label' => 'nombre',
                 ));
 
+            }
+
+            /*
+             *  formulario id/18
+             *  OBSERVACIONES ICW
+             */
+            elseif ($options['_motivo'] == 18){
+
+                $builder->add('referencia', ChoiceType::class, array(
+                    'label' => '¿Ha utilizado sistema de autogestión ?',
+                    'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'SI' => 'SI HA UTILIZADO SISTEMA DE AUTOGESTIÓN',
+                        'NO' => 'NO HA UTILIZADO SISTEMA DE AUTOGESTIÓN',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
 
             }
+
+
                     /**
                      * formularios Ajax
                      *  FormEvents::
