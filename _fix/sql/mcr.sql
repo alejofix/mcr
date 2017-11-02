@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-10-2017 a las 12:08:23
+-- Tiempo de generación: 02-11-2017 a las 17:31:28
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -156,8 +156,8 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (58, 'SI EXISTÍA AFECTACIÓN CLIMÁTICA', 1, 16),
 (59, 'NO EXISTÍA AFECTACIÓN CLIMÁTICA', 1, 16),
 (60, 'TELEFONÍA VIRTUAL ACTIVA', 1, 17),
-(61, 'IVR', 1, 18),
-(62, 'APP', 1, 18);
+(61, 'TRANSFERENCIA CON AUDIO RESPUESTA', 1, 18),
+(62, 'MODIFICACIÓN POR APP', 1, 18);
 
 -- --------------------------------------------------------
 
