@@ -926,13 +926,27 @@
                     'constraints' => array(
                         new NotBlank(array('message' => 'información Requerida')))
                 ));
-
+                /*
                 $builder->add('informaciondos', ChoiceType::class, array(
                     'label' => '¿Aparece placa de afectación Climática?',
                     'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
                     'choices' => array(
                         'SI APARECE PLACA' => 'SI APARECE PLACA',
                         'NO APARECE PLACA' => 'NO APARECE PLACA',
+                    ),
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')))
+                ));
+                */
+
+                $builder->add('informaciondos', ChoiceType::class, array(
+                    'label' => '¿Aparece alguno de estos mensajes?',
+                     'attr' => array('placeholder' => 'Agregar Detalle', 'class' => 'form-control'),
+                    'choices' => array(
+                        'Estimado cliente: si tienes problemas con la señal de TV, te sugerimos revisar la conexión de tu decodificador así:…' => 'ESTIMADO CLIENTE: SI TIENES PROBLEMAS CON LA SEÑAL DE TV, TE SUGERIMOS REVISAR LA CONEXIÓN DE TU DECODIFICADOR ASÍ:…',
+                        'Estimado cliente, tu servicio podría presentar cortes ante lluvias intensas o tormentas eléctricas, si no estás frente a un evento climático por favor sigue las indicaciones:…' => 'ESTIMADO CLIENTE, TU SERVICIO PODRÍA PRESENTAR CORTES ANTE LLUVIAS INTENSAS O TORMENTAS ELÉCTRICAS, SI NO ESTÁS FRENTE A UN EVENTO CLIMÁTICO POR FAVOR SIGUE LAS INDICACIONES:…',
+                        'OTROS' => 'OTROS',
                     ),
                     'placeholder' => 'Seleccione una Opción',
                     'constraints' => array(
