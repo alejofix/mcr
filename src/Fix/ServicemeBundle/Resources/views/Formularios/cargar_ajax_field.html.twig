@@ -36,17 +36,17 @@
 
     {% endif %}
 
-{% elseif id == 15 %}
+{% elseif id == 16 %}
 
-    {% if seleccion == 'NO MUESTRA ERROR EN TODOS LOS EVENTOS' %}
-
-        <div class="form-group">
-            {{ form_label(form.informacionuno, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-            <div class="col-sm-5">
-                {{ form_widget(form.informacionuno) }}
-                <span class="text-danger">{{ form_errors(form.informacionuno) }}</span>
-            </div>
-        </div>
+    {% if seleccion == 'OTROS' %}
+            {{ dump(form) }}
+        {#<div class="form-group">#}
+            {#{{ form_label(form.informaciontres, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}#}
+            {#<div class="col-sm-5">#}
+                {#{{ form_widget(form.informaciontres) }}#}
+                {#<span class="text-danger">{{ form_errors(form.informaciontres) }}</span>#}
+            {#</div>#}
+        {#</div>#}
 
     {% endif %}
 

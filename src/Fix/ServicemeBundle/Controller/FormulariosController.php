@@ -98,6 +98,7 @@ class FormulariosController extends Controller
      * @return array
      */
     public function cargarAjaxFieldsAction(Request $request) {
+
         if($request->request->has('detalle') AND $request->request->has('id')) {
             $request->request->set('formulario', array('detalle' => $request->request->get('detalle')));
             $servicio = $this->get('serviceme.formularios.gestion')->setMotivo($request->request->get('id'));
