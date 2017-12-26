@@ -77,6 +77,8 @@
                 $this->entity->setReferencia($form->get('referencia')->getData()->getReferencia());
             elseif($this->motivo == 8):
                 $this->entity->setReferencia($form->get('referencia')->getData()->getReferencia());
+            elseif($this->motivo == 20):
+                $this->entity->setReferencia($form->get('referencia')->getData()->getReferencia());
             endif;
 
             $this->entityManager->persist($this->entity);

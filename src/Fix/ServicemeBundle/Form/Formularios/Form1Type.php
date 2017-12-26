@@ -1065,6 +1065,106 @@
 
             }
 
+            /*
+             *  formulario id/19
+             * CONTROL TV
+             */
+            elseif ($options['_motivo'] == 19){
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => '¿Cuál es el  Motivo de configuración?',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 19')
+                            ->orderBy('t.id', 'ASC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+
+
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+                $builder->add('datos', TextType::class, array(
+                    'label' => 'Marca Televisor',
+                    'attr' => array('placeholder' => 'Marca del Televisor', 'class' => 'form-control'),
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                        new Length(array(
+                            'min' => 2,
+                            'max' => 20,
+                            'minMessage' => 'Por favor ingresar una Referencia válida',
+                            'maxMessage' => 'Por favor ingresar una Referencia válida'
+                        ))
+                    )
+                ));
+                $builder->get('datos')->addModelTransformer(new CallbackTransformer(function($data) {
+                    return mb_strtoupper($data);
+                }, function($data) {
+                    return mb_strtoupper($data);
+                }));
+
+
+
+            }
+
+
+            /*
+             *  formulario id/20
+             * CONTROL STB
+             */
+            elseif ($options['_motivo'] == 20){
+
+                $builder->add('razon', EntityType::class, array(
+                    'label' => '¿Cuál es el  Motivo de configuración?',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Formulariosrazon',
+                    'query_builder' => function(EntityRepository $er) {
+
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->andWhere('t.tipo = 20')
+                            ->orderBy('t.id', 'ASC')
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'nombre',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+                $builder->add('referencia', EntityType::class, array(
+                    'label' => 'Modelo Decodificador RR',
+                    'attr' => array('class' => 'form-control'),
+                    'class' => 'FixServicemeBundle:Decodificadores',
+                    'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('t');
+                        return $qb
+                            ->where($qb->expr()->eq('t.estado', ':estado'))
+                            ->setParameter('estado', 1)
+                            ;
+                    },
+                    'choice_label' => 'referencia',
+                    'placeholder' => 'Seleccione una Opción',
+                    'constraints' => array(
+                        new NotBlank(array('message' => 'información Requerida')),
+                    )
+                ));
+
+
+            }
+
+
             /**
              * formularios Ajax
              *  FormEvents::
