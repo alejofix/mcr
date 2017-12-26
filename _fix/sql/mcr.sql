@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2017 a las 13:45:44
+-- Tiempo de generación: 26-12-2017 a las 15:22:51
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -76,7 +76,9 @@ INSERT INTO `tbl_formularios_sec_tipo` (`ID`, `NOMBRE`, `ESTADO`, `SERVICIO`, `U
 (15, 'PREPARANDO VÍDEO', 1, 12, 6),
 (16, 'VISITAS DTH', 1, 10, 2),
 (17, 'BASE TELEFONÍA VIRTUAL', 1, 3, 8),
-(18, 'OBSERVACIONES ICW', 1, 2, 9);
+(18, 'OBSERVACIONES ICW', 1, 2, 9),
+(19, 'CONTROL TV', 1, 5, 2),
+(20, 'CONTROL STB', 1, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -157,7 +159,16 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (59, 'NO EXISTÍA AFECTACIÓN CLIMÁTICA', 1, 16),
 (60, 'TELEFONÍA VIRTUAL ACTIVA', 1, 17),
 (61, 'MODIFICACIÓN CON AUDIO RESPUESTA', 1, 18),
-(62, 'MODIFICACIÓN POR APP', 1, 18);
+(62, 'MODIFICACIÓN POR APP', 1, 18),
+(63, 'TV NUEVO', 1, 19),
+(64, 'CAMBIO DE CONTROL', 1, 19),
+(65, 'MANIPULACIONES', 1, 19),
+(66, 'CAMBIO DE DECODIFICADOR', 1, 19),
+(67, 'OTRO MOTIVO', 1, 19),
+(68, 'CAMBIO DE CONTROL', 1, 20),
+(69, 'MANIPULACIONES', 1, 20),
+(70, 'CAMBIO DE DECODIFICADOR', 1, 20),
+(71, 'OTRO MOTIVO', 1, 20);
 
 -- --------------------------------------------------------
 
@@ -10809,12 +10820,12 @@ ALTER TABLE `tbl_formularios_pri_motivo`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
 ALTER TABLE `tbl_formularios_sec_tipo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `tbl_formularios_select_razon`
 --
 ALTER TABLE `tbl_formularios_select_razon`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT de la tabla `tbl_general_decodificadores`
 --
