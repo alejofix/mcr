@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2017 a las 10:00:42
+-- Tiempo de generación: 27-12-2017 a las 07:13:26
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -55,7 +55,10 @@ INSERT INTO `tbl_formularios_sec_tipo` (`ID`, `NOMBRE`, `ESTADO`, `SERVICIO`, `U
 (14, 'GRABACIONES DESHABILITADAS', 1, 11, 6),
 (15, 'PREPARANDO VÍDEO', 1, 12, 6),
 (16, 'VISITAS DTH', 1, 10, 2),
-(17, 'BASE TELEFONÍA VIRTUAL', 1, 3, 8);
+(17, 'BASE TELEFONÍA VIRTUAL', 1, 3, 8),
+(18, 'OBSERVACIONES ICW', 1, 2, 9),
+(19, 'CONTROL TV', 1, 5, 2),
+(20, 'CONTROL STB', 1, 5, 2);
 
 --
 -- Índices para tablas volcadas
@@ -78,7 +81,7 @@ ALTER TABLE `tbl_formularios_sec_tipo`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_sec_tipo`
 --
 ALTER TABLE `tbl_formularios_sec_tipo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Restricciones para tablas volcadas
 --

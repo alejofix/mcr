@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2017 a las 10:00:52
+-- Tiempo de generación: 27-12-2017 a las 07:10:59
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -97,7 +97,18 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (57, 'CONECTANDO', 1, 15),
 (58, 'SI EXISTÍA AFECTACIÓN CLIMÁTICA', 1, 16),
 (59, 'NO EXISTÍA AFECTACIÓN CLIMÁTICA', 1, 16),
-(60, 'TELEFONÍA VIRTUAL ACTIVA', 1, 17);
+(60, 'TELEFONÍA VIRTUAL ACTIVA', 1, 17),
+(61, 'MODIFICACIÓN CON AUDIO RESPUESTA', 1, 18),
+(62, 'MODIFICACIÓN POR APP', 1, 18),
+(63, 'TV NUEVO', 1, 19),
+(64, 'CAMBIO DE CONTROL', 1, 19),
+(65, 'MANIPULACIONES', 1, 19),
+(66, 'CAMBIO DE DECODIFICADOR', 1, 19),
+(67, 'OTRO MOTIVO', 1, 19),
+(68, 'CAMBIO DE CONTROL', 1, 20),
+(69, 'MANIPULACIONES', 1, 20),
+(70, 'CAMBIO DE DECODIFICADOR', 1, 20),
+(71, 'OTRO MOTIVO', 1, 20);
 
 --
 -- Índices para tablas volcadas
@@ -119,7 +130,7 @@ ALTER TABLE `tbl_formularios_select_razon`
 -- AUTO_INCREMENT de la tabla `tbl_formularios_select_razon`
 --
 ALTER TABLE `tbl_formularios_select_razon`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- Restricciones para tablas volcadas
 --

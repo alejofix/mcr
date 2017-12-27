@@ -1,6 +1,6 @@
 imports:
-    - { resource: parameters_fix.yml }
-    #- { resource: parameters_mcr.yml }
+    #- { resource: parameters_fix.yml }
+    - { resource: parameters_mcr.yml }
     - { resource: security.yml }
     - { resource: services.yml }
 
