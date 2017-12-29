@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-12-2017 a las 07:17:21
+-- Tiempo de generación: 29-12-2017 a las 13:09:00
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -163,7 +163,7 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (63, 'TV NUEVO', 1, 19),
 (64, 'CAMBIO DE CONTROL', 1, 19),
 (65, 'MANIPULACIONES', 1, 19),
-(66, 'CAMBIO DE DECODIFICADOR', 1, 19),
+(66, 'CAMBIO DE DECODIFICADOR Y CONTROL', 1, 19),
 (67, 'OTRO MOTIVO', 1, 19),
 (68, 'CAMBIO DE CONTROL', 1, 20),
 (69, 'MANIPULACIONES', 1, 20),

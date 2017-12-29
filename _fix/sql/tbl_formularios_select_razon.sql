@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-12-2017 a las 07:10:59
+-- Tiempo de generación: 29-12-2017 a las 13:10:44
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `mcr`
+-- Base de datos: `service_mcr_2017`
 --
 
 -- --------------------------------------------------------
@@ -101,14 +101,14 @@ INSERT INTO `tbl_formularios_select_razon` (`ID`, `NOMBRE`, `ESTADO`, `TIPO`) VA
 (61, 'MODIFICACIÓN CON AUDIO RESPUESTA', 1, 18),
 (62, 'MODIFICACIÓN POR APP', 1, 18),
 (63, 'TV NUEVO', 1, 19),
-(64, 'CAMBIO DE CONTROL', 1, 19),
-(65, 'MANIPULACIONES', 1, 19),
+(64, 'CAMBIO DE DECODIFICADOR Y CONTROL', 1, 19),
+(65, 'MANIPULACIONES', 2, 19),
 (66, 'CAMBIO DE DECODIFICADOR', 1, 19),
-(67, 'OTRO MOTIVO', 1, 19),
+(67, 'DESCONFIGURACIÓN POR MANIPULACIÓN ', 1, 19),
 (68, 'CAMBIO DE CONTROL', 1, 20),
-(69, 'MANIPULACIONES', 1, 20),
+(69, 'CAMBIO DE DECODIFICADOR Y CONTROL', 1, 20),
 (70, 'CAMBIO DE DECODIFICADOR', 1, 20),
-(71, 'OTRO MOTIVO', 1, 20);
+(71, 'DESCONFIGURACIÓN POR MANIPULACIÓN ', 1, 20);
 
 --
 -- Índices para tablas volcadas
