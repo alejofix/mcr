@@ -1,5 +1,5 @@
-/.idea/
-/.idea/*
+///.idea/
+///.idea/*
 /var/cache/dev
 /var/cache/dev/*
 /var/cache/prod
